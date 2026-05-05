@@ -72,15 +72,21 @@
   .tabs {
     max-width: 480px;
     margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    display: flex;
     gap: 4px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 2px;
   }
+  .tabs::-webkit-scrollbar { display: none; }
   .tab {
+    flex: 1 0 auto;
+    min-width: 64px;
     background: transparent;
     border: 1px solid rgba(194, 65, 12, 0.2);
     border-radius: 999px;
-    padding: 7px 2px;
+    padding: 7px 8px;
     font-family: 'Shippori Mincho', serif;
     font-size: 11px;
     font-weight: 500;
@@ -454,43 +460,57 @@
     line-height: 1.6;
   }
 
-  /* True/False buttons */
-  .tf-options {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+  /* Multiple choice buttons (A/B/C) */
+  .mc-options {
+    display: flex;
+    flex-direction: column;
     gap: 8px;
   }
-  .tf-option {
+  .mc-option {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    padding: 12px 8px;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 11px 12px;
     background: rgba(255, 255, 255, 0.6);
     border: 1.5px solid rgba(194, 65, 12, 0.2);
     border-radius: 10px;
     cursor: pointer;
     transition: all 0.18s;
     user-select: none;
-    font-family: 'Shippori Mincho', serif;
   }
-  .tf-option:active { transform: scale(0.96); }
-  .tf-option input { display: none; }
-  .tf-option .symbol {
-    font-size: 22px;
+  .mc-option:active { transform: scale(0.99); }
+  .mc-option input { display: none; }
+  .mc-option .badge {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(194, 65, 12, 0.1);
+    color: #C2410C;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 16px;
     font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     line-height: 1;
   }
-  .tf-option .label {
-    font-size: 12px;
-    color: #6B4226;
+  .mc-option .text {
+    flex: 1;
+    font-size: 13.5px;
+    color: #3D2817;
+    line-height: 1.55;
+    padding-top: 4px;
   }
-  .tf-option.maru .symbol { color: #166534; }
-  .tf-option.batsu .symbol { color: #991B1B; }
-  .tf-option:has(input:checked) {
-    background: rgba(255, 220, 180, 0.7);
+  .mc-option:has(input:checked) {
+    background: rgba(255, 220, 180, 0.6);
     border-color: #C2410C;
     box-shadow: 0 0 0 3px rgba(194, 65, 12, 0.1);
+  }
+  .mc-option:has(input:checked) .badge {
+    background: linear-gradient(135deg, #C2410C 0%, #8B2D0A 100%);
+    color: #FFF8EB;
   }
 
   /* ============ Submit button ============ */
@@ -670,11 +690,12 @@
   .pane { display: none; }
   .pane.active { display: block; }
 
+
   @media (max-width: 380px) {
     .tab { font-size: 11px; padding: 7px 2px; }
     .tab .en { font-size: 8px; }
     .card { padding: 18px 16px; }
-    .tf-option .symbol { font-size: 20px; }
+    .mc-option .text { font-size: 13px; }
     .logo-mark { width: 76px; }
     .logo-text { width: 180px; }
   }
@@ -686,11 +707,11 @@
 <nav class="tabbar">
   <div class="tabs">
     <button class="tab active" data-tab="quiz">
-      テスト01
+      テスト
       <span class="en">T E S T</span>
     </button>
     <button class="tab" data-tab="meat">
-      肉品
+      鶏と鴨
       <span class="en">M E A T</span>
     </button>
     <button class="tab" data-tab="veg">
@@ -728,7 +749,7 @@
 
     <div class="section-head">
       <div class="ornament">❉ ❉ ❉</div>
-      <h2>肉品知識</h2>
+      <h2>鶏と鴨</h2>
       <div class="sub">M E A T &nbsp; K N O W L E D G E</div>
     </div>
 
@@ -765,7 +786,7 @@
       <span class="card-label">— Section 2</span>
       <h3>おちば屋のこだわり食材</h3>
 
-      <h4>丹波地どり（たんばじどり）</h4>
+      <h4>丹波地どり</h4>
       <ul>
         <li><strong>産地</strong>：兵庫県（養父市・朝来市など）および京都府</li>
         <li><strong>飼育のこだわり</strong>：全期間「平飼い」かつ「無投薬」の専用飼料</li>
@@ -826,6 +847,29 @@
       </ul>
     </section>
 
+    <!-- 5. つなぎ・ストロング 深掘 -->
+    <section class="card">
+      <span class="card-label">— Section 5</span>
+      <h3>つなぎ・ストロング 深掘</h3>
+      <p>同じ部位なのに名前が２つあるのは、おちば屋ならではの歴史です。</p>
+
+      <h4>名称の由来</h4>
+      <ul>
+        <li>元々は <strong>小鉢料理「ストロング」</strong> としてのみ提供していた</li>
+        <li>後に <strong>串焼き化</strong> する際、小鉢と区別するため「<strong>つなぎ</strong>」と新命名</li>
+      </ul>
+      <div class="tip">
+        <span class="label">— TIP</span>
+        専門的には「<strong>ストロングハート</strong>」、「こころのこり」「はつトロ」とも呼ばれる希少部位。
+      </div>
+
+      <h4>提供スタイルの違い</h4>
+      <ul>
+        <li><strong>つなぎ（串焼き）</strong>：脂の旨味を引き立てる「タレ」で焼く</li>
+        <li><strong>ストロング（小鉢）</strong>：薬味＋ポン酢で、濃厚な脂をさっぱりと</li>
+      </ul>
+    </section>
+
   </div>
 
   <!-- ============================================
@@ -861,14 +905,14 @@
   </div>
 
   <!-- ============================================
-       PANE 4: テスト01 (QUIZ)
+       PANE 4: テスト (QUIZ)
        ============================================ -->
   <div class="pane active" id="pane-quiz">
 
     <div class="quiz-intro">
       <div class="ornament">❉ ❉ ❉</div>
-      <h2>テスト01</h2>
-      <p>肉品知識編 ─ ◯×形式 / 全20問</p>
+      <h2>テスト</h2>
+      <p>鶏と鴨の知識編 ─ 三択形式 / 全20問</p>
     </div>
 
     <!-- Quiz form -->
@@ -913,7 +957,7 @@
 
     <section class="card" id="askCard">
       <p style="font-size: 13px; color: #6B4226; margin-bottom: 16px;">
-        今日の勉強会で学んだこと、肉品知識についてもっと知りたいこと、<br>
+        今日の学習会で学んだこと、鶏や鴨についてもっと知りたいこと、<br>
         今後学んでみたいテーマなど、ぜひ教えてください。
       </p>
 
@@ -924,17 +968,17 @@
 
       <div class="field">
         <label for="askLearned">今日学んだこと <span class="opt">（任意）</span></label>
-        <textarea id="askLearned" rows="4" placeholder="今日の勉強会で印象に残ったこと、新しく知った知識など..."></textarea>
+        <textarea id="askLearned" rows="4" placeholder="今日の学習会で印象に残ったこと、新しく知った知識など..."></textarea>
       </div>
 
       <div class="field">
-        <label for="askWantToKnow">肉品知識でもっと知りたいこと <span class="opt">（任意）</span></label>
+        <label for="askWantToKnow">鶏と鴨についてもっと知りたいこと <span class="opt">（任意）</span></label>
         <textarea id="askWantToKnow" rows="4" placeholder="今日の内容で気になった点、もっと深く知りたい部位や食材など..."></textarea>
       </div>
 
       <div class="field">
         <label for="askFutureTopic">今後学びたいテーマ <span class="opt">（任意）</span></label>
-        <textarea id="askFutureTopic" rows="4" placeholder="次回以降の勉強会で取り上げてほしいテーマ..."></textarea>
+        <textarea id="askFutureTopic" rows="4" placeholder="次回以降の学習会で取り上げてほしいテーマ..."></textarea>
       </div>
 
       <button class="submit-btn" id="askSubmit">送信する</button>
@@ -948,7 +992,7 @@
           ありがとうございました
         </h2>
         <p style="font-size: 13px; color: #6B4226; margin-bottom: 18px;">
-          いただいたご意見は、今後の勉強会づくりに<br>
+          いただいたご意見は、今後の学習会づくりに<br>
           活かしてまいります。
         </p>
         <button class="retry-btn" id="askAgainBtn">もう一件送る</button>
@@ -982,79 +1026,151 @@
   // ============================================================
   // 設問データ（◯×形式・全20問）
   // ============================================================
-  // group: グループ見出し（任意。最初の問題に付ける）
-  // q: 問題文 / answer: true=◯ / false=×
-  // explain: 解説（不正解時のフィードバック用）
+  // 設問データ（A/B/C 三択形式・全20問）
+  // group: グループ見出し（任意）
+  // q: 問題文 / options: [A, B, C] / answer: 0=A, 1=B, 2=C
+  // explain: 解説
   // ============================================================
   const quizData = [
-    // ── おちば屋のこだわり食材 ──
-    { group: "おちば屋のこだわり食材（丹波地どり・河内鴨）",
-      q: "丹波地どりの産地である「丹波」とは、京都府中部と兵庫県東部にまたがる地域を指す。",
-      answer: true,
-      explain: "京都と兵庫にまたがるエリアです。" },
-    { q: "丹波地どりは、全飼育期間において抗生物質や合成抗菌剤を使用しない「無投薬飼育」である。",
-      answer: true,
-      explain: "安全・安心のためのこだわりです。" },
-    { q: "「平飼い」とは、鶏をケージ（カゴ）の中に閉じ込めず、地面に放して自由に動き回れる状態で飼育することである。",
-      answer: true,
-      explain: "自由に動き回ることで肉質が良くなります。" },
-    { q: "丹波地どりは、一般的な鶏よりも短い約50日間で出荷される。",
-      answer: false,
-      explain: "正解は約90日間です。じっくり育てます。" },
-    { q: "現在、当店で使用している地鶏の品種は「ロードアイランドレッド」の交配種である。",
-      answer: true,
-      explain: "現在の主力品種です。" },
-    { q: "河内鴨の生産元である「ツムラ本店」は、1870年（明治3年）に創業された。",
-      answer: true,
-      explain: "150年以上の歴史を誇ります。" },
-    { q: "合鴨（あいがも）とは、野生のマガモと家禽のアヒルを交配させて誕生した鳥である。",
-      answer: true,
-      explain: "マガモとアヒルの交配種です。" },
-    { q: "河内鴨は「大阪産（もん）」の認定を受けており、G20大阪サミットの正式食材にも採用された。",
-      answer: true,
-      explain: "大阪を代表する最高級食材です。" },
-    { q: "河内鴨は鮮度が極めて高いため、「お造り」や「たたき」などの生食でも提供が可能である。",
-      answer: true,
-      explain: "朝引きの鮮度が自慢です。" },
+    // ── 1. 鶏の分類・地鶏の定義 ──
+    { group: "鶏の分類・地鶏の定義",
+      q: "JAS規格における「地鶏」の飼育密度として正しいものはどれか?",
+      options: [
+        "1㎡当たり16羽以下",
+        "1㎡当たり10羽以下",
+        "1㎡当たり5羽以下"
+      ],
+      answer: 1,
+      explain: "JAS規格の地鶏は1㎡当たり10羽以下と定められています。" },
+    { q: "おちば屋の「丹波地どり」の平均飼育期間は何日か?",
+      options: ["約50日", "約75日", "約90日"],
+      answer: 2,
+      explain: "丹波地どりはじっくり90日間かけて育てます。" },
+    { q: "「地鶏」として認められるための、在来種血統の最低比率は?",
+      options: ["30%以上", "50%以上", "100%"],
+      answer: 1,
+      explain: "JAS規格では在来種の血統が50%以上必要です。" },
+    { q: "丹波地どりの飼育における最大の特徴はどれか?",
+      options: [
+        "出荷直前の1週間のみ無投薬",
+        "全期間「平飼い」かつ「無投薬」の専用飼料を使用",
+        "運動制限を行い脂肪分を増やす飼育"
+      ],
+      answer: 1,
+      explain: "全期間にわたる平飼い・無投薬が丹波地どりのこだわりです。" },
+    { q: "丹波地どりの主な産地として正しいエリアはどこか?",
+      options: [
+        "京都府南部と奈良県",
+        "兵庫県東部と京都府中部",
+        "大阪府北部と滋賀県"
+      ],
+      answer: 1,
+      explain: "兵庫県東部と京都府中部の旧丹波国エリアが産地です。" },
+    { q: "丹波地どりの現在の主要な品種(交配種)は何か?",
+      options: ["名古屋コーチン", "ロードアイランドレッド", "オーストラローブ"],
+      answer: 1,
+      explain: "現在はロードアイランドレッドの交配種を使用しています。" },
+    { q: "おちば屋が提供する地鶏の味と食感の決め手となっている要因は?",
+      options: [
+        "短期間で急速に成長させること",
+        "90日間という長い飼育期間と平飼いによる運動",
+        "ケージ内で静かに飼育すること"
+      ],
+      answer: 1,
+      explain: "長い飼育期間と平飼いによる運動が味わいの決め手です。" },
 
-    // ── 串焼き（焼きもの）の部位知識 ──
-    { group: "串焼き（焼きもの）の部位知識",
-      q: "「ささみ」は胸肉の一部で、低脂肪で非常に柔らかいのが特徴である。",
-      answer: true,
-      explain: "非常にヘルシーな部位です。" },
-    { q: "「せせり」は鶏の首の筋肉で、弾力がありジューシーな希少部位である。",
-      answer: true,
-      explain: "よく動く首の筋肉なので弾力があります。" },
-    { q: "「カッパ」とは、砂肝（ずり）のことを指す名称である。",
-      answer: false,
-      explain: "正解は「やげん軟骨（胸の軟骨）」です。" },
-    { q: "「プリマス」の名称は、創業時に「黄斑プリマスロック」という品種を使用していたこだわりから継続して使われている。",
-      answer: true,
-      explain: "おちば屋の歴史を表す名前です。" },
-    { q: "現在の「プリマス（若鶏のねぎま）」に使われている鶏の品種は、昔と変わらず今も「黄斑プリマスロック」である。",
-      answer: false,
-      explain: "正解は「ロードアイランドレッド」に変更されています。" },
-    { q: "「つなぎ」は、肝（レバー）と心（ハツ）を繋いでいる血管部分である。",
-      answer: true,
-      explain: "脂が乗った希少な部位です。" },
-    { q: "「ズリマン」は、ずり（砂肝）の縁の部分で、コリコリとした強い旨味が特徴である。",
-      answer: true,
-      explain: "独特の食感が人気です。" },
+    // ── 2. 河内鴨 ──
+    { group: "河内鴨",
+      q: "「河内鴨」の生産元であるツムラ本店の創業年はいつか?",
+      options: ["1870年", "1900年", "1999年"],
+      answer: 0,
+      explain: "1870年(明治3年)創業、150年以上の歴史を誇ります。" },
+    { q: "「合鴨(あいがも)」とは、どの組み合わせの交配種か?",
+      options: [
+        "野生のマガモと家禽のアヒル",
+        "野生の鴨とブロイラー",
+        "2種類の異なる野生の鴨"
+      ],
+      answer: 0,
+      explain: "野生のマガモと家禽のアヒルを交配させた鳥です。" },
+    { q: "「河内鴨のお造り」で提供されている正確な部位の組み合わせは?",
+      options: [
+        "ロース(胸肉)と皮",
+        "ロース(胸肉)とレバー",
+        "もも肉と砂肝"
+      ],
+      answer: 0,
+      explain: "ロースと皮の食感のコントラストを楽しめる一品です。" },
+    { q: "「河内鴨ホルモン」のベースとして使用されている部位はどこか?",
+      options: [
+        "鴨の小腸",
+        "鴨のロースの皮の部分",
+        "鴨の砂肝"
+      ],
+      answer: 1,
+      explain: "内臓ではなくロースの皮の部分がベースです。" },
+    { q: "串焼きの「鴨ねぎ」に使用されている河内鴨の部位はどれか?",
+      options: ["ささみ", "もも肉", "ロース"],
+      answer: 1,
+      explain: "鶏のねぎまと同様、もも肉を使用しています。" },
+    { q: "現在提供されている「河内鴨ロースミックス(炙り焼き)」の使用部位は?",
+      options: ["ロースのみ", "ロースともも肉", "ロースと皮"],
+      answer: 0,
+      explain: "現在はロースのみで提供しています。" },
 
-    // ── 肉料理の解説 ──
-    { group: "肉料理の解説",
-      q: "「河内鴨のお造り」は、ロース（胸肉）と皮を組み合わせて提供している。",
-      answer: true,
-      explain: "ロースと皮の食感のコントラストを楽しめます。" },
-    { q: "「河内鴨のたたき」と「ユッケ」には、どちらも上質なロースが使用されている。",
-      answer: true,
-      explain: "どちらも最高級のロースです。" },
-    { q: "串焼きの「鴨ねぎ」に使用されているのは、鴨の「ささみ」である。",
-      answer: false,
-      explain: "正解は「もも肉」です。" },
-    { q: "「ストロング」は、希少部位の「つなぎ」を串焼きではなく、小鉢で薬味とポン酢を用いて仕上げた料理である。",
-      answer: true,
-      explain: "つなぎをさっぱりと食べるオリジナル料理です。" }
+    // ── 3. 串焼き部位 ──
+    { group: "串焼き部位の名称",
+      q: "串焼き「プリマス」の名称の由来となった創業時の品種はどれか?",
+      options: ["ロードアイランドレッド", "比内地鶏", "黄斑プリマスロック"],
+      answer: 2,
+      explain: "創業時に使用していた「黄斑プリマスロック」が名称の由来です。" },
+    { q: "部位「カッパ(やげん軟骨)」は鶏のどこの軟骨か?",
+      options: ["膝の軟骨", "胸の軟骨", "羽の付け根の軟骨"],
+      answer: 1,
+      explain: "胸の軟骨を「やげん軟骨」=「カッパ」と呼びます。" },
+    { q: "「ズリマン」とは、どこの部位を指す名称か?",
+      options: [
+        "砂肝の縁にある薄い筋肉の膜",
+        "鶏の首の筋肉",
+        "鶏の心臓の先端"
+      ],
+      answer: 0,
+      explain: "ズリ(砂肝)の縁の筋肉部分。コリコリとした強い旨味が特徴です。" },
+
+    // ── 4. つなぎ・ストロング ──
+    { group: "つなぎ・ストロング 深掘",
+      q: "メニュー名「ストロング」の歴史的な説明として正しいものはどれか?",
+      options: [
+        "焼き加減が非常に強い料理のこと",
+        "創業当時からこの部位そのものを指していたメニュー名",
+        "アルコール度数が高いお酒に合うという意味"
+      ],
+      answer: 1,
+      explain: "元々おちば屋では、この希少部位そのものを「ストロング」と呼んでいました。" },
+    { q: "串焼きの名称を「ストロング」ではなく「つなぎ」とした理由は?",
+      options: [
+        "既存の小鉢料理(ストロング)とお客様が混同しないようにするため",
+        "部位が切れやすいため「繋ぐ」という意味を込めた",
+        "肉とネギを交互に刺して繋いでいるから"
+      ],
+      answer: 0,
+      explain: "既存の小鉢「ストロング」と混同しないよう「つなぎ」という新名称を採用しました。" },
+    { q: "部位「つなぎ」が生理的に繋いでいる2つの器官はどれか?",
+      options: [
+        "心臓(ハツ)と肝臓(キモ)",
+        "心臓(ハツ)と肺",
+        "肝臓(キモ)と胃"
+      ],
+      answer: 0,
+      explain: "ハツとキモの境目にある血管部分・ハツの根本(はつかん)部分です。" },
+    { q: "「ストロングハート(つなぎ)」の味と食感の特徴はどれか?",
+      options: [
+        "非常に淡白でパサパサしている",
+        "脂が非常に乗っており、コリコリとした食感がある",
+        "非常に柔らかく、口の中で溶ける"
+      ],
+      answer: 1,
+      explain: "脂の乗りとコリコリ食感が「ストロング」の名前の由来です。" }
   ];
 
   // ============================================================
@@ -1066,6 +1182,7 @@
   // 描画
   // ============================================================
   const questionsEl = document.getElementById('questions');
+  const LETTERS = ['A', 'B', 'C', 'D', 'E'];
   quizData.forEach((item, i) => {
     if (item.group) {
       const h = document.createElement('div');
@@ -1075,21 +1192,17 @@
     }
     const wrap = document.createElement('div');
     wrap.className = 'question';
+    const optionsHTML = item.options.map((opt, idx) => `
+      <label class="mc-option">
+        <input type="radio" name="q${i}" value="${idx}" />
+        <span class="badge">${LETTERS[idx]}</span>
+        <span class="text">${opt}</span>
+      </label>
+    `).join('');
     wrap.innerHTML = `
       <div class="q-num">Q${String(i + 1).padStart(2, '0')}</div>
       <div class="q-text">${item.q}</div>
-      <div class="tf-options">
-        <label class="tf-option maru">
-          <input type="radio" name="q${i}" value="true" />
-          <span class="symbol">◯</span>
-          <span class="label">正しい</span>
-        </label>
-        <label class="tf-option batsu">
-          <input type="radio" name="q${i}" value="false" />
-          <span class="symbol">×</span>
-          <span class="label">誤り</span>
-        </label>
-      </div>
+      <div class="mc-options">${optionsHTML}</div>
     `;
     questionsEl.appendChild(wrap);
   });
@@ -1123,7 +1236,7 @@
         unanswered++;
         answers.push(null);
       } else {
-        const v = checked.value === 'true';
+        const v = parseInt(checked.value, 10);
         answers.push(v);
         if (v === item.answer) score++;
       }
@@ -1201,8 +1314,10 @@
     const list = document.getElementById('resultList');
     list.innerHTML = answers.map((a, i) => {
       const correct = a === quizData[i].answer;
-      const userMark = a === true ? '◯' : '×';
-      const correctMark = quizData[i].answer === true ? '◯' : '×';
+      const userLetter = a === null ? '—' : LETTERS[a];
+      const correctLetter = LETTERS[quizData[i].answer];
+      const userOptText = a === null ? '' : quizData[i].options[a];
+      const correctOptText = quizData[i].options[quizData[i].answer];
       return `
         <div class="result-item ${correct ? 'correct' : 'wrong'}">
           <div class="ri-head">
@@ -1211,8 +1326,8 @@
           </div>
           <div class="ri-q">${quizData[i].q}</div>
           <div class="ri-explain">
-            <strong>あなたの回答：</strong>${userMark}
-            ${correct ? '' : `&nbsp;／&nbsp;<strong>正解：</strong>${correctMark}`}
+            <strong>あなたの回答：</strong>${userLetter}${userOptText ? '. ' + userOptText : ''}
+            ${correct ? '' : `<br><strong>正解：</strong>${correctLetter}. ${correctOptText}`}
             <br>
             <strong>解説：</strong>${quizData[i].explain}
           </div>
