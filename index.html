@@ -1107,7 +1107,7 @@
         <button class="quiz-category-btn" id="btnCategoryVeg">
           <span class="qcat-icon">菜</span>
           <span class="qcat-title">野菜と食材</span>
-          <span class="qcat-sub">三択形式 / 全20問</span>
+          <span class="qcat-sub">三択・複数選択 / 全20問</span>
         </button>
       </div>
     </div>
@@ -1843,20 +1843,18 @@
   function hideAskStatus() { askStatus.className = 'status'; }
 
   askSubmit.addEventListener('click', async () => {
-    const askName = document.getElementById('askName').value.trim();
-    const askLearned = document.getElementById('askLearned').value.trim();
+    const askName     = document.getElementById('askName').value.trim();
+    const askLearned  = document.getElementById('askLearned').value.trim();
     const askWantToKnow = document.getElementById('askWantToKnow').value.trim();
+    const askRecommend  = document.getElementById('askRecommend') ? document.getElementById('askRecommend').value.trim() : '';
     const askFutureTopic = document.getElementById('askFutureTopic').value.trim();
+    const askChallenge   = document.getElementById('askChallenge') ? document.getElementById('askChallenge').value.trim() : '';
 
-    const askRecommend = document.getElementById('askRecommend') ? document.getElementById('askRecommend').value.trim() : '';
-    const askChallenge = document.getElementById('askChallenge') ? document.getElementById('askChallenge').value.trim() : '';
-    // 名前は必須
     if (!askName) {
       showAskStatus('お名前を入力してください', 'error');
       document.getElementById('askName').focus();
       return;
     }
-    // 必須項目チェック
     if (!askLearned) {
       showAskStatus('「なるほど！と思った知識」を入力してください', 'error');
       return;
@@ -1869,7 +1867,7 @@
       showAskStatus('「おすすめの答え方」を入力してください', 'error');
       return;
     }
-    // 文字数チェック
+
     const allText = askLearned + askWantToKnow + askRecommend + askFutureTopic + askChallenge;
     if (allText.length > 3000) {
       showAskStatus('内容が長すぎます（合計3000文字以内）', 'error');
@@ -1878,9 +1876,6 @@
 
     askSubmit.disabled = true;
     showAskStatus('送信中...', 'loading');
-
-    const askRecommend = document.getElementById('askRecommend').value.trim();
-    const askChallenge = document.getElementById('askChallenge').value.trim();
 
     const payload = {
       type: 'ask',
@@ -1902,7 +1897,7 @@
           body: JSON.stringify(payload)
         });
       }
-    } catch (err) { /* 失敗しても完了画面を見せる */ }
+    } catch (err) {}
 
     hideAskStatus();
     document.getElementById('askCard').classList.add('hidden');
