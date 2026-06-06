@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <meta name="theme-color" content="#FFD8B5" />
-<title>おちば屋 ─ ゆうちゃん塾</title>
+<title>おちば屋 ─ 社内研修プラットフォーム</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
@@ -686,6 +686,106 @@
   .pane.active > *:nth-child(4) { animation-delay: 0.22s; }
   .pane.active > *:nth-child(5) { animation-delay: 0.28s; }
 
+  /* ============ Quiz Category Selection ============ */
+  .quiz-category-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    padding: 10px 0 24px;
+    max-width: 420px;
+    margin: 0 auto;
+  }
+  .quiz-category-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 24px 12px;
+    background: rgba(255, 248, 235, 0.85);
+    border: 2px solid rgba(194, 65, 12, 0.2);
+    border-radius: 18px;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 4px 14px -6px rgba(120, 60, 20, 0.12);
+  }
+  .quiz-category-btn:active {
+    transform: scale(0.97);
+    background: rgba(255, 220, 180, 0.7);
+    border-color: #C2410C;
+    box-shadow: 0 0 0 3px rgba(194, 65, 12, 0.1);
+  }
+  .qcat-icon {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 36px;
+    font-weight: 800;
+    color: #C2410C;
+    line-height: 1;
+  }
+  .qcat-title {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: #4A2511;
+    letter-spacing: 0.05em;
+  }
+  .qcat-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 10px;
+    color: #8B4513;
+    letter-spacing: 0.08em;
+    text-align: center;
+    line-height: 1.4;
+  }
+
+  /* Multi-select option (Q12 type) */
+  .mc-multi-options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .mc-multi-option {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 11px 12px;
+    background: rgba(255, 255, 255, 0.6);
+    border: 1.5px solid rgba(194, 65, 12, 0.2);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.18s;
+    user-select: none;
+  }
+  .mc-multi-option input[type="checkbox"] { display: none; }
+  .mc-multi-option .badge {
+    flex-shrink: 0;
+    width: 28px; height: 28px;
+    border-radius: 6px;
+    background: rgba(194, 65, 12, 0.1);
+    color: #C2410C;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 16px;
+    font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .mc-multi-option .text {
+    flex: 1; font-size: 13.5px; color: #3D2817; line-height: 1.55; padding-top: 4px;
+  }
+  .mc-multi-option.selected {
+    background: rgba(255, 220, 180, 0.6);
+    border-color: #C2410C;
+    box-shadow: 0 0 0 3px rgba(194, 65, 12, 0.1);
+  }
+  .mc-multi-option.selected .badge {
+    background: linear-gradient(135deg, #C2410C 0%, #8B2D0A 100%);
+    color: #FFF8EB;
+  }
+  .multi-hint {
+    font-size: 11px; color: #8B4513; font-style: italic;
+    margin-bottom: 8px; letter-spacing: 0.05em;
+  }
+
   .hidden { display: none !important; }
   .pane { display: none; }
   .pane.active { display: block; }
@@ -715,7 +815,7 @@
       <span class="en">M E A T</span>
     </button>
     <button class="tab" data-tab="veg">
-      野菜
+      野菜と食材
       <span class="en">V E G</span>
     </button>
     <button class="tab" data-tab="drink">
@@ -873,19 +973,101 @@
   </div>
 
   <!-- ============================================
-       PANE 2: 野菜 (VEG) - placeholder
+       PANE 2: 野菜と食材 (VEG)
        ============================================ -->
   <div class="pane" id="pane-veg">
+
     <div class="section-head">
       <div class="ornament">❉ ❉ ❉</div>
-      <h2>野菜知識</h2>
-      <div class="sub">V E G E T A B L E S</div>
+      <h2>野菜と食材</h2>
+      <div class="sub">V E G E T A B L E S &nbsp; &amp; &nbsp; I N G R E D I E N T S</div>
     </div>
-    <div class="coming-soon">
-      <div class="icon">菜</div>
-      <h3>準備中</h3>
-      <p>こちらのコンテンツは現在準備中です。</p>
-    </div>
+
+    <!-- 1. お米 -->
+    <section class="card">
+      <span class="card-label">— Section 1</span>
+      <h3>お米：西山農園の「ヒノヒカリ」</h3>
+      <ul>
+        <li><strong>品種</strong>：粘り・味・香りのバランスが非常に優れた「<strong>ヒノヒカリ</strong>」を使用。冷めると甘みが増すため、おにぎりやお弁当に最適</li>
+        <li><strong>鮮度</strong>：専用の大型保冷庫で「<strong>休眠状態</strong>」にして保管し、年中収穫時と変わらない美味しさを維持。精米は鮮度を優先し、<strong>発送当日</strong>に実施</li>
+        <li><strong>品質</strong>：「放射線育種米」ではない品種で安心。色彩選別機でカメムシ被害米・くず米・異物を除去し、粒の揃った美しいお米だけを厳選</li>
+      </ul>
+      <div class="tip">
+        <span class="label">— TIP</span>
+        炊き上がり直後の<strong>シャリ切り（混ぜる）</strong>は、余分な水分を飛ばして均一にし、ふっくらと粒を立たせるための論理的な工程です。
+      </div>
+    </section>
+
+    <!-- 2. 野菜：加藤農園 -->
+    <section class="card">
+      <span class="card-label">— Section 2</span>
+      <h3>野菜（サラダ）：加藤農園（愛媛県四国中央市）</h3>
+      <p>地上約90cmの高さで育てる「<strong>有機固形培地溶液栽培</strong>」を採用。水分管理を徹底することで、味が濃く保存性の高い野菜になります。地面から離れているため虫の付着が極めて少なく、店舗での下処理が非常にスムーズです。</p>
+
+      <h4>常備野菜（年間を通じて提供）</h4>
+      <ul>
+        <li><strong>葉物</strong>：水菜、ルッコラ、小松菜、からし水菜、赤茎水菜、スイスチャード</li>
+        <li><strong>レタス類</strong>：グリーンリーフ、フリルレタス、フレアベル、赤系レタス、ロメインレタス、ミニロメインレタス、カタローニャ</li>
+      </ul>
+
+      <h4>季節野菜（秋・冬・春）</h4>
+      <ul>
+        <li>ワサビ菜、赤茎ほうれん草</li>
+      </ul>
+    </section>
+
+    <!-- 3. こだわり・季節食材 -->
+    <section class="card">
+      <span class="card-label">— Section 3</span>
+      <h3>こだわりの野菜・季節の特定食材</h3>
+      <ul>
+        <li><strong>長芋</strong>：青森県「とよかわ農園」。ホタテやカキの殻から作った天然資材で土壌改良、減農薬栽培</li>
+        <li><strong>れんこん</strong>：<strong>徳島県産</strong>の蓮根を厳選して使用</li>
+        <li><strong>アスパラガス</strong>：愛媛県産「<strong>緑のささやき（特選）</strong>」。スジが残りにくく柔らかい歯切れと濃厚な甘みが特徴。最も甘い部位は<strong>根本</strong></li>
+        <li><strong>とうもろこし</strong>：「<strong>ゴールドラッシュ</strong>」。粒皮が非常に柔らかく、極上の甘みがある</li>
+        <li><strong>銀杏</strong>：愛知県産「<strong>藤九郎（とうくろう）</strong>」。3L〜2Lサイズの大粒を厳選して提供</li>
+      </ul>
+      <div class="tip">
+        <span class="label">— TIP</span>
+        野菜は季節や仕入れ状況により最適な産地・品種へと調整されます。ただし蓮根（徳島県産）・長芋（とよかわ農園）などのこだわりは維持しています。
+      </div>
+    </section>
+
+    <!-- 4. 卵・豆腐・揚げ油・ドレッシング -->
+    <section class="card">
+      <span class="card-label">— Section 4</span>
+      <h3>卵・豆腐・揚げ油・ドレッシング</h3>
+      <ul>
+        <li><strong>タズミの卵（兵庫）</strong>：天然飼料で育ち、活性酸素を抑制する<strong>ビタミンE</strong>が驚異的に豊富。美容効果で人気</li>
+        <li><strong>おぼろ豆富（京都・京錦庵）</strong>：ミシュラン三つ星店御用達。通常の<strong>倍以上の時間</strong>をかけてゆっくり熟成させ、大豆の甘みを凝縮。まずはそのまま食べるのが推奨</li>
+        <li><strong>一番搾り綿実油</strong>：揚げ物がカラッと仕上がり、冷めてもベタつかない最高級のサラダ油。お客様には「冷めてもサクサク・あっさり」と説明する</li>
+        <li><strong>自家製サウザンアイランドドレッシング</strong>：マヨネーズとケチャップをベースに、塩・ブラックペッパーで味を整えた野菜サラダ・おちば屋サラダ専用のドレッシング</li>
+      </ul>
+    </section>
+
+    <!-- 5. デザート -->
+    <section class="card">
+      <span class="card-label">— Section 5</span>
+      <h3>デザート：御菓子所 泉寿庵（いづみや本舗）</h3>
+      <p>「<strong>大阪土産に旨いものあり</strong>」をコンセプトとする大阪銘菓の名店。</p>
+      <h4>涼嗜（りょうすずみ）シリーズ ─ 葛シャーベット</h4>
+      <ul>
+        <li><strong>食感の秘密</strong>：葛でん粉・れんこんでん粉・本わらび粉・寒天を配合した独特のねっとり・もっちり食感（ゼラチンは動物性のため不使用）</li>
+        <li><strong>羅櫻（うすざくら）</strong>：桜葉抽出液と桜の葉の塩漬けで春の風味</li>
+        <li><strong>黄橘（きだち）</strong>：柚子果汁と柚子皮の砂糖漬けで清涼感</li>
+        <li><strong>風爐（ふうろ）</strong>：香り高い抹茶を贅沢に使用。焼き鳥の後味をさっぱり</li>
+      </ul>
+    </section>
+
+    <!-- 6. テイクアウト -->
+    <section class="card">
+      <span class="card-label">— Section 6</span>
+      <h3>テイクアウト（お持ち帰り）のこだわり</h3>
+      <ul>
+        <li><strong>焼き加減</strong>：お土産や翌朝の食事としても美味しく召し上がっていただけるよう、すべての商品の焼き加減は通常より「<strong>強め</strong>」に仕上げています</li>
+      </ul>
+    </section>
+
   </div>
 
   <!-- ============================================
@@ -909,38 +1091,59 @@
        ============================================ -->
   <div class="pane active" id="pane-quiz">
 
-    <div class="quiz-intro">
-      <div class="ornament">❉ ❉ ❉</div>
-      <h2>テスト</h2>
-      <p>鶏と鴨の知識編 ─ 三択形式 / 全20問</p>
+    <!-- ① カテゴリ選択画面 -->
+    <div id="quizSelector">
+      <div class="quiz-intro">
+        <div class="ornament">❉ ❉ ❉</div>
+        <h2>テスト</h2>
+        <p>カテゴリを選んで挑戦してください</p>
+      </div>
+      <div class="quiz-category-grid">
+        <button class="quiz-category-btn" id="btnCategoryMeat">
+          <span class="qcat-icon">鶏</span>
+          <span class="qcat-title">鶏と鴨</span>
+          <span class="qcat-sub">三択形式 / 全20問</span>
+        </button>
+        <button class="quiz-category-btn" id="btnCategoryVeg">
+          <span class="qcat-icon">菜</span>
+          <span class="qcat-title">野菜と食材</span>
+          <span class="qcat-sub">三択・複数選択 / 全20問</span>
+        </button>
+      </div>
     </div>
 
-    <!-- Quiz form -->
-    <section class="card" id="quizCard">
-      <div class="field">
-        <label for="name">お名前</label>
-        <input type="text" id="name" placeholder="例：山田 太郎" autocomplete="name" />
+    <!-- ② テスト本体（カテゴリ選択後に表示） -->
+    <div class="hidden" id="quizMain">
+      <div class="quiz-intro">
+        <div class="ornament">❉ ❉ ❉</div>
+        <h2 id="quizMainTitle">テスト</h2>
+        <p id="quizMainSub"></p>
+        <button class="retry-btn" style="margin-top:8px;width:auto;padding:8px 20px;font-size:12px;" id="quizBackBtn">← カテゴリ選択に戻る</button>
       </div>
 
-      <div id="questions"></div>
-
-      <button class="submit-btn" id="submitBtn">採点する</button>
-      <div class="status" id="status"></div>
-    </section>
-
-    <!-- Result -->
-    <section class="card hidden" id="resultCard">
-      <div class="result-head">
-        <span class="card-label">— Your Score</span>
-        <div class="result-score">
-          <span id="scoreNum">0</span><span class="total">/<span id="scoreTotal">0</span></span>
+      <section class="card" id="quizCard">
+        <div class="field">
+          <label for="name">お名前</label>
+          <input type="text" id="name" placeholder="例：山田 太郎" autocomplete="name" />
         </div>
-        <div class="result-msg" id="resultMsg"></div>
-        <div class="result-percent" id="resultPercent"></div>
-      </div>
-      <div class="result-list" id="resultList"></div>
-      <button class="retry-btn" id="retryBtn">もう一度挑戦する</button>
-    </section>
+        <div id="questions"></div>
+        <button class="submit-btn" id="submitBtn">採点する</button>
+        <div class="status" id="status"></div>
+      </section>
+
+      <section class="card hidden" id="resultCard">
+        <div class="result-head">
+          <span class="card-label">— Your Score</span>
+          <div class="result-score">
+            <span id="scoreNum">0</span><span class="total">/<span id="scoreTotal">0</span></span>
+          </div>
+          <div class="result-msg" id="resultMsg"></div>
+          <div class="result-percent" id="resultPercent"></div>
+        </div>
+        <div class="result-list" id="resultList"></div>
+        <button class="retry-btn" id="retryBtn">もう一度挑戦する</button>
+      </section>
+    </div>
 
   </div>
 
@@ -956,29 +1159,39 @@
     </div>
 
     <section class="card" id="askCard">
-      <p style="font-size: 13px; color: #6B4226; margin-bottom: 16px;">
-        今日の勉強会で新しく知ったこと、お客様に聞かれて答えに困ったこと、<br>
-        次回取り上げてほしいテーマなど、ぜひ教えてください。
+      <p style="font-size: 12.5px; color: #6B4226; margin-bottom: 14px; line-height: 1.7;">
+        今日の勉強会・テスト解説を受けて、あなたの考えを教えてください。
       </p>
 
       <div class="field">
         <label for="askName">お名前 <span class="opt">（必須）</span></label>
         <input type="text" id="askName" placeholder="例：山田 太郎" autocomplete="name" />
+        <div class="auto-fill-hint" id="fAutoHint"></div>
       </div>
 
       <div class="field">
-        <label for="askLearned">今日新しく知ったこと <span class="opt">（１つでOK）</span></label>
-        <textarea id="askLearned" rows="4" placeholder="今日の勉強会で印象に残った知識を１つ書いてみてください..."></textarea>
+        <label for="askLearned">今日「なるほど！」と思った知識を1つ教えてください <span class="opt">（必須）</span></label>
+        <textarea id="askLearned" rows="3" placeholder="例：アスパラは根本が一番甘い、お米を混ぜる理由は水分を均一にするため、など"></textarea>
       </div>
 
       <div class="field">
-        <label for="askWantToKnow">お客様に聞かれて答えに困ったこと <span class="opt">（任意）</span></label>
-        <textarea id="askWantToKnow" rows="4" placeholder="今日の内容に限らず、現場でうまく答えられなかった質問など..."></textarea>
+        <label for="askWantToKnow">★美樹作★ その知識は、明日からの営業のどこで活かせそうですか? <span class="opt">（必須）</span></label>
+        <textarea id="askWantToKnow" rows="3" placeholder="例：おにぎりを作る時、野菜を説明する時、テイクアウトをお渡しする時、など"></textarea>
       </div>
 
       <div class="field">
-        <label for="askFutureTopic">次回の勉強会で取り上げてほしいテーマ <span class="opt">（任意）</span></label>
-        <textarea id="askFutureTopic" rows="4" placeholder="飲食・接客はもちろん、商売や経済のお話などでもOKです..."></textarea>
+        <label for="askRecommend">★美樹作★ お客様に「おすすめは?」と聞かれたら、今日学んだ食材を使ってどう答えますか? <span class="opt">（必須）</span></label>
+        <textarea id="askRecommend" rows="4" placeholder="おすすめのセリフと、その理由（こだわり）をセットで書いてみてください！"></textarea>
+      </div>
+
+      <div class="field">
+        <label for="askFutureTopic">★美樹作★ おちば屋のメニューで、実は「まだ食べたことがないもの」はありますか? <span class="opt">（任意）</span></label>
+        <textarea id="askFutureTopic" rows="3" placeholder="より自信を持って接客するために、食べてみたいものを教えてください！"></textarea>
+      </div>
+
+      <div class="field">
+        <label for="askChallenge">★美樹作★ これから「挑戦したいこと」や、次回学びたいテーマはありますか? <span class="opt">（任意）</span></label>
+        <textarea id="askChallenge" rows="3" placeholder="接客スキル、お酒の知識、経済の話など何でもOKです！"></textarea>
       </div>
 
       <button class="submit-btn" id="askSubmit">送信する</button>
@@ -1174,6 +1387,171 @@
   ];
 
   // ============================================================
+  // 野菜と食材 設問データ（全20問・単択）
+  // ※（美樹作）マークは美樹さん発案の問題
+  // ============================================================
+  const vegQuizData = [
+    { group: "お米（西山農園・ヒノヒカリ）",
+      q: "西山農園の「ヒノヒカリ」が、お弁当やおにぎりに最適とされる最大の理由はどれか?",
+      options: [
+        "炊きたてが最も硬く、時間が経つと柔らかくなる性質があるため",
+        "粘り・味・香りのバランスが良く、冷めると甘みが増す性質があるため",
+        "水分を全く吸収しないため、時間が経っても米粒がふやけないため"
+      ],
+      type: 'single', answer: 1,
+      explain: "ヒノヒカリは粘り・味・香りのバランスが良く、冷めると甘みが増すのでおにぎりやお弁当に最適です。" },
+    { q: "★美樹作★ お米が炊き上がった直後に「シャリ切り（混ぜる）」を行う論理的な理由はどれか?",
+      options: [
+        "余分な水分を飛ばして水分を均一にし、ふっくらと粒を立たせるため",
+        "釜の底にあるお米が、余熱で焦げてしまうのを物理的に防ぐため",
+        "お米の芯まで熱を均一に行き渡らせて、未加熱の部分をなくすため"
+      ],
+      type: 'single', answer: 0,
+      explain: "シャリ切りは余分な水分を飛ばし均一にすることで、ふっくらと粒を立たせるための工程です。" },
+    { q: "おちば屋で使用している西山農園のお米の品種名はどれか?",
+      options: ["コシヒカリ", "ヒノヒカリ", "ササニシキ"],
+      type: 'single', answer: 1,
+      explain: "西山農園では「ヒノヒカリ」を使用しています。" },
+    { q: "西山農園のお米が、収穫時と変わらない美味しさを年中維持できる管理上の秘密はどれか?",
+      options: [
+        "収穫直後にすべて精米して真空パックにするから",
+        "専用の大型保冷庫で「休眠状態」にして保管しているから",
+        "常に風通しの良い日陰で常温保存しているから"
+      ],
+      type: 'single', answer: 1,
+      explain: "専用の大型保冷庫で「休眠状態」にして保管することで、年中収穫時と変わらない美味しさを維持しています。" },
+    { group: "野菜（加藤農園・季節食材）",
+      q: "加藤農園の「常備野菜」リストに含まれるレタス類の正しい組み合わせはどれか?",
+      options: [
+        "グリーンリーフ、フリルレタス、ロメインレタス、カタローニャ",
+        "玉レタス、サニーレタス、サンチュ、サラダ菜",
+        "キャベツ、白菜、チンゲンサイ、大根"
+      ],
+      type: 'single', answer: 0,
+      explain: "グリーンリーフ・フリルレタス・フレアベル・赤系・ロメイン・ミニロメイン・カタローニャが常備レタス類です。" },
+    { q: "加藤農園の野菜が、店舗での下処理において「非常にスムーズ」と言われる最大の理由はどれか?",
+      options: [
+        "あらかじめ工場ですべて洗浄・カットされた状態で届くから",
+        "地上約90cmの高さで栽培されており、虫の付着が極めて少ないから",
+        "野菜の表面に特殊な食用防虫ワックスが塗布されているから"
+      ],
+      type: 'single', answer: 1,
+      explain: "地上90cmで栽培するため虫の付着が極めて少なく、下処理が非常にスムーズです。" },
+    { q: "青森県「とよかわ農園」が、長芋の土壌改良に使用している天然資材はどれか?",
+      options: [
+        "リンゴの樹皮を堆肥化したもの",
+        "ホタテやカキの殻から作られた資材",
+        "厳寒期の雪を土に混ぜ込む特殊技法"
+      ],
+      type: 'single', answer: 1,
+      explain: "ホタテやカキの殻から作った資材で土壌改良し、減農薬での栽培を実現しています。" },
+    { q: "おちば屋で提供している「蓮根（れんこん）」の主な産地はどこか?",
+      options: ["愛媛県", "徳島県", "茨城県"],
+      type: 'single', answer: 1,
+      explain: "蓮根は徳島県産を厳選して使用しています。" },
+    { q: "★美樹作★ アスパラガス「緑のささやき（特選）」の特徴と、最も甘みの強い部位の正しい組み合わせはどれか?",
+      options: [
+        "特徴：スジが残りにくく柔らかい歯切れと濃厚な甘み ／ 最も甘い部位：根本",
+        "特徴：繊維がしっかりした強い歯応えとほのかな苦味 ／ 最も甘い部位：頭（穂先）",
+        "特徴：熱を加えても色落ちしない濃い深緑色 ／ 最も甘い部位：真ん中"
+      ],
+      type: 'single', answer: 0,
+      explain: "緑のささやきの特徴は柔らかい歯切れと濃厚な甘み。最も甘い部位は根本です。" },
+    { q: "スイートコーン「ゴールドラッシュ」が、プロからも支持される最大の特徴はどれか?",
+      options: [
+        "非常に硬い皮を持ち、輸送中に傷まないこと",
+        "粒皮が非常に柔らかく、極めて甘みが強いこと",
+        "1本の苗から通常の2倍の数の穂が収穫できること"
+      ],
+      type: 'single', answer: 1,
+      explain: "ゴールドラッシュは粒皮が非常に柔らかく極上の甘みがあるため、プロにも支持されています。" },
+    { group: "卵・豆腐・テイクアウト",
+      q: "愛知県産銀杏「藤九郎」において、おちば屋がこだわって提供している規格（サイズ）は?",
+      options: [
+        "食べやすさを重視したMサイズ",
+        "圧倒的な存在感と食べ応えのある3L〜2Lサイズ",
+        "旨味が凝縮されていると言われる規格外の小粒サイズ"
+      ],
+      type: 'single', answer: 1,
+      explain: "3L〜2Lの大粒を厳選しています。" },
+    { q: "京錦庵の「おぼろ豆富」が、大豆本来の甘みを最大限に閉じ込めている理由はどれか?",
+      options: [
+        "従来の倍以上の凝固時間をかけ、ゆっくりと熟成させているから",
+        "通常の半分以下の時間で、鮮度を逃さず一気に固めるから",
+        "豆腐の表面を一度加熱して、旨味が逃げないようにコーティングしているから"
+      ],
+      type: 'single', answer: 0,
+      explain: "倍以上の凝固時間をかけてゆっくり熟成させることで、大豆の甘みを凝縮しています。" },
+    { q: "兵庫県「タズミの卵」が美容効果に優れているとされる根拠はどれか?",
+      options: [
+        "お肌のハリを保つコラーゲンを注入しているため",
+        "活性酸素を抑制する「ビタミンE」が驚異的に豊富に含まれているため",
+        "食べると体内でヒアルロン酸に変わる特殊な酵素が含まれているため"
+      ],
+      type: 'single', answer: 1,
+      explain: "タズミの卵は活性酸素を抑制するビタミンEが驚異的に豊富で、美容効果に優れています。" },
+    { q: "おちば屋のテイクアウト（お持ち帰り）メニューの焼き加減はどのように設定しているか?",
+      options: [
+        "肉汁を閉じ込めるため、通常より「レア」にしている",
+        "お土産や翌朝でも美味しく食べられるよう、通常より「強め」にしている",
+        "食べる直前の再加熱を前提に、通常より「弱め」にしている"
+      ],
+      type: 'single', answer: 1,
+      explain: "テイクアウトはお土産や翌朝でも美味しく食べられるよう、焼き加減を通常より「強め」に設定しています。" },
+    { group: "ドレッシング・揚げ油・デザート",
+      q: "野菜サラダとおちば屋サラダに使用されているドレッシングの種類はどれか?",
+      options: [
+        "サウザンアイランドドレッシング",
+        "シーザードレッシング",
+        "ポン酢"
+      ],
+      type: 'single', answer: 0,
+      explain: "野菜サラダとおちば屋サラダには自家製サウザンアイランドドレッシングを使用しています。" },
+    { q: "揚げ物料理（とり南蛮など）に使用している「一番搾り綿実油」のサービス上の利点は?",
+      options: [
+        "独特の強い香りが、お肉の味を引き立てること",
+        "カラッと揚がり、冷めてもベタつかない品質であること",
+        "世界で最も安価な油であり、ボリューム満点に提供できること"
+      ],
+      type: 'single', answer: 1,
+      explain: "一番搾り綿実油はカラッと揚がり、冷めてもベタつかないのが最大の利点です。" },
+    { q: "泉寿庵の葛シャーベット3種と、それぞれの原材料の正しい組み合わせはどれか?",
+      options: [
+        "羅櫻：桜の葉塩漬け ／ 黄橘：柚子皮砂糖漬け ／ 風爐：抹茶",
+        "羅櫻：苺エキス ／ 黄橘：オレンジピール ／ 風爐：ほうじ茶",
+        "羅櫻：桃シロップ ／ 黄橘：レモンピール ／ 風爐：玄米茶"
+      ],
+      type: 'single', answer: 0,
+      explain: "羅櫻＝桜の葉塩漬け、黄橘＝柚子果汁・柚子皮砂糖漬け、風爐＝抹茶が正しい組み合わせです。" },
+    { q: "葛シャーベット「涼嗜（りょうすずみ）」の独特の食感を生み出す成分はどれか?",
+      options: [
+        "葛でん粉、れんこんでん粉、本わらび粉、寒天",
+        "ゼラチン、卵白、強力粉",
+        "米粉、コーンスターチ、タピオカ粉"
+      ],
+      type: 'single', answer: 0,
+      explain: "葛でん粉・れんこんでん粉・本わらび粉・寒天の4つを配合。ゼラチンは動物性のため不使用です。" },
+    { group: "仕入れ方針・サービス理解",
+      q: "おちば屋の野菜の仕入れ方針について、正しい記述はどれか?",
+      options: [
+        "年間を通じて、必ず同じ農家の同じ品種のみを使用し続ける",
+        "季節や仕入れ状況で内容は変わるが、蓮根は徳島県産、長芋はとよかわ農園など、こだわりを維持して調整する",
+        "コストを最優先し、その時々で最も安価な外国産野菜に切り替える"
+      ],
+      type: 'single', answer: 1,
+      explain: "季節や仕入れ状況で調整しながらも、産地へのこだわりを維持しています。" },
+    { q: "おちば屋が「野菜（食物繊維）」をコースの最初に提供する理論的な狙いはどれか?",
+      options: [
+        "食物繊維を先に摂取する「ベジファースト」という理想的な順番を守るため",
+        "お肉を焼く時間を確保するために、最も準備が早い料理を出すため",
+        "瀬戸内海の潮風の香りを、食事の最初に楽しんでいただくため"
+      ],
+      type: 'single', answer: 0,
+      explain: "「ベジファースト」の考え方に基づき、食物繊維を先に摂取できる理想的な順番で提供しています。" }
+  ];
+
+
+  // ============================================================
   // Google Apps Script Web App URL
   // ============================================================
   const GAS_URL = "https://script.google.com/macros/s/AKfycbys9l1CtBFTehWZX7jW3AC7e8lijZ82YxOVuqROORQ7NtlmhILQhI3GOi8Fn0E4jFs_kQ/exec";
@@ -1183,32 +1561,113 @@
   // ============================================================
   const questionsEl = document.getElementById('questions');
   const LETTERS = ['A', 'B', 'C', 'D', 'E'];
-  quizData.forEach((item, i) => {
-    if (item.group) {
-      const h = document.createElement('div');
-      h.className = 'quiz-group';
-      h.textContent = '■ ' + item.group;
-      questionsEl.appendChild(h);
-    }
-    const wrap = document.createElement('div');
-    wrap.className = 'question';
-    const optionsHTML = item.options.map((opt, idx) => `
-      <label class="mc-option">
-        <input type="radio" name="q${i}" value="${idx}" />
-        <span class="badge">${LETTERS[idx]}</span>
-        <span class="text">${opt}</span>
-      </label>
-    `).join('');
-    wrap.innerHTML = `
-      <div class="q-num">Q${String(i + 1).padStart(2, '0')}</div>
-      <div class="q-text">${item.q}</div>
-      <div class="mc-options">${optionsHTML}</div>
-    `;
-    questionsEl.appendChild(wrap);
-  });
 
   // ============================================================
-  // 採点 & 送信
+  // カテゴリ選択 & クイズ切り替え
+  // ============================================================
+  let currentQuizData = null;
+  let currentCategory = null;
+
+  function showCategorySelector() {
+    document.getElementById('quizSelector').classList.remove('hidden');
+    document.getElementById('quizMain').classList.add('hidden');
+    // quizCard & resultCard reset
+    document.getElementById('quizCard').classList.remove('hidden');
+    document.getElementById('resultCard').classList.add('hidden');
+    submitBtn.disabled = false;
+    hideStatus();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function startQuiz(category) {
+    currentCategory = category;
+    if (category === 'meat') {
+      currentQuizData = quizData;
+      document.getElementById('quizMainTitle').textContent = '鶏と鴨テスト';
+      document.getElementById('quizMainSub').textContent = '三択形式 / 全20問';
+    } else {
+      currentQuizData = vegQuizData;
+      document.getElementById('quizMainTitle').textContent = '野菜と食材テスト';
+      document.getElementById('quizMainSub').textContent = '三択・複数選択 / 全20問';
+    }
+    renderQuestions(currentQuizData);
+    document.getElementById('quizSelector').classList.add('hidden');
+    document.getElementById('quizMain').classList.remove('hidden');
+    document.getElementById('quizCard').classList.remove('hidden');
+    document.getElementById('resultCard').classList.add('hidden');
+    submitBtn.disabled = false;
+    hideStatus();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  document.getElementById('btnCategoryMeat').addEventListener('click', () => startQuiz('meat'));
+  document.getElementById('btnCategoryVeg').addEventListener('click', () => startQuiz('veg'));
+  document.getElementById('quizBackBtn').addEventListener('click', showCategorySelector);
+
+  // ============================================================
+  // 問題レンダリング（単択・複数選択 両対応）
+  // ============================================================
+  function renderQuestions(data) {
+    const questionsEl = document.getElementById('questions');
+    questionsEl.innerHTML = '';
+    data.forEach((item, i) => {
+      if (item.group) {
+        const h = document.createElement('div');
+        h.className = 'quiz-group';
+        h.textContent = '■ ' + item.group;
+        questionsEl.appendChild(h);
+      }
+      const wrap = document.createElement('div');
+      wrap.className = 'question';
+
+      if (item.type === 'multi') {
+        // 複数選択
+        const optionsHTML = item.options.map((opt, idx) => `
+          <label class="mc-multi-option" data-q="${i}" data-idx="${idx}">
+            <input type="checkbox" name="q${i}" value="${idx}" />
+            <span class="badge">${LETTERS[idx]}</span>
+            <span class="text">${opt}</span>
+          </label>
+        `).join('');
+        wrap.innerHTML = `
+          <div class="q-num">Q${String(i + 1).padStart(2, '0')}</div>
+          <div class="q-text">${item.q}</div>
+          <div class="multi-hint">※ 当てはまるものをすべて選んでください</div>
+          <div class="mc-multi-options">${optionsHTML}</div>
+        `;
+      } else {
+        // 単択
+        const optionsHTML = item.options.map((opt, idx) => `
+          <label class="mc-option">
+            <input type="radio" name="q${i}" value="${idx}" />
+            <span class="badge">${LETTERS[idx]}</span>
+            <span class="text">${opt}</span>
+          </label>
+        `).join('');
+        wrap.innerHTML = `
+          <div class="q-num">Q${String(i + 1).padStart(2, '0')}</div>
+          <div class="q-text">${item.q}</div>
+          <div class="mc-options">${optionsHTML}</div>
+        `;
+      }
+      questionsEl.appendChild(wrap);
+    });
+
+    // 複数選択のクリックイベント
+    document.querySelectorAll('.mc-multi-option').forEach(label => {
+      label.addEventListener('click', () => {
+        const cb = label.querySelector('input[type="checkbox"]');
+        cb.checked = !cb.checked;
+        label.classList.toggle('selected', cb.checked);
+      });
+    });
+  }
+
+  // 初期レンダリング（肉鶏データでカテゴリ選択前から読み込んでおく）
+  renderQuestions(quizData);
+
+  // ============================================================
+  // 採点
   // ============================================================
   const submitBtn = document.getElementById('submitBtn');
   const statusEl = document.getElementById('status');
@@ -1221,6 +1680,7 @@
 
   submitBtn.addEventListener('click', async () => {
     const name = document.getElementById('name').value.trim();
+    const data = currentQuizData || quizData;
 
     if (!name) {
       showStatus('お名前を入力してください', 'error');
@@ -1230,23 +1690,40 @@
     const answers = [];
     let unanswered = 0;
     let score = 0;
-    quizData.forEach((item, i) => {
-      const checked = document.querySelector(`input[name="q${i}"]:checked`);
-      if (!checked) {
-        unanswered++;
-        answers.push(null);
+
+    data.forEach((item, i) => {
+      if (item.type === 'multi') {
+        const checked = [...document.querySelectorAll(`input[name="q${i}"]:checked`)]
+          .map(el => parseInt(el.value)).sort();
+        if (checked.length === 0) {
+          unanswered++;
+          answers.push(null);
+        } else {
+          answers.push(checked);
+          const correct = [...item.answer].sort();
+          if (JSON.stringify(checked) === JSON.stringify(correct)) score++;
+        }
       } else {
-        const v = parseInt(checked.value, 10);
-        answers.push(v);
-        if (v === item.answer) score++;
+        const checked = document.querySelector(`input[name="q${i}"]:checked`);
+        if (!checked) {
+          unanswered++;
+          answers.push(null);
+        } else {
+          const v = parseInt(checked.value, 10);
+          answers.push(v);
+          if (v === item.answer) score++;
+        }
       }
     });
 
     if (unanswered > 0) {
       showStatus(`未回答が ${unanswered} 問あります`, 'error');
-      // 未回答の最初の質問にスクロール
-      for (let i = 0; i < quizData.length; i++) {
-        if (!document.querySelector(`input[name="q${i}"]:checked`)) {
+      for (let i = 0; i < data.length; i++) {
+        const isMulti = data[i].type === 'multi';
+        const missing = isMulti
+          ? document.querySelectorAll(`input[name="q${i}"]:checked`).length === 0
+          : !document.querySelector(`input[name="q${i}"]:checked`);
+        if (missing) {
           const target = document.querySelector(`input[name="q${i}"]`).closest('.question');
           target.scrollIntoView({ behavior: 'smooth', block: 'center' });
           break;
@@ -1258,15 +1735,13 @@
     submitBtn.disabled = true;
     showStatus('送信中...', 'loading');
 
-    // 100点満点に換算
-    const score100 = Math.round((score / quizData.length) * 100);
-
+    const score100 = Math.round((score / data.length) * 100);
     const payload = {
-      category: 'meat',
+      category: currentCategory || 'meat',
       name,
       correctCount: score,
-      total: quizData.length,
-      score: score100,        // 100点満点での得点
+      total: data.length,
+      score: score100,
       answers,
       timestamp: new Date().toISOString()
     };
@@ -1280,56 +1755,62 @@
           body: JSON.stringify(payload)
         });
       }
-    } catch (err) { /* 結果は表示する */ }
+    } catch (err) {}
 
     hideStatus();
-    showResult(score, answers);
+    showResult(score, answers, data);
   });
 
   // ============================================================
-  // 結果画面
+  // 結果表示
   // ============================================================
-  function showResult(score, answers) {
+  function showResult(score, answers, data) {
     document.getElementById('quizCard').classList.add('hidden');
-    document.querySelector('.quiz-intro').classList.add('hidden');
-
     const card = document.getElementById('resultCard');
     card.classList.remove('hidden');
 
-    // 100点満点に換算
-    const score100 = Math.round((score / quizData.length) * 100);
+    const score100 = Math.round((score / data.length) * 100);
     document.getElementById('scoreNum').textContent = score100;
     document.getElementById('scoreTotal').textContent = 100;
 
-    const ratio = score / quizData.length;
-    let msg;
-    if (ratio === 1) msg = '満点です。お見事！';
-    else if (ratio >= 0.85) msg = '素晴らしい成績です。';
-    else if (ratio >= 0.7) msg = 'よく出来ました。';
-    else if (ratio >= 0.5) msg = 'もう一歩。復習しましょう。';
-    else msg = 'もう一度学習し直しましょう。';
+    const ratio = score / data.length;
+    let msg = ratio === 1 ? '満点です。お見事！'
+      : ratio >= 0.85 ? '素晴らしい成績です。'
+      : ratio >= 0.7 ? 'よく出来ました。'
+      : ratio >= 0.5 ? 'もう一歩。復習しましょう。'
+      : 'もう一度学習し直しましょう。';
     document.getElementById('resultMsg').textContent = msg;
-    document.getElementById('resultPercent').textContent = `${score} / ${quizData.length} 問正解`;
+    document.getElementById('resultPercent').textContent = `${score} / ${data.length} 問正解`;
 
     const list = document.getElementById('resultList');
     list.innerHTML = answers.map((a, i) => {
-      const correct = a === quizData[i].answer;
-      const userLetter = a === null ? '—' : LETTERS[a];
-      const correctLetter = LETTERS[quizData[i].answer];
-      const userOptText = a === null ? '' : quizData[i].options[a];
-      const correctOptText = quizData[i].options[quizData[i].answer];
+      const item = data[i];
+      let correct, userText, correctText;
+
+      if (item.type === 'multi') {
+        const correctArr = [...item.answer].sort();
+        const userArr = a ? [...a].sort() : [];
+        correct = JSON.stringify(userArr) === JSON.stringify(correctArr);
+        userText = a ? a.map(idx => `${LETTERS[idx]}`).join('・') : '未回答';
+        correctText = correctArr.map(idx => `${LETTERS[idx]}`).join('・');
+      } else {
+        correct = a === item.answer;
+        userText = a === null ? '未回答' : `${LETTERS[a]}. ${item.options[a]}`;
+        correctText = `${LETTERS[item.answer]}. ${item.options[item.answer]}`;
+      }
+
       return `
         <div class="result-item ${correct ? 'correct' : 'wrong'}">
           <div class="ri-head">
             <span class="ri-num">Q${String(i + 1).padStart(2, '0')}</span>
             <span class="ri-mark">${correct ? '正解' : '不正解'}</span>
           </div>
-          <div class="ri-q">${quizData[i].q}</div>
+          <div class="ri-q">${item.q}</div>
           <div class="ri-explain">
-            <strong>あなたの回答：</strong>${userLetter}${userOptText ? '. ' + userOptText : ''}
-            ${correct ? '' : `<br><strong>正解：</strong>${correctLetter}. ${correctOptText}`}
+            <strong>あなたの回答：</strong>${userText}
+            ${correct ? '' : `<br><strong>正解：</strong>${correctText}`}
             <br>
-            <strong>解説：</strong>${quizData[i].explain}
+            <strong>解説：</strong>${item.explain}
           </div>
         </div>
       `;
@@ -1340,18 +1821,14 @@
 
   // 再挑戦
   document.getElementById('retryBtn').addEventListener('click', () => {
-    // チェック解除
-    quizData.forEach((_, i) => {
-      const checked = document.querySelector(`input[name="q${i}"]:checked`);
-      if (checked) checked.checked = false;
-    });
+    renderQuestions(currentQuizData || quizData);
     document.getElementById('resultCard').classList.add('hidden');
     document.getElementById('quizCard').classList.remove('hidden');
-    document.querySelector('.quiz-intro').classList.remove('hidden');
     submitBtn.disabled = false;
     hideStatus();
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
+
 
   // ============================================================
   // お問合せフォーム
@@ -1371,19 +1848,29 @@
     const askWantToKnow = document.getElementById('askWantToKnow').value.trim();
     const askFutureTopic = document.getElementById('askFutureTopic').value.trim();
 
+    const askRecommend = document.getElementById('askRecommend') ? document.getElementById('askRecommend').value.trim() : '';
+    const askChallenge = document.getElementById('askChallenge') ? document.getElementById('askChallenge').value.trim() : '';
     // 名前は必須
     if (!askName) {
       showAskStatus('お名前を入力してください', 'error');
       document.getElementById('askName').focus();
       return;
     }
-    // 3つの自由欄のうち、最低1つは記入してもらう
-    if (!askLearned && !askWantToKnow && !askFutureTopic) {
-      showAskStatus('いずれか1つ以上、ご記入ください', 'error');
+    // 必須項目チェック
+    if (!askLearned) {
+      showAskStatus('「なるほど！と思った知識」を入力してください', 'error');
+      return;
+    }
+    if (!askWantToKnow) {
+      showAskStatus('「営業での活かし方」を入力してください', 'error');
+      return;
+    }
+    if (!askRecommend) {
+      showAskStatus('「おすすめの答え方」を入力してください', 'error');
       return;
     }
     // 文字数チェック
-    const allText = askLearned + askWantToKnow + askFutureTopic;
+    const allText = askLearned + askWantToKnow + askRecommend + askFutureTopic + askChallenge;
     if (allText.length > 3000) {
       showAskStatus('内容が長すぎます（合計3000文字以内）', 'error');
       return;
@@ -1392,12 +1879,17 @@
     askSubmit.disabled = true;
     showAskStatus('送信中...', 'loading');
 
+    const askRecommend = document.getElementById('askRecommend').value.trim();
+    const askChallenge = document.getElementById('askChallenge').value.trim();
+
     const payload = {
       type: 'ask',
       name: askName,
       learned: askLearned,
       wantToKnow: askWantToKnow,
+      recommend: askRecommend,
       futureTopic: askFutureTopic,
+      challenge: askChallenge,
       timestamp: new Date().toISOString()
     };
 
@@ -1423,7 +1915,9 @@
     document.getElementById('askName').value = '';
     document.getElementById('askLearned').value = '';
     document.getElementById('askWantToKnow').value = '';
+    if (document.getElementById('askRecommend')) document.getElementById('askRecommend').value = '';
     document.getElementById('askFutureTopic').value = '';
+    if (document.getElementById('askChallenge')) document.getElementById('askChallenge').value = '';
     document.getElementById('askDoneCard').classList.add('hidden');
     document.getElementById('askCard').classList.remove('hidden');
     askSubmit.disabled = false;
