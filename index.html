@@ -1190,7 +1190,7 @@
       </div>
 
       <div class="field">
-        <label for="askChallenge">これから「挑戦したいこと」や、次回学びたいテーマはありますか? <span class="opt">（任意）</span></label>
+        <label for="askChallenge">★美樹作★ これから「挑戦したいこと」や、次回学びたいテーマはありますか? <span class="opt">（任意）</span></label>
         <textarea id="askChallenge" rows="3" placeholder="接客スキル、お酒の知識、経済の話など何でもOKです！"></textarea>
       </div>
 
@@ -1392,7 +1392,11 @@
   // ============================================================
   const vegQuizData = [
     { group: "お米（西山農園・ヒノヒカリ）",
-      q: "西山農園の「ヒノヒカリ」が、お弁当やおにぎりに最適とされる最大の理由はどれか?",
+q: "おちば屋で使用している西山農園のお米の品種名はどれか?",
+      options: ["コシヒカリ", "ヒノヒカリ", "ササニシキ"],
+      type: 'single', answer: 1,
+      explain: "西山農園では「ヒノヒカリ」を使用しています。" },
+    { q: "西山農園の米が、お弁当やおにぎりに最適とされる最大の理由はどれか?",
       options: [
         "炊きたてが最も硬く、時間が経つと柔らかくなる性質があるため",
         "粘り・味・香りのバランスが良く、冷めると甘みが増す性質があるため",
@@ -1408,10 +1412,6 @@
       ],
       type: 'single', answer: 0,
       explain: "シャリ切りは余分な水分を飛ばし均一にすることで、ふっくらと粒を立たせるための工程です。" },
-    { q: "おちば屋で使用している西山農園のお米の品種名はどれか?",
-      options: ["コシヒカリ", "ヒノヒカリ", "ササニシキ"],
-      type: 'single', answer: 1,
-      explain: "西山農園では「ヒノヒカリ」を使用しています。" },
     { q: "西山農園のお米が、収穫時と変わらない美味しさを年中維持できる管理上の秘密はどれか?",
       options: [
         "収穫直後にすべて精米して真空パックにするから",
@@ -1457,7 +1457,7 @@
       ],
       type: 'single', answer: 0,
       explain: "緑のささやきの特徴は柔らかい歯切れと濃厚な甘み。最も甘い部位は根本です。" },
-    { q: "とうもろこし「ゴールドラッシュ」が、プロからも支持される最大の特徴はどれか?",
+    { q: "スイートコーン「ゴールドラッシュ」が、プロからも支持される最大の特徴はどれか?",
       options: [
         "非常に硬い皮を持ち、輸送中に傷まないこと",
         "粒皮が非常に柔らかく、極めて甘みが強いこと",
@@ -1588,7 +1588,7 @@
     } else {
       currentQuizData = vegQuizData;
       document.getElementById('quizMainTitle').textContent = '野菜と食材テスト';
-      document.getElementById('quizMainSub').textContent = '三択形式 / 全20問';
+      document.getElementById('quizMainSub').textContent = '三択・複数選択 / 全20問';
     }
     renderQuestions(currentQuizData);
     document.getElementById('quizSelector').classList.add('hidden');
