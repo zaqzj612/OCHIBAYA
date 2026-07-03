@@ -822,6 +822,10 @@
       飲料
       <span class="en">D R I N K</span>
     </button>
+    <button class="tab" data-tab="qsca">
+      QSCA
+      <span class="en">Q S C A</span>
+    </button>
     <button class="tab" data-tab="ask">
       振り返り
       <span class="en">F B</span>
@@ -1109,6 +1113,11 @@
           <span class="qcat-title">野菜と食材</span>
           <span class="qcat-sub">三択形式 / 全20問</span>
         </button>
+        <button class="quiz-category-btn" id="btnCategoryQsca">
+          <span class="qcat-icon">客</span>
+          <span class="qcat-title">顧客価値QSCA</span>
+          <span class="qcat-sub">三択形式 / 全20問</span>
+        </button>
       </div>
     </div>
 
@@ -1146,6 +1155,243 @@
     </div>
 
   </div>
+
+  <!-- ============================================
+       PANE QSCA: 顧客価値・QSCA
+       ============================================ -->
+  <div class="pane" id="pane-qsca">
+
+    <div class="section-head">
+      <div class="ornament">❉ ❉ ❉</div>
+      <h2>顧客価値・QSCA</h2>
+      <div class="sub">C U S T O M E R &nbsp; V A L U E</div>
+    </div>
+
+    <!-- 1. QSCAとは -->
+    <section class="card">
+      <span class="card-label">— Section 1</span>
+      <h3>QSCAとは？</h3>
+      <p>飲食店運営の基礎・基本となる4つのキーワードの頭文字です。</p>
+      <ul>
+        <li><strong>Q（Quality／クオリティ）</strong>：料理・商品の品質</li>
+        <li><strong>S（Service／サービス）</strong>：接客・おもてなし</li>
+        <li><strong>C（Cleanliness／クレンリネス）</strong>：清潔さ・身だしなみ</li>
+        <li><strong>A（Atmosphere／アトモスフィア）</strong>：雰囲気・空間づくり</li>
+      </ul>
+      <div class="tip">
+        <span class="label">— POINT</span>
+        この4つは<strong>バランスが命</strong>。一つだけ高くても他が低ければ、お客様の満足には繋がりません。全体的なバランスが重要です。
+      </div>
+    </section>
+
+    <!-- 2. 各項目の本質 -->
+    <section class="card">
+      <span class="card-label">— Section 2</span>
+      <h3>各項目の本質とおちば屋での具体例</h3>
+
+      <h4>Q：クオリティ ＝ 商品の質</h4>
+      <p>「美味しくて当たり前」の時代だからこそ、品質の維持・向上が信頼のベースになります。</p>
+      <ul>
+        <li>商品の味・鮮度は保たれているか</li>
+        <li>素材のこだわり（産地・品種）をスタッフが説明できるか</li>
+        <li>盛り付けは美しいか（提供前に必ず確認）</li>
+        <li>テイクアウトの包装は丁寧で清潔か</li>
+        <li>温かいものは温かく、冷たいものは冷たく提供できているか</li>
+      </ul>
+
+      <h4>S：サービス ＝ 人が提供する価値</h4>
+      <p>サービスの本質はホスピタリティ。呼ばれる前に気づいて動くのが理想です。</p>
+      <ul>
+        <li>笑顔で接客できているか</li>
+        <li>挨拶は明るく、言葉遣いは丁寧か</li>
+        <li>臨機応変な対応ができているか（クレーム対応含む）</li>
+        <li>予約・注文・会計がスムーズに進んでいるか</li>
+        <li>お客様の待ち時間・提供スピードは適切か（限度：30秒〜1分）</li>
+      </ul>
+
+      <h4>C：クレンリネス ＝ 清潔・安心感</h4>
+      <p>「汚れたらやる」ではなく、毎日のルーティーンとして習慣化することが大事。特にトイレは店の顔です。</p>
+      <ul>
+        <li>スタッフの身だしなみ・体調管理は整っているか</li>
+        <li>店内・トイレの清掃はルーティーン化されているか</li>
+        <li>食器・グラスに汚れや割れはないか</li>
+        <li>卓上・メニュー・薬味は清潔に保たれているか</li>
+      </ul>
+
+      <h4>A：アトモスフィア ＝ 食事以外から得られる価値</h4>
+      <p>照明・BGM・外観・スタッフの活気がすべて雰囲気を作ります。アンケートでは<strong>料理の質以上に再来店の動機</strong>に繋がると言われています。</p>
+      <ul>
+        <li>店内の温度・明るさ・BGMは快適か</li>
+        <li>騒音（話し声・食器の音）が不快になっていないか</li>
+        <li>スタッフ同士のやりとりはお客様に見せて恥ずかしくないか</li>
+        <li>店の内装・外観は清潔で入りやすい雰囲気か</li>
+        <li>卓上のレイアウト・他のお客様との距離感は適切か</li>
+      </ul>
+    </section>
+
+    <!-- 3. なぜ重要か -->
+    <section class="card">
+      <span class="card-label">— Section 3</span>
+      <h3>なぜQSCAが重要なのか</h3>
+      <ul>
+        <li><strong>死活問題</strong>：個人店・中小規模の店は、たった一度のQSCA低下（料理が冷めている、無愛想、トイレが汚いなど）でお客様を永遠に失うリスクがある</li>
+        <li><strong>人気店の落とし穴</strong>：忙しくなると「数字（売上）」ばかりを追い、QSCが疎かになりがち。これが数ヶ月で閉店する最大の原因</li>
+        <li><strong>信頼という資産</strong>：困難な状況（コロナ禍など）で生き残るのは、高いQSCAで築かれた「顧客（ファン）」がいる店だけ</li>
+      </ul>
+      <div class="tip">
+        <span class="label">— POINT</span>
+        「自分はやっている」「自分はできている」という<strong>自分目線</strong>ではなく、常に<strong>お客様目線</strong>で改善を続けることが大事。
+      </div>
+    </section>
+
+    <!-- 4. QSCAのバリエーション -->
+    <section class="card">
+      <span class="card-label">— Section 4</span>
+      <h3>QSCAのさらなる進化：QSC＋バリエーション</h3>
+      <p>基本のQSCAを土台に、プラスアルファを加えることで他店との差別化が図れます。</p>
+
+      <h4>QSC ＋ H（Hospitality／ホスピタリティ）</h4>
+      <p>「おもてなし・思いやり」のこと。スタッフとお客様の間で<strong>相互満足</strong>（共に喜びを共有する）が成立することが本質です。マニュアルの実行の上を行く、<strong>心から相手を喜ばせたいという気持ち</strong>から生まれるものです。</p>
+
+      <h4>QSC ＋ A（Atmosphere／アトモスフィア）</h4>
+      <p>外装・内装・BGM・照明・スタッフの活気などが作り出す「空間の雰囲気」。おちば屋で言えば、スタッフ全員の元気な声・笑顔・店内の清潔感がすべてAに直結します。</p>
+
+      <h4>QSC ＋ V（Value／バリュー）</h4>
+      <p>「価格以上の価値があるか」という概念（マクドナルドが提唱）。Q・S・Cが高水準で揃った上で、<strong>「この値段で、このクオリティ・このサービスを受けられるなら納得だ」</strong>とお客様に感じていただくことを追求します。安易な値下げではなく、価値そのものを高めることが本質です。</p>
+
+      <h4>QSC ＋ 個性（Individual Power）</h4>
+      <p>「ムードメーカー」や「人気者」など、<strong>スタッフ個人の魅力・個の力</strong>を活かして顧客を獲得し売上を伸ばす戦略。「あの人がいるから行く」という動機を生み出せれば、それは最強のリピート要因になります。</p>
+    </section>
+
+    <!-- 5. おちば屋とQSCA -->
+    <section class="card">
+      <span class="card-label">— Section 5</span>
+      <h3>おちば屋が目指すQSCA像</h3>
+      <ul>
+        <li><strong>Q</strong>：こだわりの食材（産地・品種）の品質を維持し、焼き加減・提供スピード・盛り付けにこだわる</li>
+        <li><strong>S</strong>：笑顔・気配り・食材の説明ができる接客で、「またここに来たい」と思っていただく</li>
+        <li><strong>C</strong>：ルーティーン化された清掃で、お客様が「安心」できる清潔な空間を維持する</li>
+        <li><strong>A</strong>：スタッフ全員の活気と、空間全体でお客様が居心地よく過ごせる雰囲気を作る</li>
+      </ul>
+      <div class="tip">
+        <span class="label">— まとめ</span>
+        基本のQ・S・C・Aのバランスを高い水準で保つ ＋ H（心からのおもてなし）＋ 個性（スタッフの人間力）で、お客様に「感謝」していただける店を目指しましょう。
+      </div>
+    </section>
+
+    <!-- 6. グループ討論 & ワークシート -->
+    <section class="card" id="qscaLearningSheet">
+      <span class="card-label">— ワークシート・グループ討論</span>
+      <h3>当日の流れ（全60分）</h3>
+      <div style="background:rgba(93,78,142,0.07);border-radius:10px;padding:12px 14px;margin-bottom:16px;font-size:13px;color:#5A3520;line-height:2.2;">
+        📖 <strong>知識を読む</strong>　5分<br>
+        ✏️ <strong>テストを解く</strong>　10分<br>
+        💬 <strong>グループ討論</strong>　30分<br>
+        📝 <strong>PDCA記入</strong>　10分<br>
+        🔁 <strong>テスト再挑戦</strong>　5分
+      </div>
+
+      <!-- オープニング問題 -->
+      <div style="font-family:'Shippori Mincho',serif;font-size:15px;font-weight:700;color:#5D4E8E;margin:0 0 8px;">▶ オープニング（全体・5分）</div>
+      <div style="border:1px solid rgba(93,78,142,0.25);border-radius:10px;padding:12px 14px;margin-bottom:20px;background:rgba(93,78,142,0.04);">
+        <div style="font-size:13.5px;color:#4A2511;font-family:'Shippori Mincho',serif;font-weight:700;margin-bottom:6px;">「普通に美味しかったが、またきたいとは思わなかった」</div>
+        <div style="font-size:13px;color:#5A3520;">Q・S・Cのうち、どれが足りなかったと思いますか？<br>まず個人で考えて、隣の人と共有してみましょう。</div>
+        <div style="height:44px;margin-top:8px;border-bottom:1px dashed rgba(194,65,12,0.2);"></div>
+      </div>
+
+      <!-- グループ討論 -->
+      <div style="font-family:'Shippori Mincho',serif;font-size:15px;font-weight:700;color:#5D4E8E;margin:0 0 8px;">▶ グループ討論（3組・25分）</div>
+      <div style="font-size:12.5px;color:#8B4513;margin-bottom:12px;line-height:1.7;">各グループで担当項目のチェックリストを確認し、「おちば屋では？」「改善するには？」を話し合って発表してください。<br>時間が余れば全体でAアトモスフィアも話し合いましょう。</div>
+
+      <!-- 1組 Q -->
+      <div style="background:rgba(217,79,61,0.07);border-radius:10px;padding:14px;margin-bottom:12px;border-left:4px solid #D94F3D;">
+        <div style="font-family:'Shippori Mincho',serif;font-size:15px;font-weight:700;color:#D94F3D;margin-bottom:10px;">1組　Q（クオリティ）担当</div>
+        <div style="font-size:12.5px;color:#6B4226;font-weight:700;margin-bottom:4px;">チェックリスト ☑</div>
+        <div style="font-size:12.5px;color:#5A3520;line-height:1.9;margin-bottom:10px;">
+          ☐　商品の味・鮮度は保たれているか<br>
+          ☐　素材のこだわりをスタッフが説明できるか<br>
+          ☐　盛り付けは美しいか（提供前に確認しているか）<br>
+          ☐　テイクアウトの包装は丁寧・清潔か<br>
+          ☐　温かい料理は温かく、冷たいものは冷たく提供できているか
+        </div>
+        <div style="font-size:12.5px;color:#6B4226;font-weight:700;margin-bottom:4px;">おちば屋のQを改善するには？</div>
+        <div style="height:56px;border-bottom:1px dashed rgba(217,79,61,0.3);margin-bottom:8px;"></div>
+        <div style="font-size:12.5px;color:#6B4226;font-weight:700;margin-bottom:4px;">発表メモ</div>
+        <div style="height:36px;"></div>
+      </div>
+
+      <!-- 2組 S -->
+      <div style="background:rgba(232,160,32,0.07);border-radius:10px;padding:14px;margin-bottom:12px;border-left:4px solid #E8A020;">
+        <div style="font-family:'Shippori Mincho',serif;font-size:15px;font-weight:700;color:#E8A020;margin-bottom:10px;">2組　S（サービス）担当</div>
+        <div style="font-size:12.5px;color:#6B4226;font-weight:700;margin-bottom:4px;">チェックリスト ☑</div>
+        <div style="font-size:12.5px;color:#5A3520;line-height:1.9;margin-bottom:10px;">
+          ☐　笑顔・挨拶・言葉遣いは適切か<br>
+          ☐　お客様に呼ばれる前に気づいて動けているか（目安：30秒以内）<br>
+          ☐　臨機応変な対応・気づかいができているか<br>
+          ☐　予約・注文・会計がスムーズに進んでいるか<br>
+          ☐　待ち時間・提供スピードは適切か
+        </div>
+        <div style="font-size:12.5px;color:#6B4226;font-weight:700;margin-bottom:4px;">おちば屋のSを改善するには？</div>
+        <div style="height:56px;border-bottom:1px dashed rgba(232,160,32,0.4);margin-bottom:8px;"></div>
+        <div style="font-size:12.5px;color:#6B4226;font-weight:700;margin-bottom:4px;">発表メモ</div>
+        <div style="height:36px;"></div>
+      </div>
+
+      <!-- 3組 C -->
+      <div style="background:rgba(46,134,193,0.07);border-radius:10px;padding:14px;margin-bottom:16px;border-left:4px solid #2E86C1;">
+        <div style="font-family:'Shippori Mincho',serif;font-size:15px;font-weight:700;color:#2E86C1;margin-bottom:10px;">3組　C（クレンリネス）担当</div>
+        <div style="font-size:12.5px;color:#6B4226;font-weight:700;margin-bottom:4px;">チェックリスト ☑</div>
+        <div style="font-size:12.5px;color:#5A3520;line-height:1.9;margin-bottom:10px;">
+          ☐　スタッフの身だしなみ・体調管理は整っているか<br>
+          ☐　店内・トイレの清掃はルーティーン化されているか<br>
+          ☐　食器・グラスに汚れや割れはないか<br>
+          ☐　卓上・メニュー・薬味は清潔に保たれているか
+        </div>
+        <div style="font-size:12.5px;color:#6B4226;font-weight:700;margin-bottom:4px;">おちば屋のCを改善するには？</div>
+        <div style="height:56px;border-bottom:1px dashed rgba(46,134,193,0.3);margin-bottom:8px;"></div>
+        <div style="font-size:12.5px;color:#6B4226;font-weight:700;margin-bottom:4px;">発表メモ</div>
+        <div style="height:36px;"></div>
+      </div>
+
+      <!-- 時間が余れば A -->
+      <div style="background:rgba(39,174,96,0.06);border-radius:10px;padding:12px 14px;margin-bottom:20px;border:1px dashed rgba(39,174,96,0.4);">
+        <div style="font-family:'Shippori Mincho',serif;font-size:14px;font-weight:700;color:#27AE60;margin-bottom:6px;">＋ 時間が余れば：A（アトモスフィア）全体で話し合おう</div>
+        <div style="font-size:12.5px;color:#5A3520;line-height:1.9;margin-bottom:8px;">
+          ☐　店内の温度・明るさ・BGMは快適か<br>
+          ☐　スタッフ同士のやりとりはお客様に見せて恥ずかしくないか<br>
+          ☐　店の内装・外観は清潔で入りやすい雰囲気か
+        </div>
+        <div style="font-size:12.5px;color:#6B4226;font-weight:700;margin-bottom:4px;">おちば屋のAを改善するには？</div>
+        <div style="height:36px;"></div>
+      </div>
+
+      <!-- PDCA -->
+      <div style="font-family:'Shippori Mincho',serif;font-size:15px;font-weight:700;color:#5D4E8E;margin:0 0 8px;">▶ PDCAで今日から実践しよう（個人・10分）</div>
+      <div style="font-size:12.5px;color:#8B4513;margin-bottom:10px;">討論を踏まえて、自分が明日からやることを一つ決めましょう。</div>
+      <div style="border:1px solid rgba(194,65,12,0.15);border-radius:10px;overflow:hidden;margin-bottom:8px;">
+        <div style="display:flex;border-bottom:1px solid rgba(194,65,12,0.1);">
+          <div style="background:#3B82F6;color:#fff;font-family:'Shippori Mincho',serif;font-weight:700;font-size:14px;padding:10px 14px;min-width:64px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;"><span style="font-size:18px;">P</span><span style="font-size:10px;">Plan</span></div>
+          <div style="padding:10px 12px;font-size:12.5px;color:#5A3520;flex:1;">明日の営業で意識したいことを一つ決める<br>→（　　　　　　　　　　　　　　　　　　　　　　　　　　　）</div>
+        </div>
+        <div style="display:flex;border-bottom:1px solid rgba(194,65,12,0.1);">
+          <div style="background:#22C55E;color:#fff;font-family:'Shippori Mincho',serif;font-weight:700;font-size:14px;padding:10px 14px;min-width:64px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;"><span style="font-size:18px;">D</span><span style="font-size:10px;">Do</span></div>
+          <div style="padding:10px 12px;font-size:12.5px;color:#5A3520;flex:1;">いつ？どの場面で実践するか<br>→（　　　　　　　　　　　　　　　　　　　　　　　　　　　）</div>
+        </div>
+        <div style="display:flex;border-bottom:1px solid rgba(194,65,12,0.1);">
+          <div style="background:#F59E0B;color:#fff;font-family:'Shippori Mincho',serif;font-weight:700;font-size:14px;padding:10px 14px;min-width:64px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;"><span style="font-size:18px;">C</span><span style="font-size:10px;">Check</span></div>
+          <div style="padding:10px 12px;font-size:12.5px;color:#5A3520;flex:1;">お客様の反応・変化を観察して気づいたこと<br>→（　　　　　　　　　　　　　　　　　　　　　　　　　　　）</div>
+        </div>
+        <div style="display:flex;">
+          <div style="background:#EF4444;color:#fff;font-family:'Shippori Mincho',serif;font-weight:700;font-size:14px;padding:10px 14px;min-width:64px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;"><span style="font-size:18px;">A</span><span style="font-size:10px;">Action</span></div>
+          <div style="padding:10px 12px;font-size:12.5px;color:#5A3520;flex:1;">次回どう改善・継続するか<br>→（　　　　　　　　　　　　　　　　　　　　　　　　　　　）</div>
+        </div>
+      </div>
+
+      <div style="text-align:right;margin-top:12px;font-size:11px;color:#AAAAAA;font-style:italic;">討論設計：みきちゃん　｜　構成：ゆうちゃん</div>
+    </section>
+
+  </div>
+
 
   <!-- ============================================
        PANE 5: お問合せ (ASK)
@@ -1550,6 +1796,171 @@ q: "おちば屋で使用している西山農園のお米の品種名はどれ�
       explain: "「ベジファースト」の考え方に基づき、食物繊維を先に摂取できる理想的な順番で提供しています。" }
   ];
 
+  // ============================================================
+  // QSCA 設問データ（全20問・単択・三択）
+  // ★美樹作★ = みきちゃん出題
+  // ============================================================
+  const qscaQuizData = [
+    // ── LEVEL 1：知識を知る ──
+    { group: "LEVEL 1：知識を知る（Q1〜Q5）",
+      q: "★美樹作★ 「QSCA」のもととなる「QSC」を最初に唱えたとされる企業はどれか？",
+      options: ["スターバックス", "マクドナルド", "ディズニー"],
+      answer: 1,
+      explain: "QSCはマクドナルドが提唱した概念で、飲食店運営の基礎・基本とされています。" },
+    { q: "QSCAの各文字が表す意味の組み合わせとして、正しいものはどれか？",
+      options: [
+        "Q＝クオリティ、S＝スピード、C＝コスト、A＝アトモスフィア",
+        "Q＝クオリティ、S＝サービス、C＝クレンリネス、A＝アトモスフィア",
+        "Q＝クオリティ、S＝サービス、C＝コミュニケーション、A＝アドバタイズ"
+      ],
+      answer: 1,
+      explain: "QSCAとはQuality（品質）・Service（接客）・Cleanliness（清潔）・Atmosphere（雰囲気）の頭文字です。" },
+    { q: "「QSC＋H」の「H」は何を指すか？",
+      options: [
+        "Hygiene（衛生管理を徹底し安全な食事を提供すること）",
+        "Hierarchy（店長・スタッフの役割分担を明確にすること）",
+        "Hospitality（主人と客人の間で「相互満足」が成立し喜びを共有すること）"
+      ],
+      answer: 2,
+      explain: "HはHospitality（ホスピタリティ）。マニュアルの実行ではなく、心から相手を喜ばせたいという気持ちから生まれるものです。" },
+    { q: "アンケートにおいて、料理の質以上に「再来店の動機」に深く関わると言われている要素はどれか？",
+      options: [
+        "店舗の立地の良さ",
+        "接客や環境を含めた「アトモスフィア（雰囲気）」",
+        "メニューの種類の豊富さ"
+      ],
+      answer: 1,
+      explain: "アトモスフィア（A）は料理の質以上に再来店動機に関わるとされています。照明・BGM・スタッフの活気など空間全体がAを構成します。" },
+    { q: "QSC＋V（バリュー）の「V」が意味することとして正しいものはどれか？",
+      options: [
+        "値下げによってお客様を増やすこと",
+        "ポイントカードや特典で来店を促すこと",
+        "Q・S・Cが揃った上で「価格以上の価値がある」とお客様に感じていただくこと"
+      ],
+      answer: 2,
+      explain: "VはValue（バリュー）。安易な値下げではなく、提供する価値そのものを高めることが本質です。" },
+    // ── LEVEL 2：本質を理解する ──
+    { group: "LEVEL 2：本質を理解する（Q6〜Q11）",
+      q: "中小規模の飲食店にとって、QSCの低下が「死活問題」となる最大の理由はどれか？",
+      options: [
+        "従業員の給与計算が複雑になるから",
+        "たった一度の不快感が原因で、お客様が二度と戻らなくなるリスクが高いから",
+        "備品の補充スピードが遅くなるから"
+      ],
+      answer: 1,
+      explain: "個人店や中小規模の店は、たった一度のQSCA低下でお客様を永遠に失うリスクがあります。" },
+    { q: "人気店が数ヶ月で閉店してしまう「落とし穴」の主な原因はどれか？",
+      options: [
+        "忙しさによりQSCのバランスが崩れ、お客様ではなく「数字」を追ってしまうこと",
+        "広告宣伝費を使いすぎたこと",
+        "新メニューの開発をしなかったこと"
+      ],
+      answer: 0,
+      explain: "忙しくなると数字ばかりを追い、QSCが疎かになりがちです。これが人気店が数ヶ月で閉店する最大の原因です。" },
+    { q: "景気変動や困難な状況（コロナ禍など）下でも、店が生き残り続けるために必要なものはどれか？",
+      options: [
+        "どんな時でも食材のグレードを落とさないこと",
+        "高いQSCAによって築かれた、信頼関係のある「顧客（ファン）」の数",
+        "大手チェーン店と同じ低価格戦略"
+      ],
+      answer: 1,
+      explain: "高いQSCAレベルによって築かれた「顧客（ファン）」がいる店だけが困難な状況でも生き残れます。" },
+    { q: "スタッフが「自分はできている」と自分目線で解釈することの弊害は何か？",
+      options: [
+        "責任感が強くなりすぎる",
+        "チームワークが乱れてしまう",
+        "お客様目線を失い、改善や成長が止まってしまう"
+      ],
+      answer: 2,
+      explain: "「自分目線」ではなく常に「お客様目線」で改善を続けることがQSCAの本質です。" },
+    { q: "お客様との信頼関係を築き「顧客化」する上で、最も重要な行動はどれか？",
+      options: [
+        "初回来店時にその場でポイントカードへの入会を勧めること",
+        "会話を重ね、お客様の顔・好みを覚えて関係を積み上げること",
+        "SNSでお店の情報を積極的に発信すること"
+      ],
+      answer: 1,
+      explain: "会話を通じて信頼関係を積み上げることで、顧客化の第一歩となります。「あの人に会いに行こう」という動機が再来店を生みます。" },
+    { q: "QSCAレベルを高く保ち続けるための、最大の「目的」とは何か？",
+      options: [
+        "売上レコードを更新して社内で表彰されること",
+        "競合店よりも高いレビューを獲得すること",
+        "食に関する「安全」「安心」を提供し、お客様を守ること"
+      ],
+      answer: 2,
+      explain: "PDCAを回す目的はただ一つ、「お客様を守る（安全・安心の提供）」ことです。" },
+    // ── LEVEL 3：実践に活かす ──
+    { group: "LEVEL 3：実践に活かす（Q12〜Q20）",
+      q: "クオリティ（Q）の「温度管理」について正しいものはどれか？",
+      options: [
+        "すべての料理を一度にまとめて提供する",
+        "温かい料理は温かいうちに、冷たい料理は冷たいうちに提供する",
+        "忙しい時は加熱時間を短縮してでもスピードを優先する"
+      ],
+      answer: 1,
+      explain: "「美味しくて当たり前」の時代だからこそ、温度管理が信頼のベースとなります。" },
+    { q: "入店したお客様が、店員に気づいてもらうまで待てる時間の「限度」は一般的にどのくらいか？",
+      options: ["30秒〜1分", "3分〜5分", "10分以上"],
+      answer: 0,
+      explain: "一般的にお客様が待てる限度は30秒〜1分とされています。呼ばれる前に気づいて動くのが理想です。" },
+    { q: "クレンリネス（C）を店舗に定着させるための、最も有効な方法はどれか？",
+      options: [
+        "汚れがひどくなってから全スタッフで一斉に掃除する",
+        "1日の作業時間の中に特定の場所の掃除を組み込み「ルーティーン化」する",
+        "アルバイトスタッフにのみ掃除を任せる"
+      ],
+      answer: 1,
+      explain: "「汚れたらやる」ではなく、ルーティーン化して毎日決まった場所を磨き上げることが大事です。" },
+    { q: "★美樹作★ トイレのクレンリネスにおいて、点検ポイントとして「誤っている」ものはどれか？",
+      options: [
+        "壁・床・天井のひび割れを迅速に修理する",
+        "トイレットペーパーの補充は1日1回だけ行えば十分である",
+        "換気扇にほこりや汚れがないか定期的に確認する"
+      ],
+      answer: 1,
+      explain: "トイレットペーパーは使用頻度に応じてこまめに確認・補充が必要です。1日1回では不十分な場合があります。" },
+    { q: "お店の「外観（外回り）」が重要な理由はどれか？",
+      options: [
+        "競合店よりも目立つ必要があるから",
+        "外壁の汚れは法律で清掃が義務付けられているから",
+        "外観が綺麗だと、お客様が店内の品質や安心感を直感的に判断できるから"
+      ],
+      answer: 2,
+      explain: "外観が綺麗だとお客様は直感的に「この店は安心だ」と判断し、入店のハードルが下がります。" },
+    { q: "忙しい時や人員不足の際、プロのスタッフとして「守るべき態度」はどれか？",
+      options: [
+        "忙しさをアピールするためにわざと大きな音を立てて動く",
+        "「今日は人が足りなくて大変なんです」とお客様に理解を求める",
+        "ホールに出る際は笑顔で落ち着いて対応し、店側の焦りをお客様に悟らせない"
+      ],
+      answer: 2,
+      explain: "店側の都合はお客様には関係ありません。いかなる状況でもプロとして笑顔で落ち着いた対応が求められます。" },
+    { q: "クレームが発生した際、被害を最小限に抑えるための正しい初動対応はどれか？",
+      options: [
+        "自分の非がない場合はすぐに反論して誤解を解く",
+        "お客様の「言い分を聞く」ことに徹し、心情に「同調」する",
+        "その場ですぐに割引や無料化を提案する"
+      ],
+      answer: 1,
+      explain: "クレーム初動の基本は「聴く」「同調する」。まずお客様の感情を受け止めることが最重要です。" },
+    { q: "掃除やサービスができていないスタッフを指導する際、責任者が持つべき正しい視点はどれか？",
+      options: [
+        "「できていないスタッフ自身のやる気」に問題があると考える",
+        "「指導・教育ができていない、あるいは放置している自分自身の責任」と考える",
+        "「店舗の設備が古いこと」を理由にする"
+      ],
+      answer: 1,
+      explain: "「教えていない、指導できていない自分の責任」と捉えることが正しい責任者の視点です。" },
+    { q: "PDCAサイクルの「C（チェック）」において行うべき作業はどれか？",
+      options: [
+        "次の新しい目標を計画する",
+        "実行した行動を振り返り、評価・検証する",
+        "とにかく現場でスピードアップして動いてみる"
+      ],
+      answer: 1,
+      explain: "Check（チェック）は実行した行動を振り返り評価・検証する段階です。PDCAのC→Aの流れで改善を続けることがQSCA向上につながります。" }
+  ];
+
 
   // ============================================================
   // Google Apps Script Web App URL
@@ -1585,10 +1996,14 @@ q: "おちば屋で使用している西山農園のお米の品種名はどれ�
       currentQuizData = quizData;
       document.getElementById('quizMainTitle').textContent = '鶏と鴨テスト';
       document.getElementById('quizMainSub').textContent = '三択形式 / 全20問';
-    } else {
+    } else if (category === 'veg') {
       currentQuizData = vegQuizData;
       document.getElementById('quizMainTitle').textContent = '野菜と食材テスト';
       document.getElementById('quizMainSub').textContent = '三択・複数選択 / 全20問';
+    } else {
+      currentQuizData = qscaQuizData;
+      document.getElementById('quizMainTitle').textContent = '顧客価値QSCAテスト';
+      document.getElementById('quizMainSub').textContent = '三択形式 / 全20問';
     }
     renderQuestions(currentQuizData);
     document.getElementById('quizSelector').classList.add('hidden');
@@ -1602,6 +2017,7 @@ q: "おちば屋で使用している西山農園のお米の品種名はどれ�
 
   document.getElementById('btnCategoryMeat').addEventListener('click', () => startQuiz('meat'));
   document.getElementById('btnCategoryVeg').addEventListener('click', () => startQuiz('veg'));
+  document.getElementById('btnCategoryQsca').addEventListener('click', () => startQuiz('qsca'));
   document.getElementById('quizBackBtn').addEventListener('click', showCategorySelector);
 
   // ============================================================
