@@ -802,7 +802,7 @@
 
 <style>
   .subtabs { display:flex; gap:6px; margin:0 0 16px; background:rgba(255,232,209,0.6); border-radius:12px; padding:6px; }
-  .subtab { flex:1; background:transparent; border:none; border-radius:8px; padding:8px 4px; font-family:'Shippori Mincho',serif; font-size:11px; font-weight:500; color:#6B4226; cursor:pointer; transition:all 0.2s; letter-spacing:0.03em; line-height:1.3; }
+  .subtab { flex:1; background:transparent; border:none; border-radius:8px; padding:8px 4px; font-family:'Shippori Mincho',serif; font-size:11px; font-weight:500; color:#6B4226; cursor:pointer; transition:all 0.2s; letter-spacing:0.03em; line-height:1.4; }
   .subtab .sub-en { display:block; font-family:'Cormorant Garamond',serif; font-style:italic; font-size:8px; color:#8B4513; margin-top:2px; }
   .subtab.active { background:linear-gradient(135deg,var(--brand-orange) 0%,var(--brand-orange-deep) 100%); color:#FFF8EB; box-shadow:0 2px 6px rgba(139,45,10,0.2); }
   .subtab.active .sub-en { color:rgba(255,248,235,0.8); }
@@ -843,7 +843,7 @@
     </div>
     <div class="subtabs">
       <button class="subtab active" data-pane="meat" data-sub="knowledge">知識<span class="sub-en">K N O W L E D G E</span></button>
-      <button class="subtab" data-pane="meat" data-sub="quiz">テスト<span class="sub-en">T E S T</span></button>
+      <button class="subtab" data-pane="meat" data-sub="test">テスト<span class="sub-en">T E S T</span></button>
       <button class="subtab" data-pane="meat" data-sub="feedback">振り返り<span class="sub-en">F E E D B A C K</span></button>
     </div>
     <div class="subpane active" id="sub-meat-knowledge">
@@ -964,68 +964,48 @@
       </ul>
     </section>
     </div>
-    <div class="subpane" id="sub-meat-quiz">
-      <div id="subQuizSelector-meat">
+    <div class="subpane" id="sub-meat-test">
+      <div id="subSel-meat">
         <div class="quiz-intro">
           <div class="ornament">❉ ❉ ❉</div>
           <h2>鶏と鴨テスト</h2>
           <p>三択形式 / 全20問</p>
         </div>
-        <div style="text-align:center;padding:16px 0;">
-          <button class="submit-btn" style="max-width:240px;" onclick="startSubQuiz('meat','meat')">テストを開始する</button>
+        <div style="text-align:center;padding:20px 0;">
+          <button class="submit-btn" style="max-width:240px;" id="startBtn-meat">テストを開始する</button>
         </div>
       </div>
-      <div class="hidden" id="subQuizMain-meat">
-        <section class="card">
+      <div class="hidden" id="subMain-meat">
+        <section class="card" id="subCard-meat">
           <div class="field">
             <label>お名前</label>
             <input type="text" id="subName-meat" placeholder="例：山田 太郎" autocomplete="name" />
           </div>
-          <div id="subQuestions-meat"></div>
-          <button class="submit-btn" id="subSubmitBtn-meat" onclick="submitSubQuiz('meat','meat')">採点する</button>
-          <div class="status" id="subStatus-meat"></div>
+          <div id="subQs-meat"></div>
+          <button class="submit-btn" id="subSubmit-meat">採点する</button>
+          <div class="status" id="subSt-meat"></div>
         </section>
-        <section class="card hidden" id="subResultCard-meat">
+        <section class="card hidden" id="subResult-meat">
           <div class="result-head">
             <span class="card-label">— Your Score</span>
-            <div class="result-score">
-              <span id="subScoreNum-meat">0</span><span class="total">/<span id="subScoreTotal-meat">0</span></span>
-            </div>
-            <div class="result-msg" id="subResultMsg-meat"></div>
-            <div class="result-percent" id="subResultPercent-meat"></div>
+            <div class="result-score"><span id="subSN-meat">0</span><span class="total">/<span id="subST-meat">0</span></span></div>
+            <div class="result-msg" id="subRM-meat"></div>
+            <div class="result-percent" id="subRP-meat"></div>
           </div>
-          <div class="result-list" id="subResultList-meat"></div>
-          <button class="retry-btn" onclick="retrySubQuiz('meat','meat')">もう一度挑戦する</button>
+          <div class="result-list" id="subRL-meat"></div>
+          <button class="retry-btn" id="subRetry-meat">もう一度挑戦する</button>
         </section>
       </div>
     </div>
     <div class="subpane" id="sub-meat-feedback">
-            <section class="card" id="meatAskCard">
+      <section class="card" id="meatAskCard">
         <p style="font-size:12.5px;color:#6B4226;margin-bottom:14px;line-height:1.7;">鶏と鴨の勉強会・テストを受けて、あなたの考えを教えてください。</p>
-        <div class="field">
-          <label>お名前 <span class="opt">（必須）</span></label>
-          <input type="text" id="meatAskName" placeholder="例：山田 太郎" autocomplete="name" />
-        </div>
-        <div class="field">
-          <label>今日「なるほど！」と思った知識を1つ教えてください <span class="opt">（必須）</span></label>
-          <textarea id="meatAskLearned" rows="3" placeholder="例：プリマスの名称の由来、つなぎとストロングの違い、など"></textarea>
-        </div>
-        <div class="field">
-          <label>★美樹作★ その知識は、明日からの営業のどこで活かせそうですか？ <span class="opt">（必須）</span></label>
-          <textarea id="meatAskUse" rows="3" placeholder="例：串を説明するとき、お客様に部位を聞かれたとき、など"></textarea>
-        </div>
-        <div class="field">
-          <label>★美樹作★ お客様に「おすすめは？」と聞かれたら、今日学んだ内容でどう答えますか？ <span class="opt">（必須）</span></label>
-          <textarea id="meatAskRecommend" rows="4" placeholder="おすすめのセリフと、その理由をセットで書いてみてください！"></textarea>
-        </div>
-        <div class="field">
-          <label>★美樹作★ おちば屋のメニューで「まだ食べたことがないもの」はありますか？ <span class="opt">（任意）</span></label>
-          <textarea id="meatAskNotTried" rows="2" placeholder="より自信を持って接客するために、食べてみたいものを教えてください！"></textarea>
-        </div>
-        <div class="field">
-          <label>★美樹作★ これから「挑戦したいこと」や、次回学びたいテーマはありますか？ <span class="opt">（任意）</span></label>
-          <textarea id="meatAskChallenge" rows="2" placeholder="何でもOKです！"></textarea>
-        </div>
+        <div class="field"><label>お名前 <span class="opt">（必須）</span></label><input type="text" id="meatAskName" placeholder="例：山田 太郎" autocomplete="name" /></div>
+        <div class="field"><label>今日「なるほど！」と思った知識を1つ教えてください <span class="opt">（必須）</span></label><textarea id="meatAskLearned" rows="3" placeholder="例：プリマスの名称の由来、つなぎとストロングの違い、など"></textarea></div>
+        <div class="field"><label>★美樹作★ その知識は、明日からの営業のどこで活かせそうですか？ <span class="opt">（必須）</span></label><textarea id="meatAskUse" rows="3" placeholder="例：串を説明するとき、部位を聞かれたとき、など"></textarea></div>
+        <div class="field"><label>★美樹作★ お客様に「おすすめは？」と聞かれたら、今日学んだ内容でどう答えますか？ <span class="opt">（必須）</span></label><textarea id="meatAskRecommend" rows="4" placeholder="おすすめのセリフと、その理由をセットで書いてみてください！"></textarea></div>
+        <div class="field"><label>★美樹作★ おちば屋のメニューで「まだ食べたことがないもの」はありますか？ <span class="opt">（任意）</span></label><textarea id="meatAskNotTried" rows="2" placeholder="より自信を持って接客するために、食べてみたいものを教えてください！"></textarea></div>
+        <div class="field"><label>★美樹作★ これから「挑戦したいこと」や、次回学びたいテーマはありますか？ <span class="opt">（任意）</span></label><textarea id="meatAskChallenge" rows="2" placeholder="何でもOKです！"></textarea></div>
         <button class="submit-btn" onclick="submitFeedback('meat')">送信する</button>
         <div class="status" id="meatAskStatus"></div>
       </section>
@@ -1048,7 +1028,7 @@
     </div>
     <div class="subtabs">
       <button class="subtab active" data-pane="veg" data-sub="knowledge">知識<span class="sub-en">K N O W L E D G E</span></button>
-      <button class="subtab" data-pane="veg" data-sub="quiz">テスト<span class="sub-en">T E S T</span></button>
+      <button class="subtab" data-pane="veg" data-sub="test">テスト<span class="sub-en">T E S T</span></button>
       <button class="subtab" data-pane="veg" data-sub="feedback">振り返り<span class="sub-en">F E E D B A C K</span></button>
     </div>
     <div class="subpane active" id="sub-veg-knowledge">
@@ -1137,68 +1117,48 @@
       </ul>
     </section>
     </div>
-    <div class="subpane" id="sub-veg-quiz">
-      <div id="subQuizSelector-veg">
+    <div class="subpane" id="sub-veg-test">
+      <div id="subSel-veg">
         <div class="quiz-intro">
           <div class="ornament">❉ ❉ ❉</div>
           <h2>野菜と食材テスト</h2>
           <p>三択形式 / 全20問</p>
         </div>
-        <div style="text-align:center;padding:16px 0;">
-          <button class="submit-btn" style="max-width:240px;" onclick="startSubQuiz('veg','veg')">テストを開始する</button>
+        <div style="text-align:center;padding:20px 0;">
+          <button class="submit-btn" style="max-width:240px;" id="startBtn-veg">テストを開始する</button>
         </div>
       </div>
-      <div class="hidden" id="subQuizMain-veg">
-        <section class="card">
+      <div class="hidden" id="subMain-veg">
+        <section class="card" id="subCard-veg">
           <div class="field">
             <label>お名前</label>
             <input type="text" id="subName-veg" placeholder="例：山田 太郎" autocomplete="name" />
           </div>
-          <div id="subQuestions-veg"></div>
-          <button class="submit-btn" id="subSubmitBtn-veg" onclick="submitSubQuiz('veg','veg')">採点する</button>
-          <div class="status" id="subStatus-veg"></div>
+          <div id="subQs-veg"></div>
+          <button class="submit-btn" id="subSubmit-veg">採点する</button>
+          <div class="status" id="subSt-veg"></div>
         </section>
-        <section class="card hidden" id="subResultCard-veg">
+        <section class="card hidden" id="subResult-veg">
           <div class="result-head">
             <span class="card-label">— Your Score</span>
-            <div class="result-score">
-              <span id="subScoreNum-veg">0</span><span class="total">/<span id="subScoreTotal-veg">0</span></span>
-            </div>
-            <div class="result-msg" id="subResultMsg-veg"></div>
-            <div class="result-percent" id="subResultPercent-veg"></div>
+            <div class="result-score"><span id="subSN-veg">0</span><span class="total">/<span id="subST-veg">0</span></span></div>
+            <div class="result-msg" id="subRM-veg"></div>
+            <div class="result-percent" id="subRP-veg"></div>
           </div>
-          <div class="result-list" id="subResultList-veg"></div>
-          <button class="retry-btn" onclick="retrySubQuiz('veg','veg')">もう一度挑戦する</button>
+          <div class="result-list" id="subRL-veg"></div>
+          <button class="retry-btn" id="subRetry-veg">もう一度挑戦する</button>
         </section>
       </div>
     </div>
     <div class="subpane" id="sub-veg-feedback">
-            <section class="card" id="vegAskCard">
+      <section class="card" id="vegAskCard">
         <p style="font-size:12.5px;color:#6B4226;margin-bottom:14px;line-height:1.7;">野菜と食材の勉強会・テストを受けて、あなたの考えを教えてください。</p>
-        <div class="field">
-          <label>お名前 <span class="opt">（必須）</span></label>
-          <input type="text" id="vegAskName" placeholder="例：山田 太郎" autocomplete="name" />
-        </div>
-        <div class="field">
-          <label>今日「なるほど！」と思った知識を1つ教えてください <span class="opt">（必須）</span></label>
-          <textarea id="vegAskLearned" rows="3" placeholder="例：アスパラは根本が一番甘い、お米を混ぜる理由、など"></textarea>
-        </div>
-        <div class="field">
-          <label>★美樹作★ その知識は、明日からの営業のどこで活かせそうですか？ <span class="opt">（必須）</span></label>
-          <textarea id="vegAskUse" rows="3" placeholder="例：野菜サラダを説明するとき、食材のこだわりを聞かれたとき、など"></textarea>
-        </div>
-        <div class="field">
-          <label>★美樹作★ お客様に「おすすめは？」と聞かれたら、今日学んだ内容でどう答えますか？ <span class="opt">（必須）</span></label>
-          <textarea id="vegAskRecommend" rows="4" placeholder="おすすめのセリフと、その理由をセットで書いてみてください！"></textarea>
-        </div>
-        <div class="field">
-          <label>★美樹作★ おちば屋のメニューで「まだ食べたことがないもの」はありますか？ <span class="opt">（任意）</span></label>
-          <textarea id="vegAskNotTried" rows="2" placeholder="より自信を持って接客するために、食べてみたいものを教えてください！"></textarea>
-        </div>
-        <div class="field">
-          <label>★美樹作★ これから「挑戦したいこと」や、次回学びたいテーマはありますか？ <span class="opt">（任意）</span></label>
-          <textarea id="vegAskChallenge" rows="2" placeholder="何でもOKです！"></textarea>
-        </div>
+        <div class="field"><label>お名前 <span class="opt">（必須）</span></label><input type="text" id="vegAskName" placeholder="例：山田 太郎" autocomplete="name" /></div>
+        <div class="field"><label>今日「なるほど！」と思った知識を1つ教えてください <span class="opt">（必須）</span></label><textarea id="vegAskLearned" rows="3" placeholder="例：アスパラは根本が一番甘い、お米を混ぜる理由、など"></textarea></div>
+        <div class="field"><label>★美樹作★ その知識は、明日からの営業のどこで活かせそうですか？ <span class="opt">（必須）</span></label><textarea id="vegAskUse" rows="3" placeholder="例：野菜サラダを説明するとき、食材のこだわりを聞かれたとき、など"></textarea></div>
+        <div class="field"><label>★美樹作★ お客様に「おすすめは？」と聞かれたら、今日学んだ内容でどう答えますか？ <span class="opt">（必須）</span></label><textarea id="vegAskRecommend" rows="4" placeholder="おすすめのセリフと、その理由をセットで書いてみてください！"></textarea></div>
+        <div class="field"><label>★美樹作★ おちば屋のメニューで「まだ食べたことがないもの」はありますか？ <span class="opt">（任意）</span></label><textarea id="vegAskNotTried" rows="2" placeholder="より自信を持って接客するために、食べてみたいものを教えてください！"></textarea></div>
+        <div class="field"><label>★美樹作★ これから「挑戦したいこと」や、次回学びたいテーマはありますか？ <span class="opt">（任意）</span></label><textarea id="vegAskChallenge" rows="2" placeholder="何でもOKです！"></textarea></div>
         <button class="submit-btn" onclick="submitFeedback('veg')">送信する</button>
         <div class="status" id="vegAskStatus"></div>
       </section>
@@ -1221,7 +1181,7 @@
     </div>
     <div class="subtabs">
       <button class="subtab active" data-pane="qsca" data-sub="knowledge">知識<span class="sub-en">K N O W L E D G E</span></button>
-      <button class="subtab" data-pane="qsca" data-sub="quiz">テスト<span class="sub-en">T E S T</span></button>
+      <button class="subtab" data-pane="qsca" data-sub="test">テスト<span class="sub-en">T E S T</span></button>
       <button class="subtab" data-pane="qsca" data-sub="feedback">ワークシート<span class="sub-en">W O R K S H E E T</span></button>
     </div>
     <div class="subpane active" id="sub-qsca-knowledge">
@@ -1337,38 +1297,36 @@
       </div>
     </section>
     </div>
-    <div class="subpane" id="sub-qsca-quiz">
-      <div id="subQuizSelector-qsca">
+    <div class="subpane" id="sub-qsca-test">
+      <div id="subSel-qsca">
         <div class="quiz-intro">
           <div class="ornament">❉ ❉ ❉</div>
           <h2>顧客価値・QSCAテスト</h2>
           <p>三択形式 / 全20問</p>
         </div>
-        <div style="text-align:center;padding:16px 0;">
-          <button class="submit-btn" style="max-width:240px;" onclick="startSubQuiz('qsca','qsca')">テストを開始する</button>
+        <div style="text-align:center;padding:20px 0;">
+          <button class="submit-btn" style="max-width:240px;" id="startBtn-qsca">テストを開始する</button>
         </div>
       </div>
-      <div class="hidden" id="subQuizMain-qsca">
-        <section class="card">
+      <div class="hidden" id="subMain-qsca">
+        <section class="card" id="subCard-qsca">
           <div class="field">
             <label>お名前</label>
             <input type="text" id="subName-qsca" placeholder="例：山田 太郎" autocomplete="name" />
           </div>
-          <div id="subQuestions-qsca"></div>
-          <button class="submit-btn" id="subSubmitBtn-qsca" onclick="submitSubQuiz('qsca','qsca')">採点する</button>
-          <div class="status" id="subStatus-qsca"></div>
+          <div id="subQs-qsca"></div>
+          <button class="submit-btn" id="subSubmit-qsca">採点する</button>
+          <div class="status" id="subSt-qsca"></div>
         </section>
-        <section class="card hidden" id="subResultCard-qsca">
+        <section class="card hidden" id="subResult-qsca">
           <div class="result-head">
             <span class="card-label">— Your Score</span>
-            <div class="result-score">
-              <span id="subScoreNum-qsca">0</span><span class="total">/<span id="subScoreTotal-qsca">0</span></span>
-            </div>
-            <div class="result-msg" id="subResultMsg-qsca"></div>
-            <div class="result-percent" id="subResultPercent-qsca"></div>
+            <div class="result-score"><span id="subSN-qsca">0</span><span class="total">/<span id="subST-qsca">0</span></span></div>
+            <div class="result-msg" id="subRM-qsca"></div>
+            <div class="result-percent" id="subRP-qsca"></div>
           </div>
-          <div class="result-list" id="subResultList-qsca"></div>
-          <button class="retry-btn" onclick="retrySubQuiz('qsca','qsca')">もう一度挑戦する</button>
+          <div class="result-list" id="subRL-qsca"></div>
+          <button class="retry-btn" id="subRetry-qsca">もう一度挑戦する</button>
         </section>
       </div>
     </div>
@@ -1507,37 +1465,29 @@
 </div>
 
 <script>
-  // ============================================================
-  // メインタブ切り替え
-  // ============================================================
-  const tabs = document.querySelectorAll('.tab');
-  const panes = document.querySelectorAll('.pane');
-  tabs.forEach(t => {
-    t.addEventListener('click', () => {
-      const target = t.dataset.tab;
-      tabs.forEach(x => x.classList.toggle('active', x.dataset.tab === target));
-      panes.forEach(p => p.classList.toggle('active', p.id === 'pane-' + target));
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+  // Tab switching
+  document.querySelectorAll('.tab').forEach(function(t) {
+    t.addEventListener('click', function() {
+      var target = t.dataset.tab;
+      document.querySelectorAll('.tab').forEach(function(x) { x.classList.toggle('active', x.dataset.tab === target); });
+      document.querySelectorAll('.pane').forEach(function(p) { p.classList.toggle('active', p.id === 'pane-' + target); });
+      window.scrollTo({top:0,behavior:'smooth'});
     });
   });
 
-  // ============================================================
-  // サブタブ切り替え
-  // ============================================================
-  document.querySelectorAll('.subtab').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const paneId = btn.dataset.pane;
-      const subId = btn.dataset.sub;
-      const parentPane = document.getElementById('pane-' + paneId);
-      parentPane.querySelectorAll('.subtab').forEach(b => b.classList.toggle('active', b.dataset.sub === subId));
-      parentPane.querySelectorAll('.subpane').forEach(p => p.classList.toggle('active', p.id === 'sub-' + paneId + '-' + subId));
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+  // Subtab switching
+  document.querySelectorAll('.subtab').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var paneId = btn.dataset.pane;
+      var subId = btn.dataset.sub;
+      var parent = document.getElementById('pane-' + paneId);
+      parent.querySelectorAll('.subtab').forEach(function(b) { b.classList.toggle('active', b.dataset.sub === subId); });
+      parent.querySelectorAll('.subpane').forEach(function(p) { p.classList.toggle('active', p.id === 'sub-' + paneId + '-' + subId); });
+      window.scrollTo({top:0,behavior:'smooth'});
     });
   });
 
-  // ============================================================
-  // クイズデータ
-  // ============================================================
+  // Quiz data
   const quizData = [
     // ── 1. 鶏の分類・地鶏の定義 ──
     { group: "鶏の分類・地鶏の定義",
@@ -1844,547 +1794,6 @@ q: "おちば屋で使用している西山農園のお米の品種名はどれ�
       explain: "「ベジファースト」の考え方に基づき、食物繊維を先に摂取できる理想的な順番で提供しています。" }
   ];
 
-  // ============================================================
-  // QSCA 設問データ（全20問・単択・三択）
-  // ★美樹作★ = みきちゃん出題
-  // ============================================================
-  const qscaQuizData = [
-    // ── LEVEL 1：知識を知る ──
-    { group: "LEVEL 1：知識を知る（Q1〜Q5）",
-      q: "★美樹作★ 「QSCA」のもととなる「QSC」を最初に唱えたとされる企業はどれか？",
-      options: ["スターバックス", "マクドナルド", "ディズニー"],
-      answer: 1,
-      explain: "QSCはマクドナルドが提唱した概念で、飲食店運営の基礎・基本とされています。" },
-    { q: "QSCAの各文字が表す意味の組み合わせとして、正しいものはどれか？",
-      options: [
-        "Q＝クオリティ、S＝スピード、C＝コスト、A＝アトモスフィア",
-        "Q＝クオリティ、S＝サービス、C＝クレンリネス、A＝アトモスフィア",
-        "Q＝クオリティ、S＝サービス、C＝コミュニケーション、A＝アドバタイズ"
-      ],
-      answer: 1,
-      explain: "QSCAとはQuality（品質）・Service（接客）・Cleanliness（清潔）・Atmosphere（雰囲気）の頭文字です。" },
-    { q: "「QSC＋H」の「H」は何を指すか？",
-      options: [
-        "Hygiene（衛生管理を徹底し安全な食事を提供すること）",
-        "Hierarchy（店長・スタッフの役割分担を明確にすること）",
-        "Hospitality（主人と客人の間で「相互満足」が成立し喜びを共有すること）"
-      ],
-      answer: 2,
-      explain: "HはHospitality（ホスピタリティ）。マニュアルの実行ではなく、心から相手を喜ばせたいという気持ちから生まれるものです。" },
-    { q: "アンケートにおいて、料理の質以上に「再来店の動機」に深く関わると言われている要素はどれか？",
-      options: [
-        "店舗の立地の良さ",
-        "接客や環境を含めた「アトモスフィア（雰囲気）」",
-        "メニューの種類の豊富さ"
-      ],
-      answer: 1,
-      explain: "アトモスフィア（A）は料理の質以上に再来店動機に関わるとされています。照明・BGM・スタッフの活気など空間全体がAを構成します。" },
-    { q: "QSC＋V（バリュー）の「V」が意味することとして正しいものはどれか？",
-      options: [
-        "値下げによってお客様を増やすこと",
-        "ポイントカードや特典で来店を促すこと",
-        "Q・S・Cが揃った上で「価格以上の価値がある」とお客様に感じていただくこと"
-      ],
-      answer: 2,
-      explain: "VはValue（バリュー）。安易な値下げではなく、提供する価値そのものを高めることが本質です。" },
-    // ── LEVEL 2：本質を理解する ──
-    { group: "LEVEL 2：本質を理解する（Q6〜Q11）",
-      q: "中小規模の飲食店にとって、QSCの低下が「死活問題」となる最大の理由はどれか？",
-      options: [
-        "従業員の給与計算が複雑になるから",
-        "たった一度の不快感が原因で、お客様が二度と戻らなくなるリスクが高いから",
-        "備品の補充スピードが遅くなるから"
-      ],
-      answer: 1,
-      explain: "個人店や中小規模の店は、たった一度のQSCA低下でお客様を永遠に失うリスクがあります。" },
-    { q: "人気店が数ヶ月で閉店してしまう「落とし穴」の主な原因はどれか？",
-      options: [
-        "忙しさによりQSCのバランスが崩れ、お客様ではなく「数字」を追ってしまうこと",
-        "広告宣伝費を使いすぎたこと",
-        "新メニューの開発をしなかったこと"
-      ],
-      answer: 0,
-      explain: "忙しくなると数字ばかりを追い、QSCが疎かになりがちです。これが人気店が数ヶ月で閉店する最大の原因です。" },
-    { q: "景気変動や困難な状況（コロナ禍など）下でも、店が生き残り続けるために必要なものはどれか？",
-      options: [
-        "どんな時でも食材のグレードを落とさないこと",
-        "高いQSCAによって築かれた、信頼関係のある「顧客（ファン）」の数",
-        "大手チェーン店と同じ低価格戦略"
-      ],
-      answer: 1,
-      explain: "高いQSCAレベルによって築かれた「顧客（ファン）」がいる店だけが困難な状況でも生き残れます。" },
-    { q: "スタッフが「自分はできている」と自分目線で解釈することの弊害は何か？",
-      options: [
-        "責任感が強くなりすぎる",
-        "チームワークが乱れてしまう",
-        "お客様目線を失い、改善や成長が止まってしまう"
-      ],
-      answer: 2,
-      explain: "「自分目線」ではなく常に「お客様目線」で改善を続けることがQSCAの本質です。" },
-    { q: "お客様との信頼関係を築き「顧客化」する上で、最も重要な行動はどれか？",
-      options: [
-        "初回来店時にその場でポイントカードへの入会を勧めること",
-        "会話を重ね、お客様の顔・好みを覚えて関係を積み上げること",
-        "SNSでお店の情報を積極的に発信すること"
-      ],
-      answer: 1,
-      explain: "会話を通じて信頼関係を積み上げることで、顧客化の第一歩となります。「あの人に会いに行こう」という動機が再来店を生みます。" },
-    { q: "QSCAレベルを高く保ち続けるための、最大の「目的」とは何か？",
-      options: [
-        "売上レコードを更新して社内で表彰されること",
-        "競合店よりも高いレビューを獲得すること",
-        "食に関する「安全」「安心」を提供し、お客様を守ること"
-      ],
-      answer: 2,
-      explain: "PDCAを回す目的はただ一つ、「お客様を守る（安全・安心の提供）」ことです。" },
-    // ── LEVEL 3：実践に活かす ──
-    { group: "LEVEL 3：実践に活かす（Q12〜Q20）",
-      q: "クオリティ（Q）の「温度管理」について正しいものはどれか？",
-      options: [
-        "すべての料理を一度にまとめて提供する",
-        "温かい料理は温かいうちに、冷たい料理は冷たいうちに提供する",
-        "忙しい時は加熱時間を短縮してでもスピードを優先する"
-      ],
-      answer: 1,
-      explain: "「美味しくて当たり前」の時代だからこそ、温度管理が信頼のベースとなります。" },
-    { q: "入店したお客様が、店員に気づいてもらうまで待てる時間の「限度」は一般的にどのくらいか？",
-      options: ["30秒〜1分", "3分〜5分", "10分以上"],
-      answer: 0,
-      explain: "一般的にお客様が待てる限度は30秒〜1分とされています。呼ばれる前に気づいて動くのが理想です。" },
-    { q: "クレンリネス（C）を店舗に定着させるための、最も有効な方法はどれか？",
-      options: [
-        "汚れがひどくなってから全スタッフで一斉に掃除する",
-        "1日の作業時間の中に特定の場所の掃除を組み込み「ルーティーン化」する",
-        "アルバイトスタッフにのみ掃除を任せる"
-      ],
-      answer: 1,
-      explain: "「汚れたらやる」ではなく、ルーティーン化して毎日決まった場所を磨き上げることが大事です。" },
-    { q: "★美樹作★ トイレのクレンリネスにおいて、点検ポイントとして「誤っている」ものはどれか？",
-      options: [
-        "壁・床・天井のひび割れを迅速に修理する",
-        "トイレットペーパーの補充は1日1回だけ行えば十分である",
-        "換気扇にほこりや汚れがないか定期的に確認する"
-      ],
-      answer: 1,
-      explain: "トイレットペーパーは使用頻度に応じてこまめに確認・補充が必要です。1日1回では不十分な場合があります。" },
-    { q: "お店の「外観（外回り）」が重要な理由はどれか？",
-      options: [
-        "競合店よりも目立つ必要があるから",
-        "外壁の汚れは法律で清掃が義務付けられているから",
-        "外観が綺麗だと、お客様が店内の品質や安心感を直感的に判断できるから"
-      ],
-      answer: 2,
-      explain: "外観が綺麗だとお客様は直感的に「この店は安心だ」と判断し、入店のハードルが下がります。" },
-    { q: "忙しい時や人員不足の際、プロのスタッフとして「守るべき態度」はどれか？",
-      options: [
-        "忙しさをアピールするためにわざと大きな音を立てて動く",
-        "「今日は人が足りなくて大変なんです」とお客様に理解を求める",
-        "ホールに出る際は笑顔で落ち着いて対応し、店側の焦りをお客様に悟らせない"
-      ],
-      answer: 2,
-      explain: "店側の都合はお客様には関係ありません。いかなる状況でもプロとして笑顔で落ち着いた対応が求められます。" },
-    { q: "クレームが発生した際、被害を最小限に抑えるための正しい初動対応はどれか？",
-      options: [
-        "自分の非がない場合はすぐに反論して誤解を解く",
-        "お客様の「言い分を聞く」ことに徹し、心情に「同調」する",
-        "その場ですぐに割引や無料化を提案する"
-      ],
-      answer: 1,
-      explain: "クレーム初動の基本は「聴く」「同調する」。まずお客様の感情を受け止めることが最重要です。" },
-    { q: "掃除やサービスができていないスタッフを指導する際、責任者が持つべき正しい視点はどれか？",
-      options: [
-        "「できていないスタッフ自身のやる気」に問題があると考える",
-        "「指導・教育ができていない、あるいは放置している自分自身の責任」と考える",
-        "「店舗の設備が古いこと」を理由にする"
-      ],
-      answer: 1,
-      explain: "「教えていない、指導できていない自分の責任」と捉えることが正しい責任者の視点です。" },
-    { q: "PDCAサイクルの「C（チェック）」において行うべき作業はどれか？",
-      options: [
-        "次の新しい目標を計画する",
-        "実行した行動を振り返り、評価・検証する",
-        "とにかく現場でスピードアップして動いてみる"
-      ],
-      answer: 1,
-      explain: "Check（チェック）は実行した行動を振り返り評価・検証する段階です。PDCAのC→Aの流れで改善を続けることがQSCA向上につながります。" }
-  ];
-
-
-  // ============================================================
-  // Google Apps Script Web App URL
-  // ============================================================
-  const GAS_URL = "https://script.google.com/macros/s/AKfycbys9l1CtBFTehWZX7jW3AC7e8lijZ82YxOVuqROORQ7NtlmhILQhI3GOi8Fn0E4jFs_kQ/exec";
-
-  // ============================================================
-  // 描画
-  // ============================================================
-  const questionsEl = document.getElementById('questions');
-  const LETTERS = ['A', 'B', 'C', 'D', 'E'];
-
-  // ============================================================
-  // カテゴリ選択 & クイズ切り替え
-  // ============================================================
-  let currentQuizData = null;
-  let currentCategory = null;
-
-  function showCategorySelector() {
-    document.getElementById('quizSelector').classList.remove('hidden');
-    document.getElementById('quizMain').classList.add('hidden');
-    // quizCard & resultCard reset
-    document.getElementById('quizCard').classList.remove('hidden');
-    document.getElementById('resultCard').classList.add('hidden');
-    submitBtn.disabled = false;
-    hideStatus();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
-  function startQuiz(category) {
-    currentCategory = category;
-    if (category === 'meat') {
-      currentQuizData = quizData;
-      document.getElementById('quizMainTitle').textContent = '鶏と鴨テスト';
-      document.getElementById('quizMainSub').textContent = '三択形式 / 全20問';
-    } else if (category === 'veg') {
-      currentQuizData = vegQuizData;
-      document.getElementById('quizMainTitle').textContent = '野菜と食材テスト';
-      document.getElementById('quizMainSub').textContent = '三択・複数選択 / 全20問';
-    } else {
-      currentQuizData = qscaQuizData;
-      document.getElementById('quizMainTitle').textContent = '顧客価値QSCAテスト';
-      document.getElementById('quizMainSub').textContent = '三択形式 / 全20問';
-    }
-    renderQuestions(currentQuizData);
-    document.getElementById('quizSelector').classList.add('hidden');
-    document.getElementById('quizMain').classList.remove('hidden');
-    document.getElementById('quizCard').classList.remove('hidden');
-    document.getElementById('resultCard').classList.add('hidden');
-    submitBtn.disabled = false;
-    hideStatus();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
-  document.getElementById('btnCategoryMeat').addEventListener('click', () => startQuiz('meat'));
-  document.getElementById('btnCategoryVeg').addEventListener('click', () => startQuiz('veg'));
-  document.getElementById('btnCategoryQsca').addEventListener('click', () => startQuiz('qsca'));
-  document.getElementById('quizBackBtn').addEventListener('click', showCategorySelector);
-
-  // ============================================================
-  // 問題レンダリング（単択・複数選択 両対応）
-  // ============================================================
-  function renderQuestions(data) {
-    const questionsEl = document.getElementById('questions');
-    questionsEl.innerHTML = '';
-    data.forEach((item, i) => {
-      if (item.group) {
-        const h = document.createElement('div');
-        h.className = 'quiz-group';
-        h.textContent = '■ ' + item.group;
-        questionsEl.appendChild(h);
-      }
-      const wrap = document.createElement('div');
-      wrap.className = 'question';
-
-      if (item.type === 'multi') {
-        // 複数選択
-        const optionsHTML = item.options.map((opt, idx) => `
-          <label class="mc-multi-option" data-q="${i}" data-idx="${idx}">
-            <input type="checkbox" name="q${i}" value="${idx}" />
-            <span class="badge">${LETTERS[idx]}</span>
-            <span class="text">${opt}</span>
-          </label>
-        `).join('');
-        wrap.innerHTML = `
-          <div class="q-num">Q${String(i + 1).padStart(2, '0')}</div>
-          <div class="q-text">${item.q}</div>
-          <div class="multi-hint">※ 当てはまるものをすべて選んでください</div>
-          <div class="mc-multi-options">${optionsHTML}</div>
-        `;
-      } else {
-        // 単択
-        const optionsHTML = item.options.map((opt, idx) => `
-          <label class="mc-option">
-            <input type="radio" name="q${i}" value="${idx}" />
-            <span class="badge">${LETTERS[idx]}</span>
-            <span class="text">${opt}</span>
-          </label>
-        `).join('');
-        wrap.innerHTML = `
-          <div class="q-num">Q${String(i + 1).padStart(2, '0')}</div>
-          <div class="q-text">${item.q}</div>
-          <div class="mc-options">${optionsHTML}</div>
-        `;
-      }
-      questionsEl.appendChild(wrap);
-    });
-
-    // 複数選択のクリックイベント
-    document.querySelectorAll('.mc-multi-option').forEach(label => {
-      label.addEventListener('click', () => {
-        const cb = label.querySelector('input[type="checkbox"]');
-        cb.checked = !cb.checked;
-        label.classList.toggle('selected', cb.checked);
-      });
-    });
-  }
-
-  // 初期レンダリング（肉鶏データでカテゴリ選択前から読み込んでおく）
-  renderQuestions(quizData);
-
-  // ============================================================
-  // 採点
-  // ============================================================
-  const submitBtn = document.getElementById('submitBtn');
-  const statusEl = document.getElementById('status');
-
-  function showStatus(msg, type) {
-    statusEl.textContent = msg;
-    statusEl.className = 'status show ' + type;
-  }
-  function hideStatus() { statusEl.className = 'status'; }
-
-  submitBtn.addEventListener('click', async () => {
-    const name = document.getElementById('name').value.trim();
-    const data = currentQuizData || quizData;
-
-    if (!name) {
-      showStatus('お名前を入力してください', 'error');
-      return;
-    }
-
-    const answers = [];
-    let unanswered = 0;
-    let score = 0;
-
-    data.forEach((item, i) => {
-      if (item.type === 'multi') {
-        const checked = [...document.querySelectorAll(`input[name="q${i}"]:checked`)]
-          .map(el => parseInt(el.value)).sort();
-        if (checked.length === 0) {
-          unanswered++;
-          answers.push(null);
-        } else {
-          answers.push(checked);
-          const correct = [...item.answer].sort();
-          if (JSON.stringify(checked) === JSON.stringify(correct)) score++;
-        }
-      } else {
-        const checked = document.querySelector(`input[name="q${i}"]:checked`);
-        if (!checked) {
-          unanswered++;
-          answers.push(null);
-        } else {
-          const v = parseInt(checked.value, 10);
-          answers.push(v);
-          if (v === item.answer) score++;
-        }
-      }
-    });
-
-    if (unanswered > 0) {
-      showStatus(`未回答が ${unanswered} 問あります`, 'error');
-      for (let i = 0; i < data.length; i++) {
-        const isMulti = data[i].type === 'multi';
-        const missing = isMulti
-          ? document.querySelectorAll(`input[name="q${i}"]:checked`).length === 0
-          : !document.querySelector(`input[name="q${i}"]:checked`);
-        if (missing) {
-          const target = document.querySelector(`input[name="q${i}"]`).closest('.question');
-          target.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          break;
-        }
-      }
-      return;
-    }
-
-    submitBtn.disabled = true;
-    showStatus('送信中...', 'loading');
-
-    const score100 = Math.round((score / data.length) * 100);
-    const payload = {
-      category: currentCategory || 'meat',
-      name,
-      correctCount: score,
-      total: data.length,
-      score: score100,
-      answers,
-      timestamp: new Date().toISOString()
-    };
-
-    try {
-      if (GAS_URL && !GAS_URL.includes('ここに')) {
-        await fetch(GAS_URL, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-          body: JSON.stringify(payload)
-        });
-      }
-    } catch (err) {}
-
-    hideStatus();
-    showResult(score, answers, data);
-  });
-
-  // ============================================================
-  // 結果表示
-  // ============================================================
-  function showResult(score, answers, data) {
-    document.getElementById('quizCard').classList.add('hidden');
-    const card = document.getElementById('resultCard');
-    card.classList.remove('hidden');
-
-    const score100 = Math.round((score / data.length) * 100);
-    document.getElementById('scoreNum').textContent = score100;
-    document.getElementById('scoreTotal').textContent = 100;
-
-    const ratio = score / data.length;
-    let msg = ratio === 1 ? '満点です。お見事！'
-      : ratio >= 0.85 ? '素晴らしい成績です。'
-      : ratio >= 0.7 ? 'よく出来ました。'
-      : ratio >= 0.5 ? 'もう一歩。復習しましょう。'
-      : 'もう一度学習し直しましょう。';
-    document.getElementById('resultMsg').textContent = msg;
-    document.getElementById('resultPercent').textContent = `${score} / ${data.length} 問正解`;
-
-    const list = document.getElementById('resultList');
-    list.innerHTML = answers.map((a, i) => {
-      const item = data[i];
-      let correct, userText, correctText;
-
-      if (item.type === 'multi') {
-        const correctArr = [...item.answer].sort();
-        const userArr = a ? [...a].sort() : [];
-        correct = JSON.stringify(userArr) === JSON.stringify(correctArr);
-        userText = a ? a.map(idx => `${LETTERS[idx]}`).join('・') : '未回答';
-        correctText = correctArr.map(idx => `${LETTERS[idx]}`).join('・');
-      } else {
-        correct = a === item.answer;
-        userText = a === null ? '未回答' : `${LETTERS[a]}. ${item.options[a]}`;
-        correctText = `${LETTERS[item.answer]}. ${item.options[item.answer]}`;
-      }
-
-      return `
-        <div class="result-item ${correct ? 'correct' : 'wrong'}">
-          <div class="ri-head">
-            <span class="ri-num">Q${String(i + 1).padStart(2, '0')}</span>
-            <span class="ri-mark">${correct ? '正解' : '不正解'}</span>
-          </div>
-          <div class="ri-q">${item.q}</div>
-          <div class="ri-explain">
-            <strong>あなたの回答：</strong>${userText}
-            ${correct ? '' : `<br><strong>正解：</strong>${correctText}`}
-            <br>
-            <strong>解説：</strong>${item.explain}
-          </div>
-        </div>
-      `;
-    }).join('');
-
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
-  // 再挑戦
-  document.getElementById('retryBtn').addEventListener('click', () => {
-    renderQuestions(currentQuizData || quizData);
-    document.getElementById('resultCard').classList.add('hidden');
-    document.getElementById('quizCard').classList.remove('hidden');
-    submitBtn.disabled = false;
-    hideStatus();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-
-
-  // ============================================================
-  // お問合せフォーム
-  // ============================================================
-  const askSubmit = document.getElementById('askSubmit');
-  const askStatus = document.getElementById('askStatus');
-
-  function showAskStatus(msg, type) {
-    askStatus.textContent = msg;
-    askStatus.className = 'status show ' + type;
-  }
-  function hideAskStatus() { askStatus.className = 'status'; }
-
-  askSubmit.addEventListener('click', async () => {
-    const askName     = document.getElementById('askName').value.trim();
-    const askLearned  = document.getElementById('askLearned').value.trim();
-    const askWantToKnow = document.getElementById('askWantToKnow').value.trim();
-    const askRecommend  = document.getElementById('askRecommend') ? document.getElementById('askRecommend').value.trim() : '';
-    const askFutureTopic = document.getElementById('askFutureTopic').value.trim();
-    const askChallenge   = document.getElementById('askChallenge') ? document.getElementById('askChallenge').value.trim() : '';
-
-    if (!askName) {
-      showAskStatus('お名前を入力してください', 'error');
-      document.getElementById('askName').focus();
-      return;
-    }
-    if (!askLearned) {
-      showAskStatus('「なるほど！と思った知識」を入力してください', 'error');
-      return;
-    }
-    if (!askWantToKnow) {
-      showAskStatus('「営業での活かし方」を入力してください', 'error');
-      return;
-    }
-    if (!askRecommend) {
-      showAskStatus('「おすすめの答え方」を入力してください', 'error');
-      return;
-    }
-
-    const allText = askLearned + askWantToKnow + askRecommend + askFutureTopic + askChallenge;
-    if (allText.length > 3000) {
-      showAskStatus('内容が長すぎます（合計3000文字以内）', 'error');
-      return;
-    }
-
-    askSubmit.disabled = true;
-    showAskStatus('送信中...', 'loading');
-
-    const payload = {
-      type: 'ask',
-      name: askName,
-      learned: askLearned,
-      wantToKnow: askWantToKnow,
-      recommend: askRecommend,
-      futureTopic: askFutureTopic,
-      challenge: askChallenge,
-      timestamp: new Date().toISOString()
-    };
-
-    try {
-      if (GAS_URL && !GAS_URL.includes('ここに')) {
-        await fetch(GAS_URL, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-          body: JSON.stringify(payload)
-        });
-      }
-    } catch (err) {}
-
-    hideAskStatus();
-    document.getElementById('askCard').classList.add('hidden');
-    document.getElementById('askDoneCard').classList.remove('hidden');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-
-  // もう一件送る
-  document.getElementById('askAgainBtn').addEventListener('click', () => {
-    document.getElementById('askName').value = '';
-    document.getElementById('askLearned').value = '';
-    document.getElementById('askWantToKnow').value = '';
-    if (document.getElementById('askRecommend')) document.getElementById('askRecommend').value = '';
-    document.getElementById('askFutureTopic').value = '';
-    if (document.getElementById('askChallenge')) document.getElementById('askChallenge').value = '';
-    document.getElementById('askDoneCard').classList.add('hidden');
-    document.getElementById('askCard').classList.remove('hidden');
-    askSubmit.disabled = false;
-    hideAskStatus();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-
-
   const vegQuizData = [
     { group: "お米（西山農園・ヒノヒカリ）",
 q: "おちば屋で使用している西山農園のお米の品種名はどれか?",
@@ -2706,159 +2115,145 @@ q: "おちば屋で使用している西山農園のお米の品種名はどれ�
       explain: "Check（チェック）は実行した行動を振り返り評価・検証する段階です。PDCAのC→Aの流れで改善を続けることがQSCA向上につながります。" }
   ];
 
-  const GAS_URL = "https://script.google.com/macros/s/AKfycbys9l1CtBFTehWZX7jW3AC7e8lijZ82YxOVuqROORQ7NtlmhILQhI3GOi8Fn0E4jFs_kQ/exec";
-  const LETTERS = ['A', 'B', 'C', 'D', 'E'];
+  var GAS_URL = "https://script.google.com/macros/s/AKfycbys9l1CtBFTehWZX7jW3AC7e8lijZ82YxOVuqROORQ7NtlmhILQhI3GOi8Fn0E4jFs_kQ/exec";
+  var LETTERS = ['A','B','C','D','E'];
 
-  // ============================================================
-  // サブクイズ ロジック
-  // ============================================================
-  function getQuizData(category) {
-    if (category === 'meat') return quizData;
-    if (category === 'veg') return vegQuizData;
-    if (category === 'qsca') return qscaQuizData;
+  function getQuizData(cat) {
+    if (cat === 'meat') return quizData;
+    if (cat === 'veg') return vegQuizData;
+    if (cat === 'qsca') return qscaQuizData;
     return [];
   }
 
-  function renderSubQuestions(paneId, data) {
-    const el = document.getElementById('subQuestions-' + paneId);
+  function renderQs(pid, data) {
+    var el = document.getElementById('subQs-' + pid);
     el.innerHTML = '';
-    data.forEach((item, i) => {
+    data.forEach(function(item, i) {
       if (item.group) {
-        const h = document.createElement('div');
+        var h = document.createElement('div');
         h.className = 'quiz-group';
         h.textContent = '■ ' + item.group;
         el.appendChild(h);
       }
-      const wrap = document.createElement('div');
+      var wrap = document.createElement('div');
       wrap.className = 'question';
-      const opts = item.options.map((opt, idx) => `
-        <label class="mc-option">
-          <input type="radio" name="subq${paneId}${i}" value="${idx}" />
-          <span class="badge">${LETTERS[idx]}</span>
-          <span class="text">${opt}</span>
-        </label>`).join('');
-      wrap.innerHTML = `
-        <div class="q-num">Q${String(i+1).padStart(2,'0')}</div>
-        <div class="q-text">${item.q}</div>
-        <div class="mc-options">${opts}</div>`;
+      var opts = item.options.map(function(opt, idx) {
+        return '<label class="mc-option"><input type="radio" name="q_' + pid + '_' + i + '" value="' + idx + '" /><span class="badge">' + LETTERS[idx] + '</span><span class="text">' + opt + '</span></label>';
+      }).join('');
+      wrap.innerHTML = '<div class="q-num">Q' + String(i+1).padStart(2,'0') + '</div><div class="q-text">' + item.q + '</div><div class="mc-options">' + opts + '</div>';
       el.appendChild(wrap);
     });
   }
 
-  function startSubQuiz(paneId, category) {
-    const data = getQuizData(category);
-    renderSubQuestions(paneId, data);
-    document.getElementById('subQuizSelector-' + paneId).classList.add('hidden');
-    document.getElementById('subQuizMain-' + paneId).classList.remove('hidden');
-    document.getElementById('subResultCard-' + paneId).classList.add('hidden');
-    const card = document.getElementById('subQuizMain-' + paneId).querySelector('section.card');
-    card.classList.remove('hidden');
-    document.getElementById('subSubmitBtn-' + paneId).disabled = false;
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
-  async function submitSubQuiz(paneId, category) {
-    const data = getQuizData(category);
-    const name = document.getElementById('subName-' + paneId).value.trim();
-    const statusEl = document.getElementById('subStatus-' + paneId);
-    if (!name) { statusEl.textContent = 'お名前を入力してください'; statusEl.className = 'status show error'; return; }
-    const answers = [];
-    let unanswered = 0, score = 0;
-    data.forEach((item, i) => {
-      const checked = document.querySelector(`input[name="subq${paneId}${i}"]:checked`);
-      if (!checked) { unanswered++; answers.push(null); }
-      else { const v = parseInt(checked.value); answers.push(v); if (v === item.answer) score++; }
+  // Setup quiz buttons for each pane
+  ['meat','veg','qsca'].forEach(function(pid) {
+    document.getElementById('startBtn-' + pid).addEventListener('click', function() {
+      var data = getQuizData(pid);
+      renderQs(pid, data);
+      document.getElementById('subSel-' + pid).classList.add('hidden');
+      document.getElementById('subMain-' + pid).classList.remove('hidden');
+      document.getElementById('subCard-' + pid).classList.remove('hidden');
+      document.getElementById('subResult-' + pid).classList.add('hidden');
+      document.getElementById('subSubmit-' + pid).disabled = false;
+      document.getElementById('subSt-' + pid).className = 'status';
+      window.scrollTo({top:0,behavior:'smooth'});
     });
-    if (unanswered > 0) {
-      statusEl.textContent = `未回答が ${unanswered} 問あります`;
-      statusEl.className = 'status show error';
-      for (let i = 0; i < data.length; i++) {
-        if (!document.querySelector(`input[name="subq${paneId}${i}"]:checked`)) {
-          document.querySelector(`input[name="subq${paneId}${i}"]`).closest('.question').scrollIntoView({behavior:'smooth',block:'center'});
-          break;
+
+    document.getElementById('subSubmit-' + pid).addEventListener('click', function() {
+      var data = getQuizData(pid);
+      var name = document.getElementById('subName-' + pid).value.trim();
+      var statusEl = document.getElementById('subSt-' + pid);
+      if (!name) { statusEl.textContent = 'お名前を入力してください'; statusEl.className = 'status show error'; return; }
+      var answers = []; var unanswered = 0; var score = 0;
+      data.forEach(function(item, i) {
+        var checked = document.querySelector('input[name="q_' + pid + '_' + i + '"]:checked');
+        if (!checked) { unanswered++; answers.push(null); }
+        else { var v = parseInt(checked.value); answers.push(v); if (v === item.answer) score++; }
+      });
+      if (unanswered > 0) {
+        statusEl.textContent = '未回答が ' + unanswered + ' 問あります';
+        statusEl.className = 'status show error';
+        for (var i = 0; i < data.length; i++) {
+          if (!document.querySelector('input[name="q_' + pid + '_' + i + '"]:checked')) {
+            document.querySelector('input[name="q_' + pid + '_' + i + '"]').closest('.question').scrollIntoView({behavior:'smooth',block:'center'});
+            break;
+          }
         }
+        return;
       }
-      return;
-    }
-    document.getElementById('subSubmitBtn-' + paneId).disabled = true;
-    statusEl.textContent = '送信中...'; statusEl.className = 'status show loading';
-    const score100 = Math.round((score / data.length) * 100);
-    try {
-      await fetch(GAS_URL, { method:'POST', mode:'no-cors', headers:{'Content-Type':'text/plain;charset=utf-8'}, body: JSON.stringify({ category, name, correctCount: score, total: data.length, score: score100, answers, timestamp: new Date().toISOString() }) });
-    } catch(e) {}
-    statusEl.className = 'status';
-    showSubResult(paneId, score, answers, data);
-  }
+      document.getElementById('subSubmit-' + pid).disabled = true;
+      statusEl.textContent = '送信中...'; statusEl.className = 'status show loading';
+      var score100 = Math.round((score / data.length) * 100);
+      try {
+        fetch(GAS_URL, {method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({category:pid,name:name,correctCount:score,total:data.length,score:score100,answers:answers,timestamp:new Date().toISOString()})});
+      } catch(e) {}
+      statusEl.className = 'status';
+      showResult(pid, score, answers, data);
+    });
 
-  function showSubResult(paneId, score, answers, data) {
-    const mainCard = document.getElementById('subQuizMain-' + paneId).querySelector('section.card');
-    mainCard.classList.add('hidden');
-    const rc = document.getElementById('subResultCard-' + paneId);
+    document.getElementById('subRetry-' + pid).addEventListener('click', function() {
+      var data = getQuizData(pid);
+      renderQs(pid, data);
+      document.getElementById('subCard-' + pid).classList.remove('hidden');
+      document.getElementById('subResult-' + pid).classList.add('hidden');
+      document.getElementById('subSubmit-' + pid).disabled = false;
+      document.getElementById('subSt-' + pid).className = 'status';
+      window.scrollTo({top:0,behavior:'smooth'});
+    });
+  });
+
+  function showResult(pid, score, answers, data) {
+    document.getElementById('subCard-' + pid).classList.add('hidden');
+    var rc = document.getElementById('subResult-' + pid);
     rc.classList.remove('hidden');
-    const score100 = Math.round((score / data.length) * 100);
-    document.getElementById('subScoreNum-' + paneId).textContent = score100;
-    document.getElementById('subScoreTotal-' + paneId).textContent = 100;
-    const ratio = score / data.length;
-    document.getElementById('subResultMsg-' + paneId).textContent =
-      ratio === 1 ? '満点です。お見事！' : ratio >= 0.85 ? '素晴らしい成績です。' : ratio >= 0.7 ? 'よく出来ました。' : ratio >= 0.5 ? 'もう一歩。復習しましょう。' : 'もう一度学習し直しましょう。';
-    document.getElementById('subResultPercent-' + paneId).textContent = `${score} / ${data.length} 問正解`;
-    document.getElementById('subResultList-' + paneId).innerHTML = answers.map((a, i) => {
-      const item = data[i];
-      const correct = a === item.answer;
-      const userText = a === null ? '未回答' : `${LETTERS[a]}. ${item.options[a]}`;
-      const correctText = `${LETTERS[item.answer]}. ${item.options[item.answer]}`;
-      return `<div class="result-item ${correct ? 'correct' : 'wrong'}">
-        <div class="ri-head"><span class="ri-num">Q${String(i+1).padStart(2,'0')}</span><span class="ri-mark">${correct ? '正解' : '不正解'}</span></div>
-        <div class="ri-q">${item.q}</div>
-        <div class="ri-explain"><strong>あなたの回答：</strong>${userText}${correct ? '' : `<br><strong>正解：</strong>${correctText}`}<br><strong>解説：</strong>${item.explain}</div>
-      </div>`;
+    var score100 = Math.round((score / data.length) * 100);
+    document.getElementById('subSN-' + pid).textContent = score100;
+    document.getElementById('subST-' + pid).textContent = 100;
+    var ratio = score / data.length;
+    document.getElementById('subRM-' + pid).textContent = ratio===1?'満点です。お見事！':ratio>=0.85?'素晴らしい成績です。':ratio>=0.7?'よく出来ました。':ratio>=0.5?'もう一歩。復習しましょう。':'もう一度学習し直しましょう。';
+    document.getElementById('subRP-' + pid).textContent = score + ' / ' + data.length + ' 問正解';
+    document.getElementById('subRL-' + pid).innerHTML = answers.map(function(a,i) {
+      var item = data[i];
+      var correct = a === item.answer;
+      var userText = a===null?'未回答':LETTERS[a]+'. '+item.options[a];
+      var correctText = LETTERS[item.answer]+'. '+item.options[item.answer];
+      return '<div class="result-item ' + (correct?'correct':'wrong') + '"><div class="ri-head"><span class="ri-num">Q'+String(i+1).padStart(2,'0')+'</span><span class="ri-mark">'+(correct?'正解':'不正解')+'</span></div><div class="ri-q">'+item.q+'</div><div class="ri-explain"><strong>あなたの回答：</strong>'+userText+(correct?'':'<br><strong>正解：</strong>'+correctText)+'<br><strong>解説：</strong>'+item.explain+'</div></div>';
     }).join('');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({top:0,behavior:'smooth'});
   }
 
-  function retrySubQuiz(paneId, category) {
-    startSubQuiz(paneId, category);
-    const mainCard = document.getElementById('subQuizMain-' + paneId).querySelector('section.card');
-    mainCard.classList.remove('hidden');
-    document.getElementById('subResultCard-' + paneId).classList.add('hidden');
-    document.getElementById('subSubmitBtn-' + paneId).disabled = false;
-    document.getElementById('subStatus-' + paneId).className = 'status';
-  }
-
-  // ============================================================
-  // 振り返りフォーム
-  // ============================================================
-  async function submitFeedback(paneId) {
-    const name = document.getElementById(paneId + 'AskName')?.value.trim() || '';
-    const learned = document.getElementById(paneId + 'AskLearned')?.value.trim() || '';
-    const use = document.getElementById(paneId + 'AskUse')?.value.trim() || '';
-    const recommend = document.getElementById(paneId + 'AskRecommend')?.value.trim() || '';
-    const notTried = document.getElementById(paneId + 'AskNotTried')?.value.trim() || '';
-    const challenge = document.getElementById(paneId + 'AskChallenge')?.value.trim() || '';
-    const statusEl = document.getElementById(paneId + 'AskStatus');
-    if (!name) { statusEl.textContent = 'お名前を入力してください'; statusEl.className = 'status show error'; return; }
-    if (!learned) { statusEl.textContent = '「なるほど！と思った知識」を入力してください'; statusEl.className = 'status show error'; return; }
-    if (!use) { statusEl.textContent = '「営業での活かし方」を入力してください'; statusEl.className = 'status show error'; return; }
-    if (!recommend) { statusEl.textContent = '「おすすめの答え方」を入力してください'; statusEl.className = 'status show error'; return; }
-    statusEl.textContent = '送信中...'; statusEl.className = 'status show loading';
+  // Feedback
+  function submitFeedback(pid) {
+    var name = (document.getElementById(pid+'AskName')||{}).value||'';
+    var learned = (document.getElementById(pid+'AskLearned')||{}).value||'';
+    var use = (document.getElementById(pid+'AskUse')||{}).value||'';
+    var recommend = (document.getElementById(pid+'AskRecommend')||{}).value||'';
+    var notTried = (document.getElementById(pid+'AskNotTried')||{}).value||'';
+    var challenge = (document.getElementById(pid+'AskChallenge')||{}).value||'';
+    name = name.trim(); learned = learned.trim(); use = use.trim(); recommend = recommend.trim();
+    var statusEl = document.getElementById(pid+'AskStatus');
+    if (!name) { statusEl.textContent='お名前を入力してください'; statusEl.className='status show error'; return; }
+    if (!learned) { statusEl.textContent='「なるほど！と思った知識」を入力してください'; statusEl.className='status show error'; return; }
+    if (!use) { statusEl.textContent='「営業での活かし方」を入力してください'; statusEl.className='status show error'; return; }
+    if (!recommend) { statusEl.textContent='「おすすめの答え方」を入力してください'; statusEl.className='status show error'; return; }
+    statusEl.textContent='送信中...'; statusEl.className='status show loading';
     try {
-      await fetch(GAS_URL, { method:'POST', mode:'no-cors', headers:{'Content-Type':'text/plain;charset=utf-8'},
-        body: JSON.stringify({ type:'feedback', category: paneId, name, learned, use, recommend, notTried, challenge, timestamp: new Date().toISOString() }) });
+      fetch(GAS_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({type:'feedback',category:pid,name:name,learned:learned,use:use,recommend:recommend,notTried:notTried,challenge:challenge,timestamp:new Date().toISOString()})});
     } catch(e) {}
-    document.getElementById(paneId + 'AskCard').classList.add('hidden');
-    document.getElementById(paneId + 'AskDoneCard').classList.remove('hidden');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    document.getElementById(pid+'AskCard').classList.add('hidden');
+    document.getElementById(pid+'AskDoneCard').classList.remove('hidden');
+    window.scrollTo({top:0,behavior:'smooth'});
   }
 
-  function resetFeedback(paneId) {
-    ['AskName','AskLearned','AskUse','AskRecommend','AskNotTried','AskChallenge'].forEach(f => {
-      const el = document.getElementById(paneId + f);
+  function resetFeedback(pid) {
+    ['AskName','AskLearned','AskUse','AskRecommend','AskNotTried','AskChallenge'].forEach(function(f) {
+      var el = document.getElementById(pid+f);
       if (el) el.value = '';
     });
-    document.getElementById(paneId + 'AskDoneCard').classList.add('hidden');
-    document.getElementById(paneId + 'AskCard').classList.remove('hidden');
-    document.getElementById(paneId + 'AskStatus').className = 'status';
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    document.getElementById(pid+'AskDoneCard').classList.add('hidden');
+    document.getElementById(pid+'AskCard').classList.remove('hidden');
+    document.getElementById(pid+'AskStatus').className = 'status';
+    window.scrollTo({top:0,behavior:'smooth'});
   }
 </script>
 
