@@ -810,6 +810,8 @@
   .subpane.active { display:block; }
 </style>
 </style>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 </head>
 <body>
 
@@ -1331,7 +1333,7 @@
       </div>
     </div>
     <div class="subpane" id="sub-qsca-feedback">
-      <!-- 6. グループ討論 & ワークシート -->
+      <!-- PDCA グループ討論 ワークシート -->
     <section class="card" id="qscaLearningSheet">
       <span class="card-label">— ワークシート・グループ討論</span>
       <h3>当日の流れ（全60分）</h3>
@@ -1339,70 +1341,115 @@
         📖 <strong>知識を読む</strong>　5分<br>
         ✏️ <strong>テストを解く</strong>　10分<br>
         💬 <strong>グループ討論</strong>　30分<br>
-        📝 <strong>PDCA記入</strong>　10分<br>
+        📝 <strong>PDCAシート記入</strong>　10分<br>
         🔁 <strong>テスト再挑戦</strong>　5分
       </div>
 
-      <!-- オープニング問題 -->
+      <!-- PDCAとは -->
+      <div style="font-family:'Shippori Mincho',serif;font-size:15px;font-weight:700;color:#5D4E8E;margin:0 0 8px;">▶ PDCAとは</div>
+      <div style="background:rgba(93,78,142,0.06);border-radius:10px;padding:12px 14px;margin-bottom:20px;">
+        <p style="font-size:12.5px;color:#5A3520;margin-bottom:10px;">お客様目線で現状を見て、改善を続けるためのサイクルです。今日の討論では、このPDCAの流れに沿って「おちば屋のQSCをどう改善するか」を考えます。</p>
+        <div style="border:1px solid rgba(93,78,142,0.2);border-radius:8px;overflow:hidden;">
+          <div style="display:flex;border-bottom:1px solid rgba(93,78,142,0.15);">
+            <div style="background:#3B82F6;color:#fff;font-family:'Shippori Mincho',serif;font-weight:700;padding:8px 12px;min-width:56px;text-align:center;font-size:16px;">P</div>
+            <div style="padding:8px 12px;font-size:12.5px;color:#5A3520;"><strong>Plan（計画）</strong>：何を改善するか決める</div>
+          </div>
+          <div style="display:flex;border-bottom:1px solid rgba(93,78,142,0.15);">
+            <div style="background:#22C55E;color:#fff;font-family:'Shippori Mincho',serif;font-weight:700;padding:8px 12px;min-width:56px;text-align:center;font-size:16px;">D</div>
+            <div style="padding:8px 12px;font-size:12.5px;color:#5A3520;"><strong>Do（実行）</strong>：実際にやってみる</div>
+          </div>
+          <div style="display:flex;border-bottom:1px solid rgba(93,78,142,0.15);">
+            <div style="background:#F59E0B;color:#fff;font-family:'Shippori Mincho',serif;font-weight:700;padding:8px 12px;min-width:56px;text-align:center;font-size:16px;">C</div>
+            <div style="padding:8px 12px;font-size:12.5px;color:#5A3520;"><strong>Check（確認）</strong>：結果・お客様の反応を観察する</div>
+          </div>
+          <div style="display:flex;">
+            <div style="background:#EF4444;color:#fff;font-family:'Shippori Mincho',serif;font-weight:700;padding:8px 12px;min-width:56px;text-align:center;font-size:16px;">A</div>
+            <div style="padding:8px 12px;font-size:12.5px;color:#5A3520;"><strong>Action（改善）</strong>：次にどう活かすか考える</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- オープニング -->
       <div style="font-family:'Shippori Mincho',serif;font-size:15px;font-weight:700;color:#5D4E8E;margin:0 0 8px;">▶ オープニング（全体・5分）</div>
       <div style="border:1px solid rgba(93,78,142,0.25);border-radius:10px;padding:12px 14px;margin-bottom:20px;background:rgba(93,78,142,0.04);">
         <div style="font-size:13.5px;color:#4A2511;font-family:'Shippori Mincho',serif;font-weight:700;margin-bottom:6px;">「普通に美味しかったが、またきたいとは思わなかった」</div>
-        <div style="font-size:13px;color:#5A3520;">Q・S・Cのうち、どれが足りなかったと思いますか？<br>まず個人で考えて、隣の人と共有してみましょう。</div>
-        <div style="height:44px;margin-top:8px;border-bottom:1px dashed rgba(194,65,12,0.2);"></div>
+        <div style="font-size:12.5px;color:#5A3520;margin-bottom:8px;">このお客様に、Q・S・Cのうちどれが足りなかったと思いますか？まず個人で考えて、隣の人と共有してみましょう。</div>
+        <textarea id="ws-opening" rows="2" placeholder="あなたの考えを書いてみましょう..." style="width:100%;padding:8px 10px;font-size:13px;font-family:inherit;border:1px solid rgba(194,65,12,0.2);border-radius:8px;background:rgba(255,255,255,0.7);color:#3D2817;resize:none;-webkit-appearance:none;"></textarea>
       </div>
 
       <!-- グループ討論 -->
-      <div style="font-family:'Shippori Mincho',serif;font-size:15px;font-weight:700;color:#5D4E8E;margin:0 0 8px;">▶ グループ討論（3組・25分）</div>
-      <div style="font-size:12.5px;color:#8B4513;margin-bottom:12px;line-height:1.7;">各グループで担当項目のチェックリストを確認し、「おちば屋では？」「改善するには？」を話し合って発表してください。<br>時間が余れば全体でAアトモスフィアも話し合いましょう。</div>
+      <div style="font-family:'Shippori Mincho',serif;font-size:15px;font-weight:700;color:#5D4E8E;margin:0 0 6px;">▶ グループ討論（3組・25分）</div>
+      <div style="background:rgba(93,78,142,0.06);border-radius:8px;padding:10px 12px;margin-bottom:14px;font-size:12.5px;color:#5A3520;line-height:1.8;">
+        <strong>【討論の進め方】</strong><br>
+        ① 5分　チェックリストで現状を確認する（<strong style="color:#F59E0B;">C：Check</strong>）<br>
+        ② 10分　問題点と改善策を話し合う（<strong style="color:#3B82F6;">P：Plan</strong>）<br>
+        ③ 5分　「明日からすぐできること」を一つ決める（<strong style="color:#22C55E;">D：Doの準備</strong>）<br>
+        ④ 5分　全体発表
+      </div>
 
       <!-- 1組 Q -->
       <div style="background:rgba(217,79,61,0.07);border-radius:10px;padding:14px;margin-bottom:12px;border-left:4px solid #D94F3D;">
-        <div style="font-family:'Shippori Mincho',serif;font-size:15px;font-weight:700;color:#D94F3D;margin-bottom:10px;">1組　Q（クオリティ）担当</div>
-        <div style="font-size:12.5px;color:#6B4226;font-weight:700;margin-bottom:4px;">チェックリスト ☑</div>
-        <div style="font-size:12.5px;color:#5A3520;line-height:1.9;margin-bottom:10px;">
+        <div style="font-family:'Shippori Mincho',serif;font-size:15px;font-weight:700;color:#D94F3D;margin-bottom:4px;">1組　Q（クオリティ）担当</div>
+        <div style="font-size:12px;color:#8B4513;margin-bottom:10px;">テーマ：「おちば屋のクオリティで、今すぐ改善できることは何か？」</div>
+        <div style="font-size:12.5px;font-weight:700;color:#F59E0B;margin-bottom:4px;">① C：チェックリストで現状確認</div>
+        <div style="font-size:12.5px;color:#5A3520;line-height:1.9;margin-bottom:8px;">
           ☐　商品の味・鮮度は保たれているか<br>
           ☐　素材のこだわりをスタッフが説明できるか<br>
           ☐　盛り付けは美しいか（提供前に確認しているか）<br>
           ☐　テイクアウトの包装は丁寧・清潔か<br>
           ☐　温かい料理は温かく、冷たいものは冷たく提供できているか
         </div>
-        <div style="font-size:12.5px;color:#6B4226;font-weight:700;margin-bottom:4px;">おちば屋のQを改善するには？</div>
-        <div style="height:56px;border-bottom:1px dashed rgba(217,79,61,0.3);margin-bottom:8px;"></div>
-        <div style="font-size:12.5px;color:#6B4226;font-weight:700;margin-bottom:4px;">発表メモ</div>
-        <div style="height:36px;"></div>
+        <div style="font-size:12px;color:#6B4226;margin-bottom:3px;">気になった点：</div>
+        <textarea id="ws-q-check" rows="2" placeholder="気になった点を書いてください..." style="width:100%;padding:8px 10px;font-size:13px;font-family:inherit;border:1px solid rgba(217,79,61,0.3);border-radius:8px;background:rgba(255,255,255,0.7);color:#3D2817;resize:none;margin-bottom:10px;-webkit-appearance:none;"></textarea>
+        <div style="font-size:12.5px;font-weight:700;color:#3B82F6;margin-bottom:4px;">② P：問題点と改善策</div>
+        <textarea id="ws-q-plan" rows="2" placeholder="問題点と改善策を話し合ってください..." style="width:100%;padding:8px 10px;font-size:13px;font-family:inherit;border:1px solid rgba(59,130,246,0.3);border-radius:8px;background:rgba(255,255,255,0.7);color:#3D2817;resize:none;margin-bottom:10px;-webkit-appearance:none;"></textarea>
+        <div style="font-size:12.5px;font-weight:700;color:#22C55E;margin-bottom:4px;">③ D：明日からすぐできること</div>
+        <textarea id="ws-q-do" rows="2" placeholder="明日からすぐできることを一つ決めてください..." style="width:100%;padding:8px 10px;font-size:13px;font-family:inherit;border:1px solid rgba(34,197,94,0.3);border-radius:8px;background:rgba(255,255,255,0.7);color:#3D2817;resize:none;margin-bottom:10px;-webkit-appearance:none;"></textarea>
+        <div style="font-size:12.5px;font-weight:700;color:#5D4E8E;margin-bottom:4px;">④ 発表メモ</div>
+        <textarea id="ws-q-present" rows="2" placeholder="発表する内容をまとめてください..." style="width:100%;padding:8px 10px;font-size:13px;font-family:inherit;border:1px solid rgba(93,78,142,0.3);border-radius:8px;background:rgba(255,255,255,0.7);color:#3D2817;resize:none;-webkit-appearance:none;"></textarea>
       </div>
 
       <!-- 2組 S -->
       <div style="background:rgba(232,160,32,0.07);border-radius:10px;padding:14px;margin-bottom:12px;border-left:4px solid #E8A020;">
-        <div style="font-family:'Shippori Mincho',serif;font-size:15px;font-weight:700;color:#E8A020;margin-bottom:10px;">2組　S（サービス）担当</div>
-        <div style="font-size:12.5px;color:#6B4226;font-weight:700;margin-bottom:4px;">チェックリスト ☑</div>
-        <div style="font-size:12.5px;color:#5A3520;line-height:1.9;margin-bottom:10px;">
+        <div style="font-family:'Shippori Mincho',serif;font-size:15px;font-weight:700;color:#E8A020;margin-bottom:4px;">2組　S（サービス）担当</div>
+        <div style="font-size:12px;color:#8B4513;margin-bottom:10px;">テーマ：「おちば屋のサービスで、今すぐ改善できることは何か？」</div>
+        <div style="font-size:12.5px;font-weight:700;color:#F59E0B;margin-bottom:4px;">① C：チェックリストで現状確認</div>
+        <div style="font-size:12.5px;color:#5A3520;line-height:1.9;margin-bottom:8px;">
           ☐　笑顔・挨拶・言葉遣いは適切か<br>
           ☐　お客様に呼ばれる前に気づいて動けているか（目安：30秒以内）<br>
           ☐　臨機応変な対応・気づかいができているか<br>
           ☐　予約・注文・会計がスムーズに進んでいるか<br>
           ☐　待ち時間・提供スピードは適切か
         </div>
-        <div style="font-size:12.5px;color:#6B4226;font-weight:700;margin-bottom:4px;">おちば屋のSを改善するには？</div>
-        <div style="height:56px;border-bottom:1px dashed rgba(232,160,32,0.4);margin-bottom:8px;"></div>
-        <div style="font-size:12.5px;color:#6B4226;font-weight:700;margin-bottom:4px;">発表メモ</div>
-        <div style="height:36px;"></div>
+        <div style="font-size:12px;color:#6B4226;margin-bottom:3px;">気になった点：</div>
+        <textarea id="ws-s-check" rows="2" placeholder="気になった点を書いてください..." style="width:100%;padding:8px 10px;font-size:13px;font-family:inherit;border:1px solid rgba(232,160,32,0.4);border-radius:8px;background:rgba(255,255,255,0.7);color:#3D2817;resize:none;margin-bottom:10px;-webkit-appearance:none;"></textarea>
+        <div style="font-size:12.5px;font-weight:700;color:#3B82F6;margin-bottom:4px;">② P：問題点と改善策</div>
+        <textarea id="ws-s-plan" rows="2" placeholder="問題点と改善策を話し合ってください..." style="width:100%;padding:8px 10px;font-size:13px;font-family:inherit;border:1px solid rgba(59,130,246,0.3);border-radius:8px;background:rgba(255,255,255,0.7);color:#3D2817;resize:none;margin-bottom:10px;-webkit-appearance:none;"></textarea>
+        <div style="font-size:12.5px;font-weight:700;color:#22C55E;margin-bottom:4px;">③ D：明日からすぐできること</div>
+        <textarea id="ws-s-do" rows="2" placeholder="明日からすぐできることを一つ決めてください..." style="width:100%;padding:8px 10px;font-size:13px;font-family:inherit;border:1px solid rgba(34,197,94,0.3);border-radius:8px;background:rgba(255,255,255,0.7);color:#3D2817;resize:none;margin-bottom:10px;-webkit-appearance:none;"></textarea>
+        <div style="font-size:12.5px;font-weight:700;color:#5D4E8E;margin-bottom:4px;">④ 発表メモ</div>
+        <textarea id="ws-s-present" rows="2" placeholder="発表する内容をまとめてください..." style="width:100%;padding:8px 10px;font-size:13px;font-family:inherit;border:1px solid rgba(93,78,142,0.3);border-radius:8px;background:rgba(255,255,255,0.7);color:#3D2817;resize:none;-webkit-appearance:none;"></textarea>
       </div>
 
       <!-- 3組 C -->
       <div style="background:rgba(46,134,193,0.07);border-radius:10px;padding:14px;margin-bottom:16px;border-left:4px solid #2E86C1;">
-        <div style="font-family:'Shippori Mincho',serif;font-size:15px;font-weight:700;color:#2E86C1;margin-bottom:10px;">3組　C（クレンリネス）担当</div>
-        <div style="font-size:12.5px;color:#6B4226;font-weight:700;margin-bottom:4px;">チェックリスト ☑</div>
-        <div style="font-size:12.5px;color:#5A3520;line-height:1.9;margin-bottom:10px;">
+        <div style="font-family:'Shippori Mincho',serif;font-size:15px;font-weight:700;color:#2E86C1;margin-bottom:4px;">3組　C（クレンリネス）担当</div>
+        <div style="font-size:12px;color:#8B4513;margin-bottom:10px;">テーマ：「おちば屋のクレンリネスで、今すぐ改善できることは何か？」</div>
+        <div style="font-size:12.5px;font-weight:700;color:#F59E0B;margin-bottom:4px;">① C：チェックリストで現状確認</div>
+        <div style="font-size:12.5px;color:#5A3520;line-height:1.9;margin-bottom:8px;">
           ☐　スタッフの身だしなみ・体調管理は整っているか<br>
           ☐　店内・トイレの清掃はルーティーン化されているか<br>
           ☐　食器・グラスに汚れや割れはないか<br>
           ☐　卓上・メニュー・薬味は清潔に保たれているか
         </div>
-        <div style="font-size:12.5px;color:#6B4226;font-weight:700;margin-bottom:4px;">おちば屋のCを改善するには？</div>
-        <div style="height:56px;border-bottom:1px dashed rgba(46,134,193,0.3);margin-bottom:8px;"></div>
-        <div style="font-size:12.5px;color:#6B4226;font-weight:700;margin-bottom:4px;">発表メモ</div>
-        <div style="height:36px;"></div>
+        <div style="font-size:12px;color:#6B4226;margin-bottom:3px;">気になった点：</div>
+        <textarea id="ws-c-check" rows="2" placeholder="気になった点を書いてください..." style="width:100%;padding:8px 10px;font-size:13px;font-family:inherit;border:1px solid rgba(46,134,193,0.3);border-radius:8px;background:rgba(255,255,255,0.7);color:#3D2817;resize:none;margin-bottom:10px;-webkit-appearance:none;"></textarea>
+        <div style="font-size:12.5px;font-weight:700;color:#3B82F6;margin-bottom:4px;">② P：問題点と改善策</div>
+        <textarea id="ws-c-plan" rows="2" placeholder="問題点と改善策を話し合ってください..." style="width:100%;padding:8px 10px;font-size:13px;font-family:inherit;border:1px solid rgba(59,130,246,0.3);border-radius:8px;background:rgba(255,255,255,0.7);color:#3D2817;resize:none;margin-bottom:10px;-webkit-appearance:none;"></textarea>
+        <div style="font-size:12.5px;font-weight:700;color:#22C55E;margin-bottom:4px;">③ D：明日からすぐできること</div>
+        <textarea id="ws-c-do" rows="2" placeholder="明日からすぐできることを一つ決めてください..." style="width:100%;padding:8px 10px;font-size:13px;font-family:inherit;border:1px solid rgba(34,197,94,0.3);border-radius:8px;background:rgba(255,255,255,0.7);color:#3D2817;resize:none;margin-bottom:10px;-webkit-appearance:none;"></textarea>
+        <div style="font-size:12.5px;font-weight:700;color:#5D4E8E;margin-bottom:4px;">④ 発表メモ</div>
+        <textarea id="ws-c-present" rows="2" placeholder="発表する内容をまとめてください..." style="width:100%;padding:8px 10px;font-size:13px;font-family:inherit;border:1px solid rgba(93,78,142,0.3);border-radius:8px;background:rgba(255,255,255,0.7);color:#3D2817;resize:none;-webkit-appearance:none;"></textarea>
       </div>
 
       <!-- 時間が余れば A -->
@@ -1413,30 +1460,44 @@
           ☐　スタッフ同士のやりとりはお客様に見せて恥ずかしくないか<br>
           ☐　店の内装・外観は清潔で入りやすい雰囲気か
         </div>
-        <div style="font-size:12.5px;color:#6B4226;font-weight:700;margin-bottom:4px;">おちば屋のAを改善するには？</div>
-        <div style="height:36px;"></div>
+        <textarea id="ws-a-plan" rows="2" placeholder="おちば屋のAを改善するには？" style="width:100%;padding:8px 10px;font-size:13px;font-family:inherit;border:1px solid rgba(39,174,96,0.3);border-radius:8px;background:rgba(255,255,255,0.7);color:#3D2817;resize:none;-webkit-appearance:none;"></textarea>
       </div>
 
-      <!-- PDCA -->
-      <div style="font-family:'Shippori Mincho',serif;font-size:15px;font-weight:700;color:#5D4E8E;margin:0 0 8px;">▶ PDCAで今日から実践しよう（個人・10分）</div>
-      <div style="font-size:12.5px;color:#8B4513;margin-bottom:10px;">討論を踏まえて、自分が明日からやることを一つ決めましょう。</div>
-      <div style="border:1px solid rgba(194,65,12,0.15);border-radius:10px;overflow:hidden;margin-bottom:8px;">
-        <div style="display:flex;border-bottom:1px solid rgba(194,65,12,0.1);">
-          <div style="background:#3B82F6;color:#fff;font-family:'Shippori Mincho',serif;font-weight:700;font-size:14px;padding:10px 14px;min-width:64px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;"><span style="font-size:18px;">P</span><span style="font-size:10px;">Plan</span></div>
-          <div style="padding:10px 12px;font-size:12.5px;color:#5A3520;flex:1;">明日の営業で意識したいことを一つ決める<br>→（　　　　　　　　　　　　　　　　　　　　　　　　　　　）</div>
+      <!-- 個人PDCAシート -->
+      <div style="font-family:'Shippori Mincho',serif;font-size:15px;font-weight:700;color:#5D4E8E;margin:0 0 6px;">▶ 個人PDCAシート（10分）</div>
+      <div style="font-size:12.5px;color:#8B4513;margin-bottom:10px;">発表を聞いて、自分が明日からやることを一つ決めましょう。</div>
+      <div style="border:1px solid rgba(194,65,12,0.15);border-radius:10px;overflow:hidden;margin-bottom:16px;">
+        <div style="display:flex;align-items:stretch;border-bottom:1px solid rgba(194,65,12,0.1);">
+          <div style="background:#3B82F6;color:#fff;font-family:'Shippori Mincho',serif;font-weight:700;font-size:18px;padding:10px 14px;min-width:56px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;">P<span style="font-size:9px;margin-top:2px;">Plan</span></div>
+          <div style="padding:8px 10px;flex:1;"><div style="font-size:12px;color:#6B4226;margin-bottom:4px;">明日の営業で意識したいことを一つ決める</div><textarea id="ws-pdca-p" rows="2" placeholder="例：お客様の目を見て挨拶する" style="width:100%;padding:6px 8px;font-size:13px;font-family:inherit;border:1px solid rgba(59,130,246,0.3);border-radius:6px;background:rgba(255,255,255,0.8);color:#3D2817;resize:none;-webkit-appearance:none;"></textarea></div>
         </div>
-        <div style="display:flex;border-bottom:1px solid rgba(194,65,12,0.1);">
-          <div style="background:#22C55E;color:#fff;font-family:'Shippori Mincho',serif;font-weight:700;font-size:14px;padding:10px 14px;min-width:64px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;"><span style="font-size:18px;">D</span><span style="font-size:10px;">Do</span></div>
-          <div style="padding:10px 12px;font-size:12.5px;color:#5A3520;flex:1;">いつ？どの場面で実践するか<br>→（　　　　　　　　　　　　　　　　　　　　　　　　　　　）</div>
+        <div style="display:flex;align-items:stretch;border-bottom:1px solid rgba(194,65,12,0.1);">
+          <div style="background:#22C55E;color:#fff;font-family:'Shippori Mincho',serif;font-weight:700;font-size:18px;padding:10px 14px;min-width:56px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;">D<span style="font-size:9px;margin-top:2px;">Do</span></div>
+          <div style="padding:8px 10px;flex:1;"><div style="font-size:12px;color:#6B4226;margin-bottom:4px;">いつ？どの場面で実践するか</div><textarea id="ws-pdca-d" rows="2" placeholder="例：明日の夕方、お客様がご来店された時" style="width:100%;padding:6px 8px;font-size:13px;font-family:inherit;border:1px solid rgba(34,197,94,0.3);border-radius:6px;background:rgba(255,255,255,0.8);color:#3D2817;resize:none;-webkit-appearance:none;"></textarea></div>
         </div>
-        <div style="display:flex;border-bottom:1px solid rgba(194,65,12,0.1);">
-          <div style="background:#F59E0B;color:#fff;font-family:'Shippori Mincho',serif;font-weight:700;font-size:14px;padding:10px 14px;min-width:64px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;"><span style="font-size:18px;">C</span><span style="font-size:10px;">Check</span></div>
-          <div style="padding:10px 12px;font-size:12.5px;color:#5A3520;flex:1;">お客様の反応・変化を観察して気づいたこと<br>→（　　　　　　　　　　　　　　　　　　　　　　　　　　　）</div>
+        <div style="display:flex;align-items:stretch;border-bottom:1px solid rgba(194,65,12,0.1);">
+          <div style="background:#F59E0B;color:#fff;font-family:'Shippori Mincho',serif;font-weight:700;font-size:18px;padding:10px 14px;min-width:56px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;">C<span style="font-size:9px;margin-top:2px;">Check</span></div>
+          <div style="padding:8px 10px;flex:1;"><div style="font-size:12px;color:#6B4226;margin-bottom:4px;">お客様の反応・変化を観察して気づいたこと</div><textarea id="ws-pdca-c" rows="2" placeholder="実践後に記入してください" style="width:100%;padding:6px 8px;font-size:13px;font-family:inherit;border:1px solid rgba(245,158,11,0.3);border-radius:6px;background:rgba(255,255,255,0.8);color:#3D2817;resize:none;-webkit-appearance:none;"></textarea></div>
         </div>
-        <div style="display:flex;">
-          <div style="background:#EF4444;color:#fff;font-family:'Shippori Mincho',serif;font-weight:700;font-size:14px;padding:10px 14px;min-width:64px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;"><span style="font-size:18px;">A</span><span style="font-size:10px;">Action</span></div>
-          <div style="padding:10px 12px;font-size:12.5px;color:#5A3520;flex:1;">次回どう改善・継続するか<br>→（　　　　　　　　　　　　　　　　　　　　　　　　　　　）</div>
+        <div style="display:flex;align-items:stretch;">
+          <div style="background:#EF4444;color:#fff;font-family:'Shippori Mincho',serif;font-weight:700;font-size:18px;padding:10px 14px;min-width:56px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;">A<span style="font-size:9px;margin-top:2px;">Action</span></div>
+          <div style="padding:8px 10px;flex:1;"><div style="font-size:12px;color:#6B4226;margin-bottom:4px;">次回どう改善・継続するか</div><textarea id="ws-pdca-a" rows="2" placeholder="実践後に記入してください" style="width:100%;padding:6px 8px;font-size:13px;font-family:inherit;border:1px solid rgba(239,68,68,0.3);border-radius:6px;background:rgba(255,255,255,0.8);color:#3D2817;resize:none;-webkit-appearance:none;"></textarea></div>
         </div>
+      </div>
+
+      <!-- 名前入力と送信 -->
+      <div class="field">
+        <label style="font-family:'Shippori Mincho',serif;font-size:13px;color:#6B4226;">お名前 <span style="font-size:11px;color:#8B4513;">（必須）</span></label>
+        <input type="text" id="ws-name" placeholder="例：山田 太郎" style="width:100%;padding:11px 14px;font-size:15px;font-family:inherit;border:1px solid rgba(194,65,12,0.2);border-radius:10px;background:rgba(255,255,255,0.7);color:#3D2817;-webkit-appearance:none;" />
+      </div>
+      <button class="submit-btn" id="wsSubmitBtn" style="margin-top:8px;">ワークシートを送信する</button>
+      <div class="status" id="wsStatus"></div>
+
+      <!-- 他の人の回答を見る -->
+      <div style="margin-top:20px;">
+        <div style="font-family:'Shippori Mincho',serif;font-size:15px;font-weight:700;color:#5D4E8E;margin-bottom:8px;">▶ みんなの回答を見る</div>
+        <button class="retry-btn" id="wsLoadBtn" style="margin-bottom:12px;">🔄 最新の回答を読み込む</button>
+        <div id="wsAnswers"></div>
       </div>
 
       <div style="text-align:right;margin-top:12px;font-size:11px;color:#AAAAAA;font-style:italic;">討論設計：みきちゃん　｜　構成：ゆうちゃん</div>
@@ -1634,166 +1695,6 @@
   // 野菜と食材 設問データ（全20問・単択）
   // ※（美樹作）マークは美樹さん発案の問題
   // ============================================================
-  const vegQuizData = [
-    { group: "お米（西山農園・ヒノヒカリ）",
-q: "おちば屋で使用している西山農園のお米の品種名はどれか?",
-      options: ["コシヒカリ", "ヒノヒカリ", "ササニシキ"],
-      type: 'single', answer: 1,
-      explain: "西山農園では「ヒノヒカリ」を使用しています。" },
-    { q: "西山農園の米が、お弁当やおにぎりに最適とされる最大の理由はどれか?",
-      options: [
-        "炊きたてが最も硬く、時間が経つと柔らかくなる性質があるため",
-        "粘り・味・香りのバランスが良く、冷めると甘みが増す性質があるため",
-        "水分を全く吸収しないため、時間が経っても米粒がふやけないため"
-      ],
-      type: 'single', answer: 1,
-      explain: "ヒノヒカリは粘り・味・香りのバランスが良く、冷めると甘みが増すのでおにぎりやお弁当に最適です。" },
-    { q: "★美樹作★ お米が炊き上がった直後に「シャリ切り（混ぜる）」を行う論理的な理由はどれか?",
-      options: [
-        "余分な水分を飛ばして水分を均一にし、ふっくらと粒を立たせるため",
-        "釜の底にあるお米が、余熱で焦げてしまうのを物理的に防ぐため",
-        "お米の芯まで熱を均一に行き渡らせて、未加熱の部分をなくすため"
-      ],
-      type: 'single', answer: 0,
-      explain: "シャリ切りは余分な水分を飛ばし均一にすることで、ふっくらと粒を立たせるための工程です。" },
-    { q: "西山農園のお米が、収穫時と変わらない美味しさを年中維持できる管理上の秘密はどれか?",
-      options: [
-        "収穫直後にすべて精米して真空パックにするから",
-        "専用の大型保冷庫で「休眠状態」にして保管しているから",
-        "常に風通しの良い日陰で常温保存しているから"
-      ],
-      type: 'single', answer: 1,
-      explain: "専用の大型保冷庫で「休眠状態」にして保管することで、年中収穫時と変わらない美味しさを維持しています。" },
-    { group: "野菜（加藤農園・季節食材）",
-      q: "加藤農園の「常備野菜」リストに含まれるレタス類の正しい組み合わせはどれか?",
-      options: [
-        "グリーンリーフ、フリルレタス、ロメインレタス、カタローニャ",
-        "玉レタス、サニーレタス、サンチュ、サラダ菜",
-        "キャベツ、白菜、チンゲンサイ、大根"
-      ],
-      type: 'single', answer: 0,
-      explain: "グリーンリーフ・フリルレタス・フレアベル・赤系・ロメイン・ミニロメイン・カタローニャが常備レタス類です。" },
-    { q: "加藤農園の野菜が、店舗での下処理において「非常にスムーズ」と言われる最大の理由はどれか?",
-      options: [
-        "あらかじめ工場ですべて洗浄・カットされた状態で届くから",
-        "地上約90cmの高さで栽培されており、虫の付着が極めて少ないから",
-        "野菜の表面に特殊な食用防虫ワックスが塗布されているから"
-      ],
-      type: 'single', answer: 1,
-      explain: "地上90cmで栽培するため虫の付着が極めて少なく、下処理が非常にスムーズです。" },
-    { q: "青森県「とよかわ農園」が、長芋の土壌改良に使用している天然資材はどれか?",
-      options: [
-        "リンゴの樹皮を堆肥化したもの",
-        "ホタテやカキの殻から作られた資材",
-        "厳寒期の雪を土に混ぜ込む特殊技法"
-      ],
-      type: 'single', answer: 1,
-      explain: "ホタテやカキの殻から作った資材で土壌改良し、減農薬での栽培を実現しています。" },
-    { q: "おちば屋で提供している「蓮根（れんこん）」の主な産地はどこか?",
-      options: ["愛媛県", "徳島県", "茨城県"],
-      type: 'single', answer: 1,
-      explain: "蓮根は徳島県産を厳選して使用しています。" },
-    { q: "★美樹作★ アスパラガス「緑のささやき（特選）」の特徴と、最も甘みの強い部位の正しい組み合わせはどれか?",
-      options: [
-        "特徴：スジが残りにくく柔らかい歯切れと濃厚な甘み ／ 最も甘い部位：根本",
-        "特徴：繊維がしっかりした強い歯応えとほのかな苦味 ／ 最も甘い部位：頭（穂先）",
-        "特徴：熱を加えても色落ちしない濃い深緑色 ／ 最も甘い部位：真ん中"
-      ],
-      type: 'single', answer: 0,
-      explain: "緑のささやきの特徴は柔らかい歯切れと濃厚な甘み。最も甘い部位は根本です。" },
-    { q: "とうもろこし「ゴールドラッシュ」が、プロからも支持される最大の特徴はどれか?",
-      options: [
-        "非常に硬い皮を持ち、輸送中に傷まないこと",
-        "粒皮が非常に柔らかく、極めて甘みが強いこと",
-        "1本の苗から通常の2倍の数の穂が収穫できること"
-      ],
-      type: 'single', answer: 1,
-      explain: "ゴールドラッシュは粒皮が非常に柔らかく極上の甘みがあるため、プロにも支持されています。" },
-    { group: "卵・豆腐・テイクアウト",
-      q: "愛知県産銀杏「藤九郎」において、おちば屋がこだわって提供している規格（サイズ）は?",
-      options: [
-        "食べやすさを重視したMサイズ",
-        "圧倒的な存在感と食べ応えのある3L〜2Lサイズ",
-        "旨味が凝縮されていると言われる規格外の小粒サイズ"
-      ],
-      type: 'single', answer: 1,
-      explain: "3L〜2Lの大粒を厳選しています。" },
-    { q: "京錦庵の「おぼろ豆富」が、大豆本来の甘みを最大限に閉じ込めている理由はどれか?",
-      options: [
-        "従来の倍以上の凝固時間をかけ、ゆっくりと熟成させているから",
-        "通常の半分以下の時間で、鮮度を逃さず一気に固めるから",
-        "豆腐の表面を一度加熱して、旨味が逃げないようにコーティングしているから"
-      ],
-      type: 'single', answer: 0,
-      explain: "倍以上の凝固時間をかけてゆっくり熟成させることで、大豆の甘みを凝縮しています。" },
-    { q: "兵庫県「タズミの卵」が美容効果に優れているとされる根拠はどれか?",
-      options: [
-        "お肌のハリを保つコラーゲンを注入しているため",
-        "活性酸素を抑制する「ビタミンE」が驚異的に豊富に含まれているため",
-        "食べると体内でヒアルロン酸に変わる特殊な酵素が含まれているため"
-      ],
-      type: 'single', answer: 1,
-      explain: "タズミの卵は活性酸素を抑制するビタミンEが驚異的に豊富で、美容効果に優れています。" },
-    { q: "おちば屋のテイクアウト（お持ち帰り）メニューの焼き加減はどのように設定しているか?",
-      options: [
-        "肉汁を閉じ込めるため、通常より「レア」にしている",
-        "お土産や翌朝でも美味しく食べられるよう、通常より「強め」にしている",
-        "食べる直前の再加熱を前提に、通常より「弱め」にしている"
-      ],
-      type: 'single', answer: 1,
-      explain: "テイクアウトはお土産や翌朝でも美味しく食べられるよう、焼き加減を通常より「強め」に設定しています。" },
-    { group: "ドレッシング・揚げ油・デザート",
-      q: "野菜サラダとおちば屋サラダに使用されているドレッシングの種類はどれか?",
-      options: [
-        "サウザンアイランドドレッシング",
-        "シーザードレッシング",
-        "ポン酢"
-      ],
-      type: 'single', answer: 0,
-      explain: "野菜サラダとおちば屋サラダには自家製サウザンアイランドドレッシングを使用しています。" },
-    { q: "揚げ物料理（とり南蛮など）に使用している「一番搾り綿実油」のサービス上の利点は?",
-      options: [
-        "独特の強い香りが、お肉の味を引き立てること",
-        "カラッと揚がり、冷めてもベタつかない品質であること",
-        "世界で最も安価な油であり、ボリューム満点に提供できること"
-      ],
-      type: 'single', answer: 1,
-      explain: "一番搾り綿実油はカラッと揚がり、冷めてもベタつかないのが最大の利点です。" },
-    { q: "泉寿庵の葛シャーベット3種と、それぞれの原材料の正しい組み合わせはどれか?",
-      options: [
-        "羅櫻：桜の葉塩漬け ／ 黄橘：柚子皮砂糖漬け ／ 風爐：抹茶",
-        "羅櫻：苺エキス ／ 黄橘：オレンジピール ／ 風爐：ほうじ茶",
-        "羅櫻：桃シロップ ／ 黄橘：レモンピール ／ 風爐：玄米茶"
-      ],
-      type: 'single', answer: 0,
-      explain: "羅櫻＝桜の葉塩漬け、黄橘＝柚子果汁・柚子皮砂糖漬け、風爐＝抹茶が正しい組み合わせです。" },
-    { q: "葛シャーベット「涼嗜（りょうすずみ）」の独特の食感を生み出す成分はどれか?",
-      options: [
-        "葛でん粉、れんこんでん粉、本わらび粉、寒天",
-        "ゼラチン、卵白、強力粉",
-        "米粉、コーンスターチ、タピオカ粉"
-      ],
-      type: 'single', answer: 0,
-      explain: "葛でん粉・れんこんでん粉・本わらび粉・寒天の4つを配合。ゼラチンは動物性のため不使用です。" },
-    { group: "仕入れ方針・サービス理解",
-      q: "おちば屋の野菜の仕入れ方針について、正しい記述はどれか?",
-      options: [
-        "年間を通じて、必ず同じ農家の同じ品種のみを使用し続ける",
-        "季節や仕入れ状況で内容は変わるが、蓮根は徳島県産、長芋はとよかわ農園など、こだわりを維持して調整する",
-        "コストを最優先し、その時々で最も安価な外国産野菜に切り替える"
-      ],
-      type: 'single', answer: 1,
-      explain: "季節や仕入れ状況で調整しながらも、産地へのこだわりを維持しています。" },
-    { q: "おちば屋が「野菜（食物繊維）」をコースの最初に提供する理論的な狙いはどれか?",
-      options: [
-        "食物繊維を先に摂取する「ベジファースト」という理想的な順番を守るため",
-        "お肉を焼く時間を確保するために、最も準備が早い料理を出すため",
-        "瀬戸内海の潮風の香りを、食事の最初に楽しんでいただくため"
-      ],
-      type: 'single', answer: 0,
-      explain: "「ベジファースト」の考え方に基づき、食物繊維を先に摂取できる理想的な順番で提供しています。" }
-  ];
-
   const vegQuizData = [
     { group: "お米（西山農園・ヒノヒカリ）",
 q: "おちば屋で使用している西山農園のお米の品種名はどれか?",
@@ -2255,6 +2156,116 @@ q: "おちば屋で使用している西山農園のお米の品種名はどれ�
     document.getElementById(pid+'AskStatus').className = 'status';
     window.scrollTo({top:0,behavior:'smooth'});
   }
+
+  // ============================================================
+  // Firebase Realtime Database - ワークシート
+  // ============================================================
+  var firebaseConfig = {
+    apiKey: "AIzaSyCI7xT8GVrFhGbv6WIrfmIg8X0oKbSNAtI",
+    authDomain: "ochibaya-b5346.firebaseapp.com",
+    databaseURL: "https://ochibaya-b5346-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "ochibaya-b5346",
+    storageBucket: "ochibaya-b5346.firebasestorage.app",
+    messagingSenderId: "341435652930",
+    appId: "1:341435652930:web:557dd3307f5ba418b5c6db"
+  };
+
+  // Firebase SDK (compat version - no import needed)
+  var wsDb = null;
+
+  function initFirebase() {
+    if (typeof firebase !== 'undefined' && !wsDb) {
+      if (!firebase.apps.length) {
+        firebase.initializeApp(firebaseConfig);
+      }
+      wsDb = firebase.database();
+    }
+  }
+
+  // ワークシート送信
+  document.getElementById('wsSubmitBtn').addEventListener('click', function() {
+    var name = document.getElementById('ws-name').value.trim();
+    var statusEl = document.getElementById('wsStatus');
+    if (!name) {
+      statusEl.textContent = 'お名前を入力してください';
+      statusEl.className = 'status show error';
+      return;
+    }
+    initFirebase();
+    if (!wsDb) {
+      statusEl.textContent = '接続エラーが発生しました';
+      statusEl.className = 'status show error';
+      return;
+    }
+    var data = {
+      name: name,
+      timestamp: Date.now(),
+      opening: document.getElementById('ws-opening').value,
+      q_check: document.getElementById('ws-q-check').value,
+      q_plan: document.getElementById('ws-q-plan').value,
+      q_do: document.getElementById('ws-q-do').value,
+      q_present: document.getElementById('ws-q-present').value,
+      s_check: document.getElementById('ws-s-check').value,
+      s_plan: document.getElementById('ws-s-plan').value,
+      s_do: document.getElementById('ws-s-do').value,
+      s_present: document.getElementById('ws-s-present').value,
+      c_check: document.getElementById('ws-c-check').value,
+      c_plan: document.getElementById('ws-c-plan').value,
+      c_do: document.getElementById('ws-c-do').value,
+      c_present: document.getElementById('ws-c-present').value,
+      a_plan: document.getElementById('ws-a-plan').value,
+      pdca_p: document.getElementById('ws-pdca-p').value,
+      pdca_d: document.getElementById('ws-pdca-d').value,
+      pdca_c: document.getElementById('ws-pdca-c').value,
+      pdca_a: document.getElementById('ws-pdca-a').value
+    };
+    statusEl.textContent = '送信中...';
+    statusEl.className = 'status show loading';
+    wsDb.ref('worksheets').push(data).then(function() {
+      statusEl.textContent = '✓ 送信しました！';
+      statusEl.className = 'status show loading';
+      loadWsAnswers();
+    }).catch(function(e) {
+      statusEl.textContent = 'エラー：' + e.message;
+      statusEl.className = 'status show error';
+    });
+  });
+
+  // 回答を読み込む
+  document.getElementById('wsLoadBtn').addEventListener('click', loadWsAnswers);
+
+  function loadWsAnswers() {
+    initFirebase();
+    if (!wsDb) return;
+    var container = document.getElementById('wsAnswers');
+    container.innerHTML = '<div style="font-size:13px;color:#8B4513;text-align:center;padding:10px;">読み込み中...</div>';
+    wsDb.ref('worksheets').orderByChild('timestamp').limitToLast(20).once('value').then(function(snapshot) {
+      var items = [];
+      snapshot.forEach(function(child) { items.push(child.val()); });
+      items.reverse();
+      if (items.length === 0) {
+        container.innerHTML = '<div style="font-size:13px;color:#8B4513;text-align:center;padding:10px;">まだ回答がありません</div>';
+        return;
+      }
+      container.innerHTML = items.map(function(d) {
+        var time = new Date(d.timestamp).toLocaleTimeString('ja-JP', {hour:'2-digit', minute:'2-digit'});
+        var rows = [];
+        if (d.opening) rows.push(['オープニング', d.opening, '#5D4E8E']);
+        if (d.q_plan) rows.push(['Q：改善策', d.q_plan, '#D94F3D']);
+        if (d.q_do) rows.push(['Q：明日からやること', d.q_do, '#D94F3D']);
+        if (d.s_plan) rows.push(['S：改善策', d.s_plan, '#E8A020']);
+        if (d.s_do) rows.push(['S：明日からやること', d.s_do, '#E8A020']);
+        if (d.c_plan) rows.push(['C：改善策', d.c_plan, '#2E86C1']);
+        if (d.c_do) rows.push(['C：明日からやること', d.c_do, '#2E86C1']);
+        if (d.pdca_p) rows.push(['個人Plan', d.pdca_p, '#3B82F6']);
+        var rowsHtml = rows.map(function(r) {
+          return '<div style="margin-bottom:6px;"><span style="font-size:11px;font-weight:700;color:' + r[2] + ';">' + r[0] + '</span><div style="font-size:13px;color:#3D2817;padding:4px 8px;background:rgba(255,255,255,0.6);border-radius:6px;margin-top:2px;">' + (r[1] || '—') + '</div></div>';
+        }).join('');
+        return '<div style="border:1px solid rgba(194,65,12,0.15);border-radius:10px;padding:12px;margin-bottom:10px;background:rgba(255,248,235,0.6);"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;"><strong style="font-family:'Shippori Mincho',serif;color:#4A2511;">' + d.name + '</strong><span style="font-size:11px;color:#8B4513;">' + time + '</span></div>' + rowsHtml + '</div>';
+      }).join('');
+    });
+  }
+
 </script>
 
 </body>
