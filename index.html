@@ -1395,6 +1395,10 @@
         <textarea id="ws-q-do" rows="2" placeholder="明日からすぐできることを一つ決めてください..." style="width:100%;padding:8px 10px;font-size:13px;font-family:inherit;border:1px solid rgba(34,197,94,0.3);border-radius:8px;background:rgba(255,255,255,0.7);color:#3D2817;resize:none;margin-bottom:10px;-webkit-appearance:none;"></textarea>
         <div style="font-size:12.5px;font-weight:700;color:#5D4E8E;margin-bottom:4px;">④ 発表メモ</div>
         <textarea id="ws-q-present" rows="2" placeholder="発表する内容をまとめてください..." style="width:100%;padding:8px 10px;font-size:13px;font-family:inherit;border:1px solid rgba(93,78,142,0.3);border-radius:8px;background:rgba(255,255,255,0.7);color:#3D2817;resize:none;-webkit-appearance:none;"></textarea>
+        <div style="margin-top:12px;">
+          <button class="submit-btn" id="wsSubmitQ" style="background:linear-gradient(135deg,#D94F3D 0%,#8B2D0A 100%);">1組（Q）の回答を送信する</button>
+          <div class="status" id="wsStatusQ"></div>
+        </div>
       </div>
 
       <!-- 2組 S -->
@@ -1417,6 +1421,10 @@
         <textarea id="ws-s-do" rows="2" placeholder="明日からすぐできることを一つ決めてください..." style="width:100%;padding:8px 10px;font-size:13px;font-family:inherit;border:1px solid rgba(34,197,94,0.3);border-radius:8px;background:rgba(255,255,255,0.7);color:#3D2817;resize:none;margin-bottom:10px;-webkit-appearance:none;"></textarea>
         <div style="font-size:12.5px;font-weight:700;color:#5D4E8E;margin-bottom:4px;">④ 発表メモ</div>
         <textarea id="ws-s-present" rows="2" placeholder="発表する内容をまとめてください..." style="width:100%;padding:8px 10px;font-size:13px;font-family:inherit;border:1px solid rgba(93,78,142,0.3);border-radius:8px;background:rgba(255,255,255,0.7);color:#3D2817;resize:none;-webkit-appearance:none;"></textarea>
+        <div style="margin-top:12px;">
+          <button class="submit-btn" id="wsSubmitS" style="background:linear-gradient(135deg,#E8A020 0%,#8B6010 100%);">2組（S）の回答を送信する</button>
+          <div class="status" id="wsStatusS"></div>
+        </div>
       </div>
 
       <!-- 3組 C -->
@@ -1438,6 +1446,10 @@
         <textarea id="ws-c-do" rows="2" placeholder="明日からすぐできることを一つ決めてください..." style="width:100%;padding:8px 10px;font-size:13px;font-family:inherit;border:1px solid rgba(34,197,94,0.3);border-radius:8px;background:rgba(255,255,255,0.7);color:#3D2817;resize:none;margin-bottom:10px;-webkit-appearance:none;"></textarea>
         <div style="font-size:12.5px;font-weight:700;color:#5D4E8E;margin-bottom:4px;">④ 発表メモ</div>
         <textarea id="ws-c-present" rows="2" placeholder="発表する内容をまとめてください..." style="width:100%;padding:8px 10px;font-size:13px;font-family:inherit;border:1px solid rgba(93,78,142,0.3);border-radius:8px;background:rgba(255,255,255,0.7);color:#3D2817;resize:none;-webkit-appearance:none;"></textarea>
+        <div style="margin-top:12px;">
+          <button class="submit-btn" id="wsSubmitC" style="background:linear-gradient(135deg,#2E86C1 0%,#1A5276 100%);">3組（C）の回答を送信する</button>
+          <div class="status" id="wsStatusC"></div>
+        </div>
       </div>
 
       <!-- 時間が余れば A -->
@@ -1451,10 +1463,7 @@
         <textarea id="ws-a-plan" rows="2" placeholder="自社の店舗のAを改善するには？" style="width:100%;padding:8px 10px;font-size:13px;font-family:inherit;border:1px solid rgba(39,174,96,0.3);border-radius:8px;background:rgba(255,255,255,0.7);color:#3D2817;resize:none;-webkit-appearance:none;"></textarea>
       </div>
 
-      <div style="margin-top:20px;">
-        <button class="submit-btn" id="wsSubmitBtn">ワークシートを送信する</button>
-        <div class="status" id="wsStatus"></div>
-      </div>
+
 
       <div style="margin-top:20px;">
         <div style="font-family:'Shippori Mincho',serif;font-size:15px;font-weight:700;color:#5D4E8E;margin-bottom:8px;">▶ みんなの回答を見る</div>
@@ -2146,10 +2155,10 @@ q: "おちば屋で使用している西山農園のお米の品種名はどれ�
     }
   }
 
-  // ワークシート送信
-  document.getElementById('wsSubmitBtn').addEventListener('click', function() {
+  // ワークシート送信（グループ別）
+  function submitWsGroup(group) {
     var name = document.getElementById('ws-name').value.trim();
-    var statusEl = document.getElementById('wsStatus');
+    var statusEl = document.getElementById('wsStatus' + group);
     if (!name) {
       statusEl.textContent = 'お名前を入力してください';
       statusEl.className = 'status show error';
@@ -2161,24 +2170,26 @@ q: "おちば屋で使用している西山農園のお米の品種名はどれ�
       statusEl.className = 'status show error';
       return;
     }
-    var data = {
-      name: name,
-      timestamp: Date.now(),
-      opening: document.getElementById('ws-opening').value,
-      q_check: document.getElementById('ws-q-check').value,
-      q_plan: document.getElementById('ws-q-plan').value,
-      q_do: document.getElementById('ws-q-do').value,
-      q_present: document.getElementById('ws-q-present').value,
-      s_check: document.getElementById('ws-s-check').value,
-      s_plan: document.getElementById('ws-s-plan').value,
-      s_do: document.getElementById('ws-s-do').value,
-      s_present: document.getElementById('ws-s-present').value,
-      c_check: document.getElementById('ws-c-check').value,
-      c_plan: document.getElementById('ws-c-plan').value,
-      c_do: document.getElementById('ws-c-do').value,
-      c_present: document.getElementById('ws-c-present').value,
-      a_plan: document.getElementById('ws-a-plan').value
-    };
+    var data = { name: name, group: group, timestamp: Date.now() };
+    var opening = document.getElementById('ws-opening').value;
+    if (opening) data.opening = opening;
+    if (group === 'Q') {
+      data.check = document.getElementById('ws-q-check').value;
+      data.plan = document.getElementById('ws-q-plan').value;
+      data.do_ = document.getElementById('ws-q-do').value;
+      data.present = document.getElementById('ws-q-present').value;
+    } else if (group === 'S') {
+      data.check = document.getElementById('ws-s-check').value;
+      data.plan = document.getElementById('ws-s-plan').value;
+      data.do_ = document.getElementById('ws-s-do').value;
+      data.present = document.getElementById('ws-s-present').value;
+    } else if (group === 'C') {
+      data.check = document.getElementById('ws-c-check').value;
+      data.plan = document.getElementById('ws-c-plan').value;
+      data.do_ = document.getElementById('ws-c-do').value;
+      data.present = document.getElementById('ws-c-present').value;
+    }
+    data.a_plan = document.getElementById('ws-a-plan').value;
     statusEl.textContent = '送信中...';
     statusEl.className = 'status show loading';
     wsDb.ref('worksheets').push(data).then(function() {
@@ -2189,7 +2200,11 @@ q: "おちば屋で使用している西山農園のお米の品種名はどれ�
       statusEl.textContent = 'エラー：' + e.message;
       statusEl.className = 'status show error';
     });
-  });
+  }
+
+  document.getElementById('wsSubmitQ').addEventListener('click', function() { submitWsGroup('Q'); });
+  document.getElementById('wsSubmitS').addEventListener('click', function() { submitWsGroup('S'); });
+  document.getElementById('wsSubmitC').addEventListener('click', function() { submitWsGroup('C'); });
 
   // 回答を読み込む
   document.getElementById('wsLoadBtn').addEventListener('click', loadWsAnswers);
@@ -2210,18 +2225,18 @@ q: "おちば屋で使用している西山農園のお米の品種名はどれ�
       container.innerHTML = items.map(function(d) {
         var time = new Date(d.timestamp).toLocaleTimeString('ja-JP', {hour:'2-digit', minute:'2-digit'});
         var rows = [];
+        var groupColor = d.group === 'Q' ? '#D94F3D' : d.group === 'S' ? '#E8A020' : d.group === 'C' ? '#2E86C1' : '#5D4E8E';
         if (d.opening) rows.push(['オープニング', d.opening, '#5D4E8E']);
-        if (d.q_plan) rows.push(['Q：改善策', d.q_plan, '#D94F3D']);
-        if (d.q_do) rows.push(['Q：明日からやること', d.q_do, '#D94F3D']);
-        if (d.s_plan) rows.push(['S：改善策', d.s_plan, '#E8A020']);
-        if (d.s_do) rows.push(['S：明日からやること', d.s_do, '#E8A020']);
-        if (d.c_plan) rows.push(['C：改善策', d.c_plan, '#2E86C1']);
-        if (d.c_do) rows.push(['C：明日からやること', d.c_do, '#2E86C1']);
-        if (d.pdca_p) rows.push(['個人Plan', d.pdca_p, '#3B82F6']);
+        if (d.check) rows.push([d.group + '：気になった点', d.check, groupColor]);
+        if (d.plan) rows.push([d.group + '：改善策', d.plan, groupColor]);
+        if (d.do_) rows.push([d.group + '：明日からやること', d.do_, groupColor]);
+        if (d.present) rows.push([d.group + '：発表メモ', d.present, groupColor]);
+        if (d.a_plan) rows.push(['A：改善案', d.a_plan, '#27AE60']);
         var rowsHtml = rows.map(function(r) {
           return '<div style="margin-bottom:6px;"><span style="font-size:11px;font-weight:700;color:' + r[2] + ';">' + r[0] + '</span><div style="font-size:13px;color:#3D2817;padding:4px 8px;background:rgba(255,255,255,0.6);border-radius:6px;margin-top:2px;">' + (r[1] || '—') + '</div></div>';
         }).join('');
-        return '<div style="border:1px solid rgba(194,65,12,0.15);border-radius:10px;padding:12px;margin-bottom:10px;background:rgba(255,248,235,0.6);"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;"><strong style="font-weight:700;color:#4A2511;">' + d.name + '</strong><span style="font-size:11px;color:#8B4513;">' + time + '</span></div>' + rowsHtml + '</div>';
+        var groupLabel = d.group ? ' [' + d.group + '組]' : '';
+        return '<div style="border:1px solid rgba(194,65,12,0.15);border-radius:10px;padding:12px;margin-bottom:10px;background:rgba(255,248,235,0.6);"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;"><strong style="font-weight:700;color:#4A2511;"> + d.name + '</strong><span style="font-size:11px;color:#8B4513;">' + time + '</span></div>' + rowsHtml + '</div>';
       }).join('');
     });
   }
