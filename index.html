@@ -815,10 +815,10 @@
 
 <nav class="tabbar">
   <div class="tabs">
-    <button class="tab active" data-tab="meat">鶏と鴨<span class="en">M E A T</span></button>
+    <button class="tab" data-tab="meat">鶏と鴨<span class="en">M E A T</span></button>
     <button class="tab" data-tab="veg">野菜と食材<span class="en">V E G</span></button>
     <button class="tab" data-tab="qsca">QSCA<span class="en">Q S C A</span></button>
-    <button class="tab" data-tab="drink">飲料<span class="en">D R I N K</span></button>
+    <button class="tab active" data-tab="drink">蒸留酒・ソフトドリンク<span class="en">D R I N K S</span></button>
   </div>
 </nav>
 
@@ -835,7 +835,7 @@
     <div class="divider"><span>勉強会</span></div>
   </header>
 
-  <div class="pane active" id="pane-meat">
+  <div class="pane" id="pane-meat">
     <div class="section-head">
       <div class="ornament">❉ ❉ ❉</div>
       <h2>鶏と鴨</h2>
@@ -1476,17 +1476,160 @@
     </div>
   </div>
 
-  <div class="pane" id="pane-drink">
+  <div class="pane active" id="pane-drink">
     <div class="section-head">
       <div class="ornament">❉ ❉ ❉</div>
       <h2>飲料知識</h2>
       <div class="sub">D R I N K S</div>
     </div>
-    <div class="coming-soon">
-      <div class="icon">酒</div>
-      <h3>準備中</h3>
-      <p>こちらのコンテンツは現在準備中です。</p>
+    <div class="subtabs">
+      <button class="subtab active" data-pane="drink" data-sub="knowledge">知識<span class="sub-en">K N O W L E D G E</span></button>
+      <button class="subtab" data-pane="drink" data-sub="test">テスト<span class="sub-en">T E S T</span></button>
     </div>
+
+    <!-- 知識 -->
+    <div class="subpane active" id="sub-drink-knowledge">
+
+      <section class="card">
+        <span class="card-label">— Section 1</span>
+        <h3>蒸留酒（じょうりゅうしゅ）とは？</h3>
+        <p>蒸留酒とは、醸造酒（ビール、ワイン、日本酒など）を加熱して沸騰させ、その蒸気を冷やして再び液体にする「蒸留」という工程を経て造られるお酒のことです。醸造酒よりもアルコール度数が高くなるのが特徴で、ウイスキーや焼酎がこの「蒸留酒」に分類されます。</p>
+      </section>
+
+      <section class="card">
+        <span class="card-label">— Section 2</span>
+        <h3>ウイスキー（Whisky）</h3>
+        <p>ウイスキーは、麦やトウモロコシなどの穀物を原料とし、糖化・発酵・蒸留を行った後、木樽で貯蔵・熟成させた蒸留酒です。当店では、日本のウイスキーの父・竹鶴政孝が創業したニッカウヰスキーの銘柄を中心に提供しています。</p>
+
+        <h4>シングルモルト 宮城峡（Miyagikyo）</h4>
+        <ul>
+          <li><strong>産地と環境</strong>：杜の都・仙台にある宮城峡蒸溜所で造られています。広瀬川と新川という2つの清流が出会う、湿潤で緑豊かな環境が、このウイスキーの個性を育みます。</li>
+          <li><strong>特徴</strong>：シングルモルト（単一の蒸溜所のモルト原酒のみを使用）ならではの、華やかでフルーティーな香り（りんごや洋なしのような）が最大の特徴です。</li>
+          <li><strong>味わい</strong>：シェリー樽で熟成された原酒由来の甘みと、スチーム加熱（蒸気による間接加熱）で蒸留されることによる、なめらかでマイルドな口当たりが楽しめます。</li>
+        </ul>
+
+        <h4>ブラックニッカ（Black Nikka）</h4>
+        <p>非常にバランスが良く飲みやすいため、主に<strong>「ハイボール」のベース</strong>として愛されています。</p>
+      </section>
+
+      <section class="card">
+        <span class="card-label">— Section 3</span>
+        <h3>焼酎（Shochu）</h3>
+        <p>焼酎は日本独自の蒸留酒で、使用される原料（芋、麦、米、黒糖など）によって独特の風味が楽しめます。</p>
+
+        <h4>① 芋焼酎</h4>
+        <ul>
+          <li><strong>一刻者（いっこもん）</strong>：麹まで芋を使用した「芋100%」の全量芋焼酎です。芋本来の甘い香りと、石蔵での熟成による上品ですっきりとした味わいが特徴です。</li>
+          <li><strong>よかいち〈芋〉</strong>：芳醇な黒麹で仕込み、独自の「新すっきり製法」によって、コクとキレを両立させています。</li>
+        </ul>
+
+        <h4>② 麦焼酎</h4>
+        <ul>
+          <li><strong>特蒸泰明（とくじょうたいめい）</strong>：二条大麦と麦麹を原料とし、100%常圧蒸留で仕上げた泰明ブランドのフラッグシップです。麦本来の香ばしさと重量感のある飲みごたえが特徴です。</li>
+          <li><strong>よかいち〈麦〉黒麹</strong>：麦の香ばしい風味に加え、コク深くキレのある後味が特徴の食中酒向け焼酎です。</li>
+        </ul>
+
+        <h4>③ 黒糖焼酎</h4>
+        <ul>
+          <li><strong>朝日（あさひ）</strong>：鹿児島県喜界島産。原材料は黒糖と米麹です。100年以上の伝統を引き継ぐ豊かなコクと、キレのある後味が特徴です。</li>
+        </ul>
+
+        <div class="tip">
+          <span class="label">— レモンハイのこだわり</span>
+          麦ハイ・芋ハイには、広島たかた農園直送の有機栽培・ワックス不使用の国産レモンを贅沢に半分（1/2個）使用。相性抜群な本格焼酎を使用しており、糖質・カロリーほぼゼロです。
+        </div>
+      </section>
+
+      <section class="card">
+        <span class="card-label">— Section 4</span>
+        <h3>ソフトドリンク（Soft Drinks）</h3>
+
+        <h4>① 能勢（のせ）シリーズ</h4>
+        <p>大阪・能勢の<strong>名水「桜川」</strong>を使用した地域ブランド飲料です。</p>
+        <ul>
+          <li><strong>能勢ミネラルソーダ</strong>：泡持ちが良く、天然水ならではの雑味のないすっきりとした味わいの炭酸水です。</li>
+          <li><strong>能勢ジンジャーエール</strong>：生姜の風味をしっかり効かせた、バー御用達の大人向けの辛口ジンジャーエールです。</li>
+        </ul>
+
+        <h4>② 順造選（じゅんぞうせん）シリーズ</h4>
+        <p>果実本来の味を活かした、保存料等を使用しない贅沢なジュースシリーズです。</p>
+        <ul>
+          <li><strong>すりおろしりんご汁</strong>：信州産の蜜入りリンゴを水を一滴も加えずに搾った、果汁100%ストレートジュースです。</li>
+          <li><strong>ゴールデンパイナップル</strong>：完熟したパイナップルの濃厚な甘みが楽しめる果汁100%ジュースです。</li>
+          <li><strong>ミックスジュース</strong>：敢えて牛乳を入れず、果実100%で仕上げています。「ミックスジュース3：牛乳1」の割合で混ぜると、関西でおなじみの懐かしい味になります。</li>
+        </ul>
+
+        <h4>③ その他</h4>
+        <ul>
+          <li><strong>黒ウーロン茶</strong>：料理の脂をすっきりさせ、食事の合間やお口直しに最適です。</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <span class="card-label">— Section 5</span>
+        <h3>お酒の味わい：甘口・辛口について</h3>
+        <p>お客様から「辛口のお酒はどれですか？」と聞かれることがありますが、お酒の種類によって「甘口・辛口」の考え方が異なります。</p>
+
+        <h4>焼酎の場合</h4>
+        <p>焼酎には日本酒のような甘口・辛口の規定はないため、「すっきり」「キレがある」という表現でお伝えするのが適切です。</p>
+        <ul>
+          <li><strong>麦焼酎</strong>：クセが少なく飲みやすいものが多いですが、特蒸泰明は麦の香ばしさがしっかりあるため、飲み慣れていない方にはクセを感じる場合もあります。</li>
+          <li><strong>芋焼酎</strong>：クセが強いものが多く、重みのある深い味わいが特徴です。</li>
+          <li><strong>黒糖焼酎</strong>：甘い香りがして口当たりがやさしく、まろやかです。</li>
+        </ul>
+
+        <h4>ウイスキーの場合</h4>
+        <ul>
+          <li><strong>宮城峡</strong>：フルーティーで甘口寄りの味わい。</li>
+          <li><strong>ブラックニッカ</strong>：クセのないクリアな飲み心地で、やわらかな香りとまろやかな味わいが特徴。</li>
+        </ul>
+
+        <h4>日本酒の場合</h4>
+        <p>「辛口」とよく言われるのは、実は日本酒のことを指す場合がほとんどです。日本酒の甘口・辛口は「日本酒度」という指標で測られます。数字がプラスに大きいほど辛口、マイナスに大きいほど甘口になります。</p>
+        <div class="tip">
+          <span class="label">— 日本酒度の目安</span>
+          +10以上：超辛口 ／ +5〜+10：辛口 ／ +3〜+5：やや辛口 ／ 0〜+3：中口 ／ −3〜0：やや甘口 ／ −10〜−3：甘口 ／ −10以下：超甘口
+        </div>
+        <p style="font-size:12.5px;color:#8B4513;margin-top:8px;">詳しくは次回のゆうちゃん塾でご紹介します！</p>
+      </section>
+
+    </div>
+
+    <!-- テスト -->
+    <div class="subpane" id="sub-drink-test">
+      <div id="subSel-drink">
+        <div class="quiz-intro">
+          <div class="ornament">❉ ❉ ❉</div>
+          <h2>飲料テスト</h2>
+          <p>三択形式 / 全20問</p>
+        </div>
+        <div style="text-align:center;padding:20px 0;">
+          <button class="submit-btn" style="max-width:240px;" id="startBtn-drink">テストを開始する</button>
+        </div>
+      </div>
+      <div class="hidden" id="subMain-drink">
+        <section class="card" id="subCard-drink">
+          <div class="field">
+            <label>お名前</label>
+            <input type="text" id="subName-drink" placeholder="例：山田 太郎" autocomplete="name" />
+          </div>
+          <div id="subQs-drink"></div>
+          <button class="submit-btn" id="subSubmit-drink">採点する</button>
+          <div class="status" id="subSt-drink"></div>
+        </section>
+        <section class="card hidden" id="subResult-drink">
+          <div class="result-head">
+            <span class="card-label">— Your Score</span>
+            <div class="result-score"><span id="subSN-drink">0</span><span class="total">/<span id="subST-drink">0</span></span></div>
+            <div class="result-msg" id="subRM-drink"></div>
+            <div class="result-percent" id="subRP-drink"></div>
+          </div>
+          <div class="result-list" id="subRL-drink"></div>
+          <button class="retry-btn" id="subRetry-drink">もう一度挑戦する</button>
+        </section>
+      </div>
+    </div>
+
   </div>
 
   <footer>
@@ -1989,6 +2132,92 @@ q: "おちば屋で使用している西山農園のお米の品種名はどれ�
       explain: "「教えていない、指導できていない自分の責任」と捉えることが正しい責任者の視点です。" }
   ];
 
+  const drinkQuizData = [
+    { group: "第1部：蒸留酒とウイスキーの基礎",
+      q: "★美樹作★ チェイサーとはなんですか？",
+      options: ["お酒の合間に飲む水や炭酸水", "お酒を混ぜるためのスティック", "お酒を冷やすための氷"],
+      answer: 0,
+      explain: "チェイサーとはお酒の合間に飲む水や炭酸水のことです。強いお酒の後に口の中をリセットし、次のお酒をより美味しく楽しむために使います。" },
+    { q: "★美樹作★ 宮城峡とブラックニッカの共通点は？",
+      options: ["とうもろこしが原料に含まれる", "メーカー（ニッカウヰスキー）が同じ", "アルコール度数が同じ"],
+      answer: 1,
+      explain: "宮城峡もブラックニッカも、ともにニッカウヰスキーが製造しています。日本のウイスキーの父・竹鶴政孝が創業した会社です。" },
+    { q: "蒸留酒（じょうりゅうしゅ）の製法を正しく説明しているのはどれか？",
+      options: ["原料を数ヶ月発酵させ、その上澄みを濾過する", "醸造酒を加熱して沸騰させ、その蒸気を冷やして再び液体にする", "果実の糖分をそのまま熟成させて造る"],
+      answer: 1,
+      explain: "蒸留酒は醸造酒を加熱・蒸留して造ります。この工程によりアルコール度数が高くなるのが特徴です。" },
+    { q: "ウイスキーを熟成させる際、必ず使用される容器はどれか？",
+      options: ["ステンレス製のタンク", "ガラス製の瓶", "木樽（きだる）"],
+      answer: 2,
+      explain: "ウイスキーは木樽（オーク樽など）で熟成させます。樽から色や風味が移ることで、独特の味わいと琥珀色が生まれます。" },
+    { q: "シングルモルト「宮城峡」が造られている仙台・宮城峡蒸溜所の環境的特徴は？",
+      options: ["2つの清流（広瀬川・新川）が出会う、湿潤で緑豊かな環境", "北海道の厳しい寒さと潮風が吹く大地", "標高が高く、常に乾燥した空気の流れる山岳地帯"],
+      answer: 0,
+      explain: "宮城峡蒸溜所は広瀬川と新川が出会う仙台に位置します。湿潤で緑豊かな環境がウイスキーの個性を育みます。" },
+    { q: "「宮城峡」の最大の特徴である、華やかでフルーティーな香りを例えると？",
+      options: ["スモーキーで燻製のような香り", "りんごや洋なしのような香り", "木の実やキャラメルのような香り"],
+      answer: 1,
+      explain: "宮城峡はりんごや洋なしのような華やかでフルーティーな香りが最大の特徴です。スモーキーな余市とは対照的な味わいです。" },
+    { q: "「宮城峡」のなめらかでマイルドな口当たりを生み出している、蒸留の工夫はどれか？",
+      options: ["石炭による直火蒸留", "太陽光を利用した低温蒸留", "スチーム加熱（蒸気による間接加熱）"],
+      answer: 2,
+      explain: "宮城峡はスチーム加熱（蒸気による間接加熱）で蒸留されます。これにより、なめらかでマイルドな口当たりが生まれます。" },
+    { group: "第2部：焼酎とこだわりのレモンハイ",
+      q: "芋焼酎「一刻者（いっこもん）」が、他の一般的な芋焼酎と最も違う点は何か？",
+      options: ["麹（こうじ）まで芋を使用した「芋100%」であること", "米麹を大量に使用してマイルドにしていること", "芋の皮をむかずに長時間煮込んで造ること"],
+      answer: 0,
+      explain: "一刻者は麹まで芋を使用した「芋100%」の全量芋焼酎です。芋本来の甘い香りと上品な味わいが特徴です。" },
+    { q: "「一刻者」の熟成が行われている、温度変化の少ない理想的な場所はどこか？",
+      options: ["地下のワインセラー", "石蔵（いしぐら）", "冷蔵コンテナ内"],
+      answer: 1,
+      explain: "一刻者は石蔵で熟成されます。石蔵は温度変化が少なく、焼酎をゆっくりと熟成させるのに最適な環境です。" },
+    { q: "焼酎「よかいち」のコクとキレを両立させている、宝酒造独自の技術名は？",
+      options: ["新すっきり製法", "超高速熟成法", "氷点下濾過法"],
+      answer: 0,
+      explain: "よかいちは「新すっきり製法」によってコクとキレを両立させています。" },
+    { q: "麦焼酎「特蒸泰明（とくじょうたいめい）」の、香ばしさと重量感を生み出す蒸留方法は？",
+      options: ["減圧蒸留", "常圧蒸留", "連続式蒸留"],
+      answer: 1,
+      explain: "特蒸泰明は100%常圧蒸留で仕上げられます。常圧蒸留により麦本来の香ばしさと重量感のある飲みごたえが生まれます。" },
+    { q: "黒糖焼酎「朝日（あさひ）」の産地と原材料の組み合わせとして正しいものは？",
+      options: ["喜界島産 ／ 黒糖、米麹", "沖縄産 ／ サトウキビ、麦麹", "鹿児島産 ／ 黒糖、芋麹"],
+      answer: 0,
+      explain: "朝日は鹿児島県喜界島産で、原材料は黒糖と米麹です。100年以上の伝統を引き継ぐ豊かなコクが特徴です。" },
+    { q: "当店の「麦ハイ・芋ハイ」に使用されている本格焼酎の、健康面でのメリットは？",
+      options: ["糖質・カロリーがほぼゼロである", "ビタミンCが豊富に含まれている", "眠気を覚ます成分が含まれている"],
+      answer: 0,
+      explain: "本格焼酎は糖質・カロリーがほぼゼロです。ダイエット中の方にもお薦めできる点として接客に活かせます。" },
+    { q: "レモンハイに使用する「レモン」の産地と品質へのこだわりは？",
+      options: ["カリフォルニア産の選別品", "広島たかた農園直送の有機栽培・ワックス不使用", "イタリア産の防カビ剤不使用レモン"],
+      answer: 1,
+      explain: "当店のレモンは広島たかた農園直送の有機栽培・ワックス不使用の国産レモンです。安心・安全でフレッシュな香りが楽しめます。" },
+    { q: "当店のレモンハイ1杯につき、レモンはどれくらいの量が入っているか？",
+      options: ["スライス1枚", "贅沢に半分（1/2個）", "1/8カットを2個"],
+      answer: 1,
+      explain: "当店では贅沢にレモンを半分（1/2個）使用しています。果実のフレッシュな酸味をそのままお届けします。" },
+    { group: "第3部：ソフトドリンクと味わいの表現",
+      q: "能勢シリーズの飲料（ソーダ等）に使用されている名水の名前はどれか？",
+      options: ["桜川（さくらがわ）", "菊水（きくすい）", "広瀬川（ひろせがわ）"],
+      answer: 0,
+      explain: "能勢シリーズは大阪・能勢の名水「桜川」を使用した地域ブランド飲料です。" },
+    { q: "順造選「すりおろしりんご汁」の製法上の贅沢な特徴は何か？",
+      options: ["水を一滴も加えずに搾った、果汁100%ストレート", "牛乳をあらかじめ混ぜて滑らかにしている", "炭酸ガスを注入して爽快感を出している"],
+      answer: 0,
+      explain: "すりおろしりんご汁は信州産の蜜入りリンゴを水を一滴も加えずに搾った果汁100%ストレートジュースです。" },
+    { q: "順造選「ミックスジュース」を、関西でお馴染みの「あの懐かしい味」にする比率は？",
+      options: ["ミックスジュース 1 ： 牛乳 1", "ミックスジュース 3 ： 牛乳 1", "ミックスジュース 1 ： 牛乳 3"],
+      answer: 1,
+      explain: "「ミックスジュース3：牛乳1」の割合で混ぜると、関西でおなじみの懐かしいミックスジュースの味になります。" },
+    { q: "ウイスキーの味わいをお客様に説明する際、宮城峡とブラックニッカの表現として適切なのは？",
+      options: ["宮城峡はフルーティーで甘口寄り、ブラックニッカはクセのないクリアな飲み心地", "宮城峡は非常に辛口、ブラックニッカはキャラメルのように甘い", "宮城峡はスモーキー、ブラックニッカは非常にクセが強い"],
+      answer: 0,
+      explain: "宮城峡はフルーティーで甘口寄り、ブラックニッカはクセのないクリアな飲み心地でやわらかな香りとまろやかな味わいが特徴です。" },
+    { q: "麦焼酎「特蒸泰明（とくじょうたいめい）」の味わいを説明する際、スタッフが気をつけるべき特徴はどれか？",
+      options: ["麦の香ばしさがしっかりあるため、飲み慣れていない方には「クセ」を感じる場合がある", "非常にクリアでクセがなく、お酒に弱い方でもジュースのように飲める", "非常にフルーティーで、りんごや洋なしのような甘い香りが際立っている"],
+      answer: 0,
+      explain: "特蒸泰明は麦の香ばしさがしっかりあるため、飲み慣れていない方にはクセを感じる場合があります。事前にお客様に伝えると親切です。" }
+  ];
+
   var GAS_URL = "https://script.google.com/macros/s/AKfycbys9l1CtBFTehWZX7jW3AC7e8lijZ82YxOVuqROORQ7NtlmhILQhI3GOi8Fn0E4jFs_kQ/exec";
   var LETTERS = ['A','B','C','D','E'];
 
@@ -1996,6 +2225,7 @@ q: "おちば屋で使用している西山農園のお米の品種名はどれ�
     if (cat === 'meat') return quizData;
     if (cat === 'veg') return vegQuizData;
     if (cat === 'qsca') return qscaQuizData;
+    if (cat === 'drink') return drinkQuizData;
     return [];
   }
 
@@ -2020,7 +2250,7 @@ q: "おちば屋で使用している西山農園のお米の品種名はどれ�
   }
 
   // Setup quiz buttons for each pane
-  ['meat','veg','qsca'].forEach(function(pid) {
+  ['meat','veg','qsca','drink'].forEach(function(pid) {
     document.getElementById('startBtn-' + pid).addEventListener('click', function() {
       var data = getQuizData(pid);
       renderQs(pid, data);
