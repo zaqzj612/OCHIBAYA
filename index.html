@@ -818,7 +818,8 @@
     <button class="tab" data-tab="meat">鶏と鴨<span class="en">M E A T</span></button>
     <button class="tab" data-tab="veg">野菜と食材<span class="en">V E G</span></button>
     <button class="tab" data-tab="qsca">QSCA<span class="en">Q S C A</span></button>
-    <button class="tab active" data-tab="drink">蒸留酒・ソフトドリンク<span class="en">D R I N K S</span></button>
+    <button class="tab" data-tab="drink">蒸留酒・ソフトドリンク<span class="en">D R I N K S</span></button>
+    <button class="tab active" data-tab="sake">日本酒<span class="en">J A P A N E S E &nbsp; S A K E</span></button>
     <button class="tab" data-tab="beer">ビール<span class="en">B E E R</span></button>
   </div>
 </nav>
@@ -1477,7 +1478,7 @@
     </div>
   </div>
 
-  <div class="pane active" id="pane-drink">
+  <div class="pane" id="pane-drink">
     <div class="section-head">
       <div class="ornament">❉ ❉ ❉</div>
       <h2>飲料知識</h2>
@@ -1725,6 +1726,201 @@
           <button class="retry-btn" id="subRetry-beer">もう一度挑戦する</button>
         </section>
       </div>
+    </div>
+
+  </div>
+
+  <div class="pane active" id="pane-sake">
+    <div class="section-head">
+      <div class="ornament">❉ ❉ ❉</div>
+      <h2>日本酒</h2>
+      <div class="sub">J A P A N E S E &nbsp; S A K E</div>
+    </div>
+    <div class="subtabs">
+      <button class="subtab active" data-pane="sake" data-sub="knowledge">知識<span class="sub-en">K N O W L E D G E</span></button>
+      <button class="subtab" data-pane="sake" data-sub="quiz">問答<span class="sub-en">Q U I Z</span></button>
+      <button class="subtab" data-pane="sake" data-sub="tasting">飲み比べ<span class="sub-en">T A S T I N G</span></button>
+    </div>
+
+    <!-- 知識 -->
+    <div class="subpane active" id="sub-sake-knowledge">
+
+      <section class="card">
+        <span class="card-label">— Section 1</span>
+        <h3>日本酒（清酒）の基本定義</h3>
+        <ul>
+          <li><strong>原材料</strong>：米、米麹、水を主原料とし、発酵させて「こしたもの」を指します。</li>
+          <li><strong>アルコール度数</strong>：酒税法により22度未満と定められています（通常は15〜16度前後）。</li>
+          <li><strong>醸造酒の特性</strong>：酵母で発酵させて造る「醸造酒」であり、ウイスキーや焼酎のような「蒸留」の工程は行いません。</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <span class="card-label">— Section 2</span>
+        <h3>特定名称酒の分類</h3>
+        <ul>
+          <li><strong>純米酒</strong>：原材料は「米・米麹・水」のみ。醸造アルコールは一切添加せず、米本来のふくよかな旨味やコクが楽しめます。</li>
+          <li><strong>本醸造酒</strong>：精米歩合70%以下。香りを整えるため、白米重量の10%以下の少量の醸造アルコールを加えて造られます。</li>
+          <li><strong>吟醸酒・大吟醸酒</strong>：60%以下（大吟醸は50%以下）に磨いた米を、10度前後の低温でじっくり醸す「吟醸造り」によって、華やかな果実のような香りを引き出します。</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <span class="card-label">— Section 3</span>
+        <h3>味わいを決定づける指標</h3>
+        <ul>
+          <li><strong>精米歩合</strong>：玄米の重量に対して削り残した白米の重量割合（%）。削るほどクリアで雑味のない味になります。</li>
+          <li><strong>日本酒度（＋が辛口、−が甘口）</strong>：糖分が少なく比重が軽いとプラス（辛口）、重いとマイナス（甘口）となります。</li>
+          <li><strong>酸度</strong>：高いとキレのある味、低いとやさしい口当たりになります。</li>
+          <li><strong>アミノ酸度</strong>：高いとコクのある濃醇な味、低いとスッキリ軽快な味になります。</li>
+        </ul>
+        <div class="tip">
+          <span class="label">— 味わい4タイプ</span>
+          薫酒（吟醸系・香り高い）／ 醇酒（純米系・旨味とコク）／ 爽酒（本醸造系・スッキリ）／ 熟酒（古酒系・濃厚）
+        </div>
+      </section>
+
+      <section class="card">
+        <span class="card-label">— Section 4</span>
+        <h3>醸造技術・原料の知識</h3>
+        <ul>
+          <li><strong>酒造好適米（酒米）</strong>：粒が大きく、中心部に「心白（しんぱく）」と呼ばれる粗いデンプン組織があります。麹菌が奥まで繁殖しやすく、溶けやすい特徴があります。代表は「山田錦（酒米の王様）」と「五百万石」。</li>
+          <li><strong>三段仕込み</strong>：雑菌の繁殖を防ぐため「初添・仲添・留添」の3回に分けて原料を加える伝統的な仕込み工程です。</li>
+          <li><strong>火入れ（ひいれ）</strong>：60〜65℃の加熱処理で酵素の働きを止め、殺菌して酒質を安定させます。火入れをしないお酒を「生酒」と呼びます。</li>
+          <li><strong>並行複発酵</strong>：麹菌による「糖化」と酵母による「アルコール発酵」が同一容器内で同時に進行する、世界的に珍しい高度な発酵技術です。</li>
+        </ul>
+        <div class="tip">
+          <span class="label">— 覚えておきたい用語</span>
+          原酒（加水なし・度数高め）／ 生酒（火入れなし）／ ひやおろし（秋の旬のお酒）／ 無ろ過生原酒（ろ過・火入れ・加水なし）
+        </div>
+      </section>
+
+      <section class="card">
+        <span class="card-label">— Section 5</span>
+        <h3>おちば屋の日本酒5選</h3>
+
+        <h4>① 伏見蔵 本醸造（宝酒造・京都府）</h4>
+        <p>提供：一合（常温・熱燗）。京都伏見の名水「伏水（ふしみず）」を使用。香り穏やかですっきりとした口当たり。ぬる燗や熱燗で料理との相性が抜群です。</p>
+
+        <h4>② 金陵 千歳緑 特別純米（西野金陵・香川県）</h4>
+        <p>提供：300mlボトル。精米歩合58% / 日本酒度＋4.5 / 原料米：オオセト。穏やかなふくよかな香りと旨味、爽やかな喉越し。全国燗酒コンテスト最高金賞受賞。</p>
+
+        <h4>③ 四万十川 純米吟醸酒（菊水酒造・高知県）</h4>
+        <p>提供：300mlボトル。精米歩合60% / 日本酒度＋4 / 原料米：山田錦100%。土佐伝統の淡麗仕込みによる爽やかな吟醸香とスッキリした喉越し。</p>
+
+        <h4>④ 秋鹿 純米酒 千秋（秋鹿酒造・大阪府）</h4>
+        <p>提供：300mlボトル。精米歩合65% / 日本酒度＋3 / 原料米：日本晴 / アルコール度数約14%。米の旨味と酸味が豊かで飲み疲れしない食中酒。冷酒から熱燗まで幅広く楽しめます。</p>
+
+        <h4>⑤ 松の司 純米吟醸 楽（松瀬酒造・滋賀県）</h4>
+        <p>提供：300mlボトル。精米歩合60% / 日本酒度＋3〜＋5 / 原料米：山田錦・吟吹雪。鈴鹿山系愛知川の地下120mの伏流水を使用。穏やかな吟醸香と優しく落ち着いた味わい。冷やからお燗まで幅広く楽しめます。</p>
+      </section>
+
+    </div>
+
+    <!-- 問答 -->
+    <div class="subpane" id="sub-sake-quiz">
+      <div id="subSel-sake">
+        <div class="quiz-intro">
+          <div class="ornament">❉ ❉ ❉</div>
+          <h2>日本酒テスト</h2>
+          <p>三択形式 / 準備中</p>
+        </div>
+        <div style="text-align:center;padding:20px 0;">
+          <button class="submit-btn" style="max-width:240px;" id="startBtn-sake">テストを開始する</button>
+        </div>
+      </div>
+      <div class="hidden" id="subMain-sake">
+        <section class="card" id="subCard-sake">
+          <div class="field">
+            <label>お名前</label>
+            <input type="text" id="subName-sake" placeholder="例：山田 太郎" autocomplete="name" />
+          </div>
+          <div id="subQs-sake"></div>
+          <button class="submit-btn" id="subSubmit-sake">採点する</button>
+          <div class="status" id="subSt-sake"></div>
+        </section>
+        <section class="card hidden" id="subResult-sake">
+          <div class="result-head">
+            <span class="card-label">— Your Score</span>
+            <div class="result-score"><span id="subSN-sake">0</span><span class="total">/<span id="subST-sake">0</span></span></div>
+            <div class="result-msg" id="subRM-sake"></div>
+            <div class="result-percent" id="subRP-sake"></div>
+          </div>
+          <div class="result-list" id="subRL-sake"></div>
+          <button class="retry-btn" id="subRetry-sake">もう一度挑戦する</button>
+        </section>
+      </div>
+    </div>
+
+    <!-- 飲み比べ -->
+    <div class="subpane" id="sub-sake-tasting">
+      <section class="card">
+        <span class="card-label">— ワークシート</span>
+        <h3>飲み比べワークシート</h3>
+        <p style="font-size:12.5px;color:#6B4226;margin-bottom:16px;">お名前を記入してから、各設問に答えてみましょう。記入後は送信ボタンを押してください。</p>
+
+        <div class="field">
+          <label style="font-family:'Shippori Mincho',serif;font-size:13px;color:#6B4226;">お名前 <span style="font-size:11px;color:#8B4513;">（必須）</span></label>
+          <input type="text" id="tasting-name" placeholder="例：山田 太郎" style="width:100%;padding:11px 14px;font-size:15px;font-family:inherit;border:1px solid rgba(194,65,12,0.2);border-radius:10px;background:rgba(255,255,255,0.7);color:#3D2817;-webkit-appearance:none;" />
+        </div>
+      </section>
+
+      <section class="card">
+        <span class="card-label">— 第1問</span>
+        <h3>日本酒のご提案</h3>
+
+        <div style="background:rgba(194,65,12,0.06);border-radius:10px;padding:14px;margin-bottom:14px;">
+          <div style="font-size:13.5px;font-weight:700;color:#4A2511;font-family:'Shippori Mincho',serif;margin-bottom:10px;">Q1. お客様から「口当たりが柔らかく、飲みやすい（まろやかな）日本酒はどれですか？」と聞かれた場合</div>
+          <div style="font-size:12.5px;color:#6B4226;margin-bottom:4px;">提案する銘柄：</div>
+          <textarea id="t-q1-brand" rows="2" placeholder="銘柄名を書いてください" style="width:100%;padding:8px 10px;font-size:13px;font-family:inherit;border:1px solid rgba(194,65,12,0.2);border-radius:8px;background:rgba(255,255,255,0.7);color:#3D2817;resize:none;-webkit-appearance:none;margin-bottom:8px;"></textarea>
+          <div style="font-size:12.5px;color:#6B4226;margin-bottom:4px;">接客フレーズ（理由）：</div>
+          <textarea id="t-q1-phrase" rows="3" placeholder="お客様への説明フレーズを書いてください" style="width:100%;padding:8px 10px;font-size:13px;font-family:inherit;border:1px solid rgba(194,65,12,0.2);border-radius:8px;background:rgba(255,255,255,0.7);color:#3D2817;resize:none;-webkit-appearance:none;"></textarea>
+        </div>
+
+        <div style="background:rgba(194,65,12,0.06);border-radius:10px;padding:14px;margin-bottom:14px;">
+          <div style="font-size:13.5px;font-weight:700;color:#4A2511;font-family:'Shippori Mincho',serif;margin-bottom:10px;">Q2. お客様から「塩焼きの串焼きに合う、スッキリとした辛口の日本酒はどれですか？」と聞かれた場合</div>
+          <div style="font-size:12.5px;color:#6B4226;margin-bottom:4px;">提案する銘柄：</div>
+          <textarea id="t-q2-brand" rows="2" placeholder="銘柄名を書いてください" style="width:100%;padding:8px 10px;font-size:13px;font-family:inherit;border:1px solid rgba(194,65,12,0.2);border-radius:8px;background:rgba(255,255,255,0.7);color:#3D2817;resize:none;-webkit-appearance:none;margin-bottom:8px;"></textarea>
+          <div style="font-size:12.5px;color:#6B4226;margin-bottom:4px;">接客フレーズ（理由）：</div>
+          <textarea id="t-q2-phrase" rows="3" placeholder="お客様への説明フレーズを書いてください" style="width:100%;padding:8px 10px;font-size:13px;font-family:inherit;border:1px solid rgba(194,65,12,0.2);border-radius:8px;background:rgba(255,255,255,0.7);color:#3D2817;resize:none;-webkit-appearance:none;"></textarea>
+        </div>
+
+        <div style="background:rgba(194,65,12,0.06);border-radius:10px;padding:14px;">
+          <div style="font-size:13.5px;font-weight:700;color:#4A2511;font-family:'Shippori Mincho',serif;margin-bottom:10px;">Q3. お客様から「熱燗（温かいお酒）で美味しく飲める一合の日本酒でおすすめはどれですか？」と聞かれた場合</div>
+          <div style="font-size:12.5px;color:#6B4226;margin-bottom:4px;">提案する銘柄：</div>
+          <textarea id="t-q3-brand" rows="2" placeholder="銘柄名を書いてください" style="width:100%;padding:8px 10px;font-size:13px;font-family:inherit;border:1px solid rgba(194,65,12,0.2);border-radius:8px;background:rgba(255,255,255,0.7);color:#3D2817;resize:none;-webkit-appearance:none;margin-bottom:8px;"></textarea>
+          <div style="font-size:12.5px;color:#6B4226;margin-bottom:4px;">特徴・おすすめポイント：</div>
+          <textarea id="t-q3-point" rows="3" placeholder="特徴やおすすめポイントを書いてください" style="width:100%;padding:8px 10px;font-size:13px;font-family:inherit;border:1px solid rgba(194,65,12,0.2);border-radius:8px;background:rgba(255,255,255,0.7);color:#3D2817;resize:none;-webkit-appearance:none;"></textarea>
+        </div>
+      </section>
+
+      <section class="card">
+        <span class="card-label">— 第2問</span>
+        <h3>焼酎の特徴と違い</h3>
+        <div style="background:rgba(194,65,12,0.06);border-radius:10px;padding:14px;">
+          <div style="font-size:13.5px;font-weight:700;color:#4A2511;font-family:'Shippori Mincho',serif;margin-bottom:10px;">Q4. お客様から「麦焼酎・芋焼酎・黒糖焼酎って、それぞれ香りや味にどんな違いがあるの？」と聞かれた場合の説明を書いてください。</div>
+
+          <div style="font-size:12.5px;color:#6B4226;font-weight:700;margin-bottom:4px;">① 麦焼酎（香り・味わい）：</div>
+          <textarea id="t-q4-mugi" rows="2" placeholder="麦焼酎の香りや味わいを書いてください" style="width:100%;padding:8px 10px;font-size:13px;font-family:inherit;border:1px solid rgba(194,65,12,0.2);border-radius:8px;background:rgba(255,255,255,0.7);color:#3D2817;resize:none;-webkit-appearance:none;margin-bottom:10px;"></textarea>
+
+          <div style="font-size:12.5px;color:#6B4226;font-weight:700;margin-bottom:4px;">② 芋焼酎（香り・味わい）：</div>
+          <textarea id="t-q4-imo" rows="2" placeholder="芋焼酎の香りや味わいを書いてください" style="width:100%;padding:8px 10px;font-size:13px;font-family:inherit;border:1px solid rgba(194,65,12,0.2);border-radius:8px;background:rgba(255,255,255,0.7);color:#3D2817;resize:none;-webkit-appearance:none;margin-bottom:10px;"></textarea>
+
+          <div style="font-size:12.5px;color:#6B4226;font-weight:700;margin-bottom:4px;">③ 黒糖焼酎（香り・味わい）：</div>
+          <textarea id="t-q4-kokuto" rows="2" placeholder="黒糖焼酎の香りや味わいを書いてください" style="width:100%;padding:8px 10px;font-size:13px;font-family:inherit;border:1px solid rgba(194,65,12,0.2);border-radius:8px;background:rgba(255,255,255,0.7);color:#3D2817;resize:none;-webkit-appearance:none;"></textarea>
+        </div>
+      </section>
+
+      <section class="card">
+        <button class="submit-btn" id="tastingSubmitBtn">回答を送信する</button>
+        <div class="status" id="tastingStatus"></div>
+
+        <div style="margin-top:20px;">
+          <div style="font-family:'Shippori Mincho',serif;font-size:15px;font-weight:700;color:#5D4E8E;margin-bottom:8px;">▶ みんなの回答を見る</div>
+          <button class="retry-btn" id="tastingLoadBtn" style="margin-bottom:12px;">🔄 最新の回答を読み込む</button>
+          <div id="tastingAnswers"></div>
+        </div>
+      </section>
     </div>
 
   </div>
@@ -2401,6 +2597,139 @@ q: "おちば屋で使用している西山農園のお米の品種名はどれ�
       explain: "アサヒゼロ（Asahi Zero）は累計販売本数2億本を突破した本格派ノンアルコールビールで、より本物のビールに近い味わいを提供しています。" }
   ];
 
+  const sakeQuizData = [
+    { group: "第1部：日本酒の基礎知識",
+      q: "酒税法における日本酒（清酒）の定義として正しい説明はどれですか？",
+      options: [
+        "米、米麹、水を原料とし、発酵させてこしたもので、アルコール度数は22度未満",
+        "大麦とホップを原料とし、発酵させてこしたもので、アルコール度数は10度未満",
+        "果汁を発酵させた後に蒸留したもので、アルコール度数は40度以上"
+      ],
+      answer: 0,
+      explain: "米・米麹・水を原料とし発酵させてこしたもので、酒税法上アルコール度数22度未満と定められています。" },
+    { q: "原材料が「米、米麹、水」のみで造られ、米本来のふくよかな旨味やコクが楽しめる日本酒の分類はどれですか？",
+      options: ["本醸造酒", "純米酒", "普通酒"],
+      answer: 1,
+      explain: "米と米麹のみで造るのが純米酒です。醸造アルコールを一切添加しません。" },
+    { q: "日本酒の「精米歩合（せいまいぶあい）」の説明として正しいものはどれですか？",
+      options: [
+        "白米に対して使用する麹米の重量割合を示した数値",
+        "玄米の重量に対して、削り残した白米の重量割合を示した数値",
+        "水に対して加えた醸造アルコールの割合を示した数値"
+      ],
+      answer: 1,
+      explain: "精米歩合は玄米に対する削り残した白米の重量割合（%）を示します。" },
+    { q: "60%以下（大吟醸は50%以下）に磨いた米を使用し、10度前後の低温でじっくり発酵させる製法を何と呼びますか？",
+      options: ["蒸留仕込み", "吟醸造り", "高温糖化造り"],
+      answer: 1,
+      explain: "低温でじっくり醸し、果実のような吟醸香を引き出す製法を「吟醸造り」といいます。" },
+    { q: "日本酒の甘辛の目安となる「日本酒度（にほんしゅど）」の数値についての説明で正しいものはどれですか？",
+      options: [
+        "数値がプラス（＋）に大きいほど「辛口」、マイナス（ー）に大きいほど「甘口」とされる",
+        "数値がプラス（＋）に大きいほど「甘口」、マイナス（ー）に大きいほど「辛口」とされる",
+        "アルコール度数が15度以上のものはすべてマイナス（ー）で表記される"
+      ],
+      answer: 0,
+      explain: "糖分が少なく比重が軽いとプラス（辛口）、重いとマイナス（甘口）となります。" },
+    { q: "醸造酒である「日本酒」と、蒸留酒（ウイスキーや焼酎など）の製法上の決定的な違いは何ですか？",
+      options: [
+        "日本酒は加熱沸騰させた蒸気を冷やして再液体化させる",
+        "日本酒は原料を酵母で発酵させて造り、蒸留（加熱蒸発）の工程を行わない",
+        "日本酒は木樽に入れて何年間も熟成させなければならない"
+      ],
+      answer: 1,
+      explain: "日本酒は発酵のみを行う醸造酒です。蒸留の工程を行わない点が蒸留酒との違いです。" },
+    { q: "酒造りに適した「酒造好適米（酒米）」の一般的な特徴として正しいものはどれですか？",
+      options: [
+        "粒が非常に小さく、表面にタンパク質が多く含まれている",
+        "粒が大きく、中心部に「心白（しんぱく）」と呼ばれる部分がある",
+        "粘り気が非常に強く、冷めると極端に硬くなる"
+      ],
+      answer: 1,
+      explain: "酒米は粒が大きく中心に心白があります。麹菌が繁殖しやすく溶けやすい特徴があります。" },
+    { q: "もろみを仕込む際、雑菌の繁殖を防ぎ発酵をスムーズにするため、3回に分けて原料を加える伝統的な仕込み技術は何ですか？",
+      options: ["三段仕込み", "三重蒸留", "三色発酵"],
+      answer: 0,
+      explain: "「初添・仲添・留添」の3回に分けて原料を加える伝統的な仕込み工程です。" },
+    { q: "日本酒の「本醸造酒」において、品質や香りを整えるために添加が認められている醸造アルコールの限度はどれですか？",
+      options: ["白米重量の50%以下", "白米重量の10%以下", "使用する仕込み水の同量まで"],
+      answer: 1,
+      explain: "本醸造酒は白米重量の10%以下の醸造アルコール添加が認められています。" },
+    { q: "日本酒の製造工程で行われる「火入れ（ひいれ）」の主な目的は何ですか？",
+      options: [
+        "米のデンプン質を熱で焦がして香ばしくするため",
+        "酵素の働きを止め、殺菌を行って酒質を安定させるため",
+        "アルコール度数を急速に高めるため"
+      ],
+      answer: 1,
+      explain: "約60〜65℃の加熱処理で酵素の働きを止め、消毒して酒質を安定させます。" },
+    { group: "第2部：おちば屋の提供銘柄",
+      q: "おちば屋で一合（常温・熱燗）として提供している「伏見蔵 本醸造」に使用されている名水は何ですか？",
+      options: ["伏水（ふしみず）", "宮水（みやみず）", "桜川（さくらがわ）"],
+      answer: 0,
+      explain: "京都・伏見の名水「伏水」を使用しています。京都伏見は日本有数の酒どころです。" },
+    { q: "「伏見蔵 本醸造」を製造している京都の酒造メーカーはどこですか？",
+      options: ["菊水酒造", "宝酒造", "西野金陵"],
+      answer: 1,
+      explain: "京都の宝酒造が製造しています。" },
+    { q: "香川県・西野金陵の「金陵 千歳緑 特別純米」に使用されている原料米品種は何ですか？",
+      options: ["山田錦", "オオセト", "日本晴"],
+      answer: 1,
+      explain: "香川県産の酒米「オオセト」を使用しています。" },
+    { q: "「金陵 千歳緑 特別純米」の精米歩合と日本酒度の組み合わせとして正しいものはどれですか？",
+      options: [
+        "精米歩合 58% ／ 日本酒度 ＋4.5",
+        "精米歩合 60% ／ 日本酒度 ＋3",
+        "精米歩合 65% ／ 日本酒度 ＋8"
+      ],
+      answer: 0,
+      explain: "精米歩合58%、日本酒度＋4.5です。全国燗酒コンテスト最高金賞受賞の実力派です。" },
+    { q: "高知県・菊水酒造の「四万十川 純米吟醸酒」の原料米として使用されている酒米は何ですか？",
+      options: ["吟吹雪", "山田錦", "ヒノヒカリ"],
+      answer: 1,
+      explain: "酒米の王様「山田錦」を100%使用しています。" },
+    { q: "「四万十川 純米吟醸酒」の味わいや仕込みの特徴として最も適切なものはどれですか？",
+      options: [
+        "土佐伝統の淡麗仕込みによる、爽やかな吟醸香とスッキリ滑らかな喉越し",
+        "濃醇で重厚な苦味が強く残り、甘みが一切ない超超辛口",
+        "果汁と牛乳を混ぜ合わせたようなトロッとした極甘口"
+      ],
+      answer: 0,
+      explain: "土佐伝統の淡麗仕込みで醸された爽やかな吟醸香とスッキリした喉越しが魅力です。" },
+    { q: "大阪府・秋鹿酒造の「秋鹿 純米酒 千秋」のアルコール度数に関する特徴はどれですか？",
+      options: [
+        "アルコール度数20%以上の原酒で重厚である",
+        "アルコール度数約14%と少し低めに抑えられており、スイスイ飲めて飲み疲れない",
+        "アルコール度数5%未満で炭酸が入っている"
+      ],
+      answer: 1,
+      explain: "アルコール度数約14%と一般的な日本酒より低めで、軽やかに飲み疲れしない食中酒です。" },
+    { q: "「秋鹿 純米酒 千秋」の精米歩合と日本酒度の数値はどれですか？",
+      options: [
+        "精米歩合 65% ／ 日本酒度 ＋3",
+        "精米歩合 50% ／ 日本酒度 ＋10",
+        "精米歩合 70% ／ 日本酒度 0"
+      ],
+      answer: 0,
+      explain: "精米歩合65%、日本酒度＋3です。米の旨味と酸味が豊かな純米酒です。" },
+    { q: "滋賀県・松瀬酒造の「松の司 純米吟醸 楽」の仕込み水はどこから汲み上げられていますか？",
+      options: [
+        "鈴鹿山系愛知川の地下120mの伏流水",
+        "四万十川の表面清流水",
+        "能勢の桜川名水"
+      ],
+      answer: 0,
+      explain: "鈴鹿山系愛知川の地下120mから汲み上げる清らかな伏流水を使用しています。" },
+    { q: "「松の司 純米吟醸 楽」の味わいや楽しみ方として適切な説明はどれですか？",
+      options: [
+        "冷やからお燗まで幅広い温度帯で楽しめ、穏やかな吟醸香と優しく落ち着いた味わい",
+        "熱燗でしか飲めず、冷やすと味が完全に崩れてしまう",
+        "強い炭酸があり、フルーツジュースのように極めて甘い"
+      ],
+      answer: 0,
+      explain: "冷やからお燗まで幅広く楽しめる普段使いの吟醸酒です。穏やかな香りと落ち着いた味わいが特徴です。" }
+  ];
+
   var GAS_URL = "https://script.google.com/macros/s/AKfycbys9l1CtBFTehWZX7jW3AC7e8lijZ82YxOVuqROORQ7NtlmhILQhI3GOi8Fn0E4jFs_kQ/exec";
   var LETTERS = ['A','B','C','D','E'];
 
@@ -2410,6 +2739,7 @@ q: "おちば屋で使用している西山農園のお米の品種名はどれ�
     if (cat === 'qsca') return qscaQuizData;
     if (cat === 'drink') return drinkQuizData;
     if (cat === 'beer') return beerQuizData;
+    if (cat === 'sake') return sakeQuizData;
     return [];
   }
 
@@ -2434,7 +2764,7 @@ q: "おちば屋で使用している西山農園のお米の品種名はどれ�
   }
 
   // Setup quiz buttons for each pane
-  ['meat','veg','qsca','drink','beer'].forEach(function(pid) {
+  ['meat','veg','qsca','drink','beer','sake'].forEach(function(pid) {
     document.getElementById('startBtn-' + pid).addEventListener('click', function() {
       var data = getQuizData(pid);
       renderQs(pid, data);
@@ -2622,6 +2952,63 @@ q: "おちば屋で使用している西山農園のお米の品種名はどれ�
 
   // 回答を読み込む
   document.getElementById('wsLoadBtn').addEventListener('click', loadWsAnswers);
+
+  // ============================================================
+  // 飲み比べワークシート送信
+  // ============================================================
+  document.getElementById('tastingSubmitBtn').addEventListener('click', function() {
+    var name = document.getElementById('tasting-name').value.trim();
+    var statusEl = document.getElementById('tastingStatus');
+    if (!name) { statusEl.textContent = 'お名前を入力してください'; statusEl.className = 'status show error'; return; }
+    initFirebase();
+    if (!wsDb) { statusEl.textContent = '接続エラー'; statusEl.className = 'status show error'; return; }
+    var data = {
+      name: name,
+      timestamp: Date.now(),
+      q1_brand: document.getElementById('t-q1-brand').value,
+      q1_phrase: document.getElementById('t-q1-phrase').value,
+      q2_brand: document.getElementById('t-q2-brand').value,
+      q2_phrase: document.getElementById('t-q2-phrase').value,
+      q3_brand: document.getElementById('t-q3-brand').value,
+      q3_point: document.getElementById('t-q3-point').value,
+      q4_mugi: document.getElementById('t-q4-mugi').value,
+      q4_imo: document.getElementById('t-q4-imo').value,
+      q4_kokuto: document.getElementById('t-q4-kokuto').value
+    };
+    statusEl.textContent = '送信中...'; statusEl.className = 'status show loading';
+    wsDb.ref('tasting').push(data).then(function() {
+      statusEl.textContent = '✓ 送信しました！'; statusEl.className = 'status show loading';
+      loadTastingAnswers();
+    }).catch(function(e) { statusEl.textContent = 'エラー：' + e.message; statusEl.className = 'status show error'; });
+  });
+
+  document.getElementById('tastingLoadBtn').addEventListener('click', loadTastingAnswers);
+
+  function loadTastingAnswers() {
+    initFirebase();
+    if (!wsDb) return;
+    var container = document.getElementById('tastingAnswers');
+    container.innerHTML = '<div style="font-size:13px;color:#8B4513;text-align:center;padding:10px;">読み込み中...</div>';
+    wsDb.ref('tasting').orderByChild('timestamp').limitToLast(20).once('value').then(function(snapshot) {
+      var items = [];
+      snapshot.forEach(function(child) { items.push(child.val()); });
+      items.reverse();
+      if (items.length === 0) { container.innerHTML = '<div style="font-size:13px;color:#8B4513;text-align:center;padding:10px;">まだ回答がありません</div>'; return; }
+      container.innerHTML = items.map(function(d) {
+        var time = new Date(d.timestamp).toLocaleTimeString('ja-JP', {hour:'2-digit', minute:'2-digit'});
+        var rows = [
+          ['Q1 銘柄', d.q1_brand], ['Q1 フレーズ', d.q1_phrase],
+          ['Q2 銘柄', d.q2_brand], ['Q2 フレーズ', d.q2_phrase],
+          ['Q3 銘柄', d.q3_brand], ['Q3 ポイント', d.q3_point],
+          ['麦焼酎', d.q4_mugi], ['芋焼酎', d.q4_imo], ['黒糖焼酎', d.q4_kokuto]
+        ].filter(function(r) { return r[1]; });
+        var rowsHtml = rows.map(function(r) {
+          return '<div style="margin-bottom:6px;"><span style="font-size:11px;font-weight:700;color:#D94F3D;">' + r[0] + '</span><div style="font-size:13px;color:#3D2817;padding:4px 8px;background:rgba(255,255,255,0.6);border-radius:6px;margin-top:2px;">' + r[1] + '</div></div>';
+        }).join('');
+        return '<div style="border:1px solid rgba(194,65,12,0.15);border-radius:10px;padding:12px;margin-bottom:10px;background:rgba(255,248,235,0.6);"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;"><strong style="font-weight:700;color:#4A2511;">' + d.name + '</strong><span style="font-size:11px;color:#8B4513;">' + time + '</span></div>' + rowsHtml + '</div>';
+      }).join('');
+    });
+  }
 
   function loadWsAnswers() {
     initFirebase();
