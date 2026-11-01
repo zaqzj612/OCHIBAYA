@@ -815,11 +815,12 @@
 
 <nav class="tabbar">
   <div class="tabs">
+    <button class="tab active" data-tab="work">仕事の流れ<span class="en">W O R K F L O W</span></button>
     <button class="tab" data-tab="meat">鶏と鴨<span class="en">M E A T</span></button>
     <button class="tab" data-tab="veg">野菜と食材<span class="en">V E G</span></button>
     <button class="tab" data-tab="qsca">QSCA<span class="en">Q S C A</span></button>
     <button class="tab" data-tab="drink">蒸留酒・ソフトドリンク<span class="en">D R I N K S</span></button>
-    <button class="tab active" data-tab="sake">日本酒<span class="en">J A P A N E S E &nbsp; S A K E</span></button>
+    <button class="tab" data-tab="sake">日本酒<span class="en">J A P A N E S E &nbsp; S A K E</span></button>
     <button class="tab" data-tab="beer">ビール<span class="en">B E E R</span></button>
   </div>
 </nav>
@@ -1730,7 +1731,7 @@
 
   </div>
 
-  <div class="pane active" id="pane-sake">
+  <div class="pane" id="pane-sake">
     <div class="section-head">
       <div class="ornament">❉ ❉ ❉</div>
       <h2>日本酒</h2>
@@ -1923,6 +1924,63 @@
       </section>
     </div>
 
+  </div>
+
+  <div class="pane active" id="pane-work">
+    <div class="section-head">
+      <div class="ornament">❉ ❉ ❉</div>
+      <h2>仕事の流れ</h2>
+      <div class="sub">W O R K &nbsp; F L O W</div>
+    </div>
+    <div class="subtabs">
+      <button class="subtab active" data-pane="work" data-sub="wash">洗い場<span class="sub-en">W A S H</span></button>
+      <button class="subtab" data-pane="work" data-sub="serv">サーバー<span class="sub-en">S E R V E R</span></button>
+      <button class="subtab" data-pane="work" data-sub="jr">デッカオ<span class="sub-en">J R .</span></button>
+    </div>
+    <div class="subpane active" id="sub-work-wash">
+<section class="card"><span class="card-label">— 洗い場編 1</span><h3>仕事の流れ</h3><ul><li>営業前：洗剤準備／おにぎりをあらかじめ握っておく</li><li>営業中：皿・グラス洗い／調理場からの洗い物を溜めない／ごはんもの</li><li>営業後：フライヤー、炊飯器、タオルを洗う／アルカリ・床洗い／シンクの清潔を保つ／ごみ捨て</li></ul></section>
+<section class="card"><span class="card-label">— 洗い場編 2</span><h3>洗い方のポイント</h3><ul><li>グラスは底とフチを入念に洗う。飲み口は特に丁寧に。</li><li>卵と油がついたお皿は、意識的にしっかり洗う。</li><li>食洗機は過信しない。先にスポンジで汚れのほとんどを落とす。</li><li>食洗機には、皿を種類別に分けて入れる。なるべく沢山入れてから回す。</li><li>食洗機に入れてはいけないもの：木製のもの、柔らかいプラスチック（フタなど）、鉄板。変形したり傷んだりするため。</li><li>音を立てずに扱う。</li><li>数が少ないお皿は、すぐ洗って割らない。</li><li>バッシングしてきたものを置きやすくする。</li></ul></section>
+<section class="card"><span class="card-label">— 洗い場編 3</span><h3>連携・新人へ</h3><ul><li>連携：復唱する</li><li>新人へ：清潔に保つこと。衛生面の感覚を養う。</li></ul></section>
+<section class="card" id="fb-wash">
+  <span class="card-label">— 補充・修正</span>
+  <h3>この内容に修正・補充はありますか？</h3>
+  <p style="font-size:12.5px;color:#6B4226;margin-bottom:14px;line-height:1.7;">気づいたこと、足りないこと、違うと思うところを書いてください（洗い場編）。送信するとすぐ、下にみんなの回答が表示されます。</p>
+  <div class="field"><label>内容 <span class="opt">（必須）</span></label><textarea id="fb-wash-text" rows="4" placeholder="例：〇〇の順番はこうしたほうがいい、△△が抜けている、など"></textarea></div>
+  <button class="submit-btn" id="fb-wash-btn">送信する</button>
+  <div class="status" id="fb-wash-status"></div>
+  <h3 style="margin-top:22px;">みんなの回答 <span id="fb-wash-count" style="font-size:13px;color:#6B4226;"></span></h3>
+  <div id="fb-wash-list" style="display:flex;flex-direction:column;gap:8px;margin-top:8px;"></div>
+</section>
+    </div>
+    <div class="subpane" id="sub-work-serv">
+<section class="card"><span class="card-label">— サーバー編 1</span><h3>仕事の流れ</h3><ul><li>営業前：ガスを開ける→ビールのスイッチ（冷）を入れる→ガス圧とガス残を確認／グラスの残存在庫確認／メジャーカップとマドラーに水を入れる（中津店）／おしぼり準備／前日発注分の補充／固まった氷を崩す</li><li>営業中：サーバー周りを常にキレイに／ファーストドリンクは優先／同じテーブルの分をまとめて作る</li><li>営業後：ビール洗浄／サーバー部品洗浄／台拭き／空きビン整理／回路洗浄・スポンジ洗浄（毎日）</li><li>週1回：製氷機</li></ul></section>
+<section class="card"><span class="card-label">— サーバー編 2</span><h3>ドリンクのポイント</h3><ul><li>氷はグラスにパンパンに入れる。</li><li>お酒の量をきちんと量り、しっかり混ぜる。</li><li>作る前に、グラスがキレイか確認する。</li><li>ワイングラスは拭いてから戻す。</li><li>こだわり：ビールの泡をキメ細かく</li></ul></section>
+<section class="card"><span class="card-label">— サーバー編 3</span><h3>連携・新人へ</h3><ul><li>連携：大きな声で</li><li>新人へ：丁寧な心／お酒を覚える／メモを取る／きれいに使う</li></ul></section>
+<section class="card" id="fb-serv">
+  <span class="card-label">— 補充・修正</span>
+  <h3>この内容に修正・補充はありますか？</h3>
+  <p style="font-size:12.5px;color:#6B4226;margin-bottom:14px;line-height:1.7;">気づいたこと、足りないこと、違うと思うところを書いてください（サーバー編）。送信するとすぐ、下にみんなの回答が表示されます。</p>
+  <div class="field"><label>内容 <span class="opt">（必須）</span></label><textarea id="fb-serv-text" rows="4" placeholder="例：〇〇の順番はこうしたほうがいい、△△が抜けている、など"></textarea></div>
+  <button class="submit-btn" id="fb-serv-btn">送信する</button>
+  <div class="status" id="fb-serv-status"></div>
+  <h3 style="margin-top:22px;">みんなの回答 <span id="fb-serv-count" style="font-size:13px;color:#6B4226;"></span></h3>
+  <div id="fb-serv-list" style="display:flex;flex-direction:column;gap:8px;margin-top:8px;"></div>
+</section>
+    </div>
+    <div class="subpane" id="sub-work-jr">
+<section class="card"><span class="card-label">— デッカオ編 1</span><h3>仕事の流れ</h3><ul><li>スタート時：ガス線を開ける／サーバー周りのセッティング／おしぼりと水の補充／iPad の起動</li><li>締め作業：サーバーを洗い、周りを拭く／ビール洗浄／レバーを戻す（忘れない）／冷蔵庫の電気を消す</li></ul></section>
+<section class="card"><span class="card-label">— デッカオ編 2</span><h3>こだわり・連携・新人へ</h3><ul><li>こだわり：ビールの泡は最後に入れる／グラスがキレイか確認する／同じ卓のものをまとめて確認する／効率よく作る／ドリンクの量をそろえる／キレイな泡にする</li><li>連携：作っている最中にホールを呼ぶ／持っていったら iPad を押す</li><li>新人へ：周りをきれいにする／ビールの泡は最後</li></ul></section>
+<section class="card" id="fb-jr">
+  <span class="card-label">— 補充・修正</span>
+  <h3>この内容に修正・補充はありますか？</h3>
+  <p style="font-size:12.5px;color:#6B4226;margin-bottom:14px;line-height:1.7;">気づいたこと、足りないこと、違うと思うところを書いてください（デッカオ編）。送信するとすぐ、下にみんなの回答が表示されます。</p>
+  <div class="field"><label>内容 <span class="opt">（必須）</span></label><textarea id="fb-jr-text" rows="4" placeholder="例：〇〇の順番はこうしたほうがいい、△△が抜けている、など"></textarea></div>
+  <button class="submit-btn" id="fb-jr-btn">送信する</button>
+  <div class="status" id="fb-jr-status"></div>
+  <h3 style="margin-top:22px;">みんなの回答 <span id="fb-jr-count" style="font-size:13px;color:#6B4226;"></span></h3>
+  <div id="fb-jr-list" style="display:flex;flex-direction:column;gap:8px;margin-top:8px;"></div>
+</section>
+    </div>
   </div>
 
   <footer>
@@ -3042,6 +3100,51 @@ q: "おちば屋で使用している西山農園のお米の品種名はどれ�
     });
   }
 
+</script>
+
+
+<script>
+(function(){
+  var SECS=['wash','serv','jr'], REF='shigoto_feedback', db=null;
+  function getDb(){
+    try{
+      if(typeof initFirebase==='function')initFirebase();
+      if(typeof firebase!=='undefined'&&firebase.apps.length)db=firebase.database();
+    }catch(e){}
+    return db;
+  }
+  function fmt(ts){var d=new Date(ts);return (d.getMonth()+1)+'/'+d.getDate()+' '+('0'+d.getHours()).slice(-2)+':'+('0'+d.getMinutes()).slice(-2)}
+  function paint(sec,snap){
+    var box=document.getElementById('fb-'+sec+'-list'),arr=[];
+    snap.forEach(function(c){arr.push(c.val())});
+    arr.sort(function(a,b){return b.ts-a.ts});
+    document.getElementById('fb-'+sec+'-count').textContent=arr.length?'（'+arr.length+'件）':'';
+    box.innerHTML='';
+    if(!arr.length){var e=document.createElement('p');e.style.cssText='font-size:13px;color:#6B4226;';e.textContent='まだ回答はありません。最初の1件を書いてみましょう。';box.appendChild(e);return}
+    arr.forEach(function(v){
+      var d=document.createElement('div');d.style.cssText='background:#fff;border:1px solid rgba(107,66,38,.25);border-radius:8px;padding:10px 12px;';
+      var h=document.createElement('div');h.style.cssText='font-size:11.5px;color:#6B4226;margin-bottom:4px;';h.textContent=fmt(v.ts);
+      var t=document.createElement('div');t.style.cssText='font-size:14px;line-height:1.7;white-space:pre-wrap;overflow-wrap:anywhere;';t.textContent=v.text;
+      d.appendChild(h);d.appendChild(t);box.appendChild(d);
+    });
+  }
+  SECS.forEach(function(sec){
+    var btn=document.getElementById('fb-'+sec+'-btn'),st=document.getElementById('fb-'+sec+'-status');
+    function msg(t,err){st.textContent=t;st.className='status show '+(err?'error':'loading')}
+    btn.addEventListener('click',function(){
+      var text=document.getElementById('fb-'+sec+'-text').value.trim();
+      if(!text){msg('内容を入力してください',true);return}
+      if(!getDb()){msg('接続エラーが発生しました',true);return}
+      msg('送信中...');
+      db.ref(REF+'/'+sec).push({text:text,ts:Date.now()}).then(function(){
+        document.getElementById('fb-'+sec+'-text').value='';msg('✓ 送信しました！ありがとうございます');
+      }).catch(function(e){msg('エラー：'+e.message,true)});
+    });
+    if(getDb()){db.ref(REF+'/'+sec).on('value',function(snap){paint(sec,snap)},function(){
+      var l=document.getElementById('fb-'+sec+'-list');l.textContent='回答を読み込めませんでした。';
+    })}
+  });
+})();
 </script>
 
 </body>
